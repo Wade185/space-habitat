@@ -1,0 +1,12 @@
+{
+  "Moon": {
+    "survival": "Extreme day/night cycles. Radiation protection needed.",
+    "production": "Solar with batteries. Regolith for shielding.",
+    "necessities": "Water extraction from regolith. Oxygen from CO₂."
+  },
+  "Phobos": {
+    "survival": "Low gravity, unstable surface. Use underground bases.",
+    "production": "Mining resources. Solar power.",
+    "necessities": "Small base habitats. Limited sustainability."
+  }
+}
