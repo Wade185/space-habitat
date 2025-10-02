@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Anthe - Habitat Assistant</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #0a0f2c, #1c2340, #2b2a6a, #000);
+      background-attachment: fixed;
+      color: #f1f1f1;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+    }
+
+    .assistant-container {
+      background: rgba(20, 20, 40, 0.85);
+      border-radius: 15px;
+      padding: 30px;
+      width: 850px;
+      max-width: 95%;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .assistant-container h1 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #00eaff;
+      text-shadow: 0 0 10px #00eaff, 0 0 20px #0095ff;
+      margin-bottom: 20px;
+    }
+
+    .info p {
+      margin: 8px 0;
+      font-size: 1.05em;
+    }
+
+    h2 {
+      margin-top: 25px;
+      font-size: 1.5em;
+      color: #ffdd57;
+      text-shadow: 0 0 5px #ffae00;
+    }
+
+    p {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+
+    .assistant-box {
+      margin-top: 30px;
+      padding: 20px;
+      border: 2px solid #00eaff;
+      border-radius: 10px;
+      background: rgba(0, 20, 40, 0.6);
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
+    }
+
+    .assistant-box input {
+      width: 70%;
+      padding: 12px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      font-size: 1em;
+    }
+
+    .assistant-box button {
+      margin-left: 10px;
+      padding: 12px 20px;
+      background: #00eaff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      color: #000;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .assistant-box button:hover {
+      background: #0095ff;
+      box-shadow: 0 0 15px #00eaff;
+    }
+
+    #answerBox {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      min-height: 60px;
+      font-style: italic;
+      text-align: left;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #ffdd57;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      color: #ffffff;
+      text-shadow: 0 0 10px #ffdd57;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <div class="assistant-container">
+    <h1>Anthe AI Assistant</h1>
+    <div class="info">
+      <p><b>Discovery:</b> 2007, Cassini spacecraft</p>
+      <p><b>Parent Planet:</b> Saturn</p>
+      <p><b>Size:</b> ~2 km diameter</p>
+      <p><b>Distance from Earth:</b> ~1.27 billion km</p>
+      <p><b>Description:</b> Anthe is a tiny Saturnian moon that orbits within the Anthe Ring Arc. It helps sustain the arc by releasing dust particles into space.</p>
+      <p><b>Fun Fact:</b> Anthe is so small it barely has enough gravity to hold its shape, yet it creates its own ring arc!</p>
+    </div>
+
+    <h2>Breathing / Oxygen</h2>
+    <p>Anthe has no atmosphere. Oxygen (O₂) would need to be generated artificially, likely through electrolysis of ice particles or closed-loop recycling inside habitats.</p>
+
+    <h2>Water & Sewage</h2>
+    <p>Water could be sourced from icy particles in Saturn’s rings. Advanced purification and recycling systems would ensure nothing is wasted.</p>
+
+    <h2>Food Production</h2>
+    <p>Hydroponic and aeroponic farming methods in shielded domes would provide crops. Protein could come from algae and lab-grown sources.</p>
+
+    <h2>Energy</h2>
+    <p>Solar power is weak at Saturn’s distance. Colonies would rely mainly on nuclear fission reactors, with future compact fusion as an option.</p>
+
+    <h2>Shelter</h2>
+    <p>Habitats would need thick radiation shielding. Possible options: underground bases or regolith-covered domes to protect colonists from cosmic rays and micrometeoroids.</p>
+
+    <div class="assistant-box">
+      <h2>Ask me anything about Anthe</h2>
+      <input type="text" id="userQuestion" placeholder="Type your question...">
+      <button id="askButton">Ask</button>
+      <div id="answerBox">Tip: Try asking about oxygen, water, food, farming, energy, or shelter.</div>
+    </div>
+
+    <!-- Back to Home button -->
+    <a href="{{ url_for('index') }}" class="back-btn">⬅ Back to Home</a>
+
+  </div>
+
+  <script>
+    const askButton = document.getElementById("askButton");
+    const userQuestion = document.getElementById("userQuestion");
+    const answerBox = document.getElementById("answerBox");
+
+    // Knowledge base
+    const knowledge = {
+      "oxygen": "Breathing on Anthe: Oxygen must be created artificially via electrolysis of ice particles or through habitat recycling systems.",
+      "breath": "No natural air exists. Oxygen must be generated from icy resources or recycling inside sealed bases.",
+      "air": "There is no atmosphere. Artificial life-support systems are required.",
+
+      "water": "Water on Anthe: Ice dust from Saturn’s rings could be harvested, purified, and recycled indefinitely for human use.",
+      "sewage": "Wastewater would be purified and recycled into clean water. Nothing can be wasted in off-Earth colonies.",
+
+      "food": "Food Production: Colonies would rely on hydroponics, algae farms, and lab-grown protein inside shielded domes.",
+      "farming": "Farming on Anthe: Traditional soil farming is impossible. Hydroponics and artificial lighting would grow crops sustainably.",
+      "agriculture": "Agriculture would be dome-based, using aeroponics, hydroponics, and bioreactors for protein.",
+
+      "energy": "Energy on Anthe: Solar is too weak this far from the Sun. Reliable power comes from nuclear fission reactors.",
+      "power": "Primary power would come from compact nuclear reactors; solar would be backup only.",
+
+      "shelter": "Shelter: Habitats must be radiation-shielded and possibly underground. Surface domes would be covered in regolith or built into caverns.",
+      "habitat": "Habitats would require strong protection against Saturn’s radiation and micrometeoroids."
+    };
+
+    function getAnswer() {
+      const q = userQuestion.value.toLowerCase();
+      let response = "I don’t have that info yet. Try asking about: oxygen, water, food, farming, energy, or shelter.";
+
+      for (let key in knowledge) {
+        if (q.includes(key)) {
+          response = knowledge[key];
+          break;
+        }
+      }
+
+      answerBox.innerHTML = response;
+      userQuestion.value = ""; // clear input after asking
+    }
+
+    // Button click
+    askButton.addEventListener("click", getAnswer);
+
+    // Enter key support
+    userQuestion.addEventListener("keyup", (event) => {
+      if (event.key === "Enter") {
+        getAnswer();
+      }
+    });
+  </script>
+</body>
+</html>

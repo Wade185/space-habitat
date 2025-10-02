@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Io - Habitat Assistant</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+    body {
+      background: radial-gradient(circle at top, #0a0f2c, #1c2340, #2b2a6a, #000);
+      background-attachment: fixed;
+      color: #f1f1f1;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+    }
+    .assistant-container {
+      background: rgba(20, 20, 40, 0.85);
+      border-radius: 15px;
+      padding: 30px;
+      width: 850px;
+      max-width: 95%;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .assistant-container h1 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #00eaff;
+      text-shadow: 0 0 10px #00eaff, 0 0 20px #0095ff;
+      margin-bottom: 20px;
+    }
+    .info p { margin: 8px 0; font-size: 1.05em; }
+    h2 { margin-top: 25px; font-size: 1.5em; color: #ffdd57; text-shadow: 0 0 5px #ffae00; }
+    p { margin: 10px 0; line-height: 1.5; }
+    .assistant-box {
+      margin-top: 30px; padding: 20px; border: 2px solid #00eaff; border-radius: 10px;
+      background: rgba(0, 20, 40, 0.6); text-align: center; box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
+    }
+    .assistant-box input {
+      width: 70%; padding: 12px; margin-top: 15px; border: none; border-radius: 8px;
+      outline: none; font-size: 1em;
+    }
+    .assistant-box button {
+      margin-left: 10px; padding: 12px 20px; background: #00eaff; border: none;
+      border-radius: 8px; font-size: 1em; cursor: pointer; color: #000;
+      font-weight: bold; transition: 0.3s;
+    }
+    .assistant-box button:hover { background: #0095ff; box-shadow: 0 0 15px #00eaff; }
+    #answerBoxIo {
+      margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px; min-height: 60px; font-style: italic; text-align: left;
+    }
+    .back-btn {
+      display: inline-block; margin-top: 20px; text-decoration: none;
+      color: #ffdd57; font-weight: bold; transition: 0.3s;
+    }
+    .back-btn:hover { color: #ffffff; text-shadow: 0 0 10px #ffdd57; }
+    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
+  </style>
+</head>
+<body>
+  <div class="assistant-container">
+    <h1>Io AI Assistant</h1>
+    <div class="info">
+      <p><b>Discovery:</b> Known since ancient times (observed by Galileo in 1610)</p>
+      <p><b>Parent Planet:</b> Jupiter</p>
+      <p><b>Size:</b> ~3,643 km diameter</p>
+      <p><b>Distance from Earth:</b> ~628 million km (varies with orbit)</p>
+      <p><b>Description:</b> Io is the most volcanically active body in the solar system, with hundreds of active volcanoes driven by tidal heating from Jupiter.</p>
+      <p><b>Fun Fact:</b> Io’s surface is constantly reshaped by lava flows and sulfur deposits, giving it vivid colors from yellow to red.</p>
+    </div>
+
+    <h2>Breathing / Oxygen</h2>
+    <p>Io has an extremely thin atmosphere composed mainly of sulfur dioxide (SO₂) — not breathable. Any human presence requires closed habitats and continuous oxygen generation and recycling.</p>
+
+    <h2>Water & Sewage</h2>
+    <p>Liquid water is absent on Io’s surface. Water must be imported from icy moons (like Europa) or carried from Earth, and then fully recycled in closed-loop life-support systems.</p>
+
+    <h2>Food Production</h2>
+    <p>Food production requires sealed hydroponic or aeroponic farms inside protected habitats. Soil-based agriculture is not possible on Io’s volcanic surface.</p>
+
+    <h2>Energy</h2>
+    <p>Io’s abundant volcanic heat and sulfur chemistry present interesting energy research opportunities, but for early colonies, nuclear power and orbital solar arrays would be primary reliable sources.</p>
+
+    <h2>Shelter</h2>
+    <p>Intense radiation from Jupiter and Io’s volcanic activity demand heavily shielded habitats. Underground or heavily armored modules with active cooling and dust/ash filtration are necessary.</p>
+
+    <div class="assistant-box">
+      <h2>Ask me anything about Io</h2>
+      <input type="text" id="userQuestionIo" placeholder="Type your question...">
+      <button id="askButtonIo">Ask</button>
+      <div id="answerBoxIo">Tip: Try asking about oxygen, water, food, energy, or shelter.</div>
+    </div>
+    <a href="{{ url_for('index') }}" class="back-btn">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    const askButtonIo = document.getElementById("askButtonIo");
+    const userQuestionIo = document.getElementById("userQuestionIo");
+    const answerBoxIo = document.getElementById("answerBoxIo");
+
+    const knowledgeIo = {
+      "oxygen": "Io's atmosphere is almost entirely sulfur dioxide (SO₂) and cannot support breathing. Use closed habitats and oxygen generation systems.",
+      "water": "Io lacks liquid water on the surface. Import water from icy moons or bring it from Earth and use full recycling.",
+      "food": "Grow food in hydroponic/aeroponic systems within sealed habitats; soil farming is not possible on Io.",
+      "energy": "While volcanic heat exists, early colonies will rely on nuclear reactors or orbital solar plus thermal systems for local experiments.",
+      "shelter": "Habitat modules must be heavily shielded from radiation and volcanic ejecta; underground shelters provide best protection."
+    };
+
+    function getAnswerIo() {
+      const q = userQuestionIo.value.toLowerCase();
+      let response = "I don’t have that info yet. Try oxygen, water, food, energy, or shelter.";
+      for (let key in knowledgeIo) {
+        if (q.includes(key)) { response = knowledgeIo[key]; break; }
+      }
+      answerBoxIo.innerHTML = response;
+      userQuestionIo.value = "";
+    }
+
+    askButtonIo.addEventListener("click", getAnswerIo);
+    userQuestionIo.addEventListener("keyup", (event) => {
+      if (event.key === "Enter") getAnswerIo();
+    });
+  </script>
+</body>
+</html>

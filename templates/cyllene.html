@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cyllene - Habitat Assistant</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+    body {
+      background: radial-gradient(circle at top, #0a0f2c, #1c2340, #2b2a6a, #000);
+      background-attachment: fixed;
+      color: #f1f1f1;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+    }
+    .assistant-container {
+      background: rgba(20, 20, 40, 0.85);
+      border-radius: 15px;
+      padding: 30px;
+      width: 850px;
+      max-width: 95%;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .assistant-container h1 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #00eaff;
+      text-shadow: 0 0 10px #00eaff, 0 0 20px #0095ff;
+      margin-bottom: 20px;
+    }
+    .info p { margin: 8px 0; font-size: 1.05em; }
+    h2 { margin-top: 25px; font-size: 1.5em; color: #ffdd57; text-shadow: 0 0 5px #ffae00; }
+    p { margin: 10px 0; line-height: 1.5; }
+    .assistant-box {
+      margin-top: 30px; padding: 20px; border: 2px solid #00eaff; border-radius: 10px;
+      background: rgba(0, 20, 40, 0.6); text-align: center; box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
+    }
+    .assistant-box input {
+      width: 70%; padding: 12px; margin-top: 15px; border: none; border-radius: 8px;
+      outline: none; font-size: 1em;
+    }
+    .assistant-box button {
+      margin-left: 10px; padding: 12px 20px; background: #00eaff; border: none;
+      border-radius: 8px; font-size: 1em; cursor: pointer; color: #000;
+      font-weight: bold; transition: 0.3s;
+    }
+    .assistant-box button:hover { background: #0095ff; box-shadow: 0 0 15px #00eaff; }
+    #answerBox {
+      margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px; min-height: 60px; font-style: italic; text-align: left;
+    }
+    .back-btn {
+      display: inline-block; margin-top: 20px; text-decoration: none;
+      color: #ffdd57; font-weight: bold; transition: 0.3s;
+    }
+    .back-btn:hover { color: #ffffff; text-shadow: 0 0 10px #ffdd57; }
+    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
+  </style>
+</head>
+<body>
+  <div class="assistant-container">
+    <h1>Cyllene AI Assistant</h1>
+    <div class="info">
+      <p><b>Discovery:</b> 2003, by Scott S. Sheppard and team</p>
+      <p><b>Parent Planet:</b> Jupiter</p>
+      <p><b>Size:</b> ~2 km diameter</p>
+      <p><b>Distance from Earth:</b> ~628–930 million km (varies)</p>
+      <p><b>Description:</b> Cyllene is a small irregular moon of Jupiter, part of the Pasiphae group, orbiting far and retrograde around Jupiter.</p>
+      <p><b>Fun Fact:</b> Named after a nymph from Greek mythology associated with Mount Cyllene in Arcadia.</p>
+    </div>
+
+    <h2>Breathing / Oxygen</h2>
+    <p>No atmosphere exists. Oxygen must be imported or extracted from icy bodies elsewhere in the Jovian system.</p>
+
+    <h2>Water & Sewage</h2>
+    <p>Cyllene likely lacks water. Colonists would depend on imports or recycling systems.</p>
+
+    <h2>Food Production</h2>
+    <p>Hydroponics under artificial domes would sustain colonists, though limited in scale.</p>
+
+    <h2>Energy</h2>
+    <p>Solar power is very weak this far from the Sun. Compact nuclear reactors would be essential.</p>
+
+    <h2>Shelter</h2>
+    <p>Small bases shielded by regolith could protect from radiation and temperature swings.</p>
+
+    <div class="assistant-box">
+      <h2>Ask me anything about Cyllene</h2>
+      <input type="text" id="userQuestion" placeholder="Type your question...">
+      <button id="askButton">Ask</button>
+      <div id="answerBox">Tip: Try asking about oxygen, water, food, farming, energy, or shelter.</div>
+    </div>
+    <a href="{{ url_for('index') }}" class="back-btn">⬅ Back to Home</a>
+
+  </div>
+
+  <script>
+    const askButton = document.getElementById("askButton");
+    const userQuestion = document.getElementById("userQuestion");
+    const answerBox = document.getElementById("answerBox");
+
+    const knowledge = {
+      "oxygen": "Cyllene has no atmosphere. Oxygen must be carried or generated from other moons’ ice.",
+      "breath": "Breathing requires sealed life-support habitats.",
+      "air": "Cyllene has no breathable air.",
+
+      "water": "No confirmed water here. Colonists would rely on imports or recycling.",
+      "sewage": "Wastewater would be processed and recycled completely.",
+
+      "food": "Food: Hydroponics in domes, supplemented with lab-grown protein.",
+      "farming": "Farming requires artificial light and sealed systems.",
+      "agriculture": "Closed-loop agriculture supports survival.",
+
+      "energy": "Energy: Nuclear power is the only practical option.",
+      "power": "Solar is too weak; nuclear is essential.",
+
+      "shelter": "Shelter: Regolith shielding protects against radiation.",
+      "habitat": "Pressurized habitats underground or dome-covered bases are required."
+    };
+
+    function getAnswer() {
+      const q = userQuestion.value.toLowerCase();
+      let response = "I don’t have that info yet. Try asking about: oxygen, water, food, farming, energy, or shelter.";
+      for (let key in knowledge) { if (q.includes(key)) { response = knowledge[key]; break; } }
+      answerBox.innerHTML = response;
+      userQuestion.value = "";
+    }
+    askButton.addEventListener("click", getAnswer);
+    userQuestion.addEventListener("keyup", (event) => { if (event.key === "Enter") getAnswer(); });
+  </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mars - Habitat Assistant</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+    body {
+      background: radial-gradient(circle at top, #1c0b0b, #2c1b1b, #3e1f1f, #000);
+      background-attachment: fixed;
+      color: #f1f1f1;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+    }
+    .assistant-container {
+      background: rgba(40, 20, 20, 0.9);
+      border-radius: 15px;
+      padding: 30px;
+      width: 850px;
+      max-width: 95%;
+      box-shadow: 0 0 25px rgba(255, 80, 80, 0.4);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .assistant-container h1 {
+      text-align: center;
+      font-size: 2.4em;
+      color: #ff6f61;
+      text-shadow: 0 0 10px #ff6f61, 0 0 20px #ff3b2e;
+      margin-bottom: 20px;
+    }
+    .info p { margin: 8px 0; font-size: 1.05em; }
+    h2 { margin-top: 25px; font-size: 1.5em; color: #ffd35c; text-shadow: 0 0 5px #ffae00; }
+    p { margin: 10px 0; line-height: 1.5; }
+    .assistant-box {
+      margin-top: 30px; padding: 20px; border: 2px solid #ff6f61; border-radius: 10px;
+      background: rgba(50, 20, 20, 0.6); text-align: center; box-shadow: 0 0 20px rgba(255, 80, 80, 0.3);
+    }
+    .assistant-box input {
+      width: 70%; padding: 12px; margin-top: 15px; border: none; border-radius: 8px;
+      outline: none; font-size: 1em;
+    }
+    .assistant-box button {
+      margin-left: 10px; padding: 12px 20px; background: #ff6f61; border: none;
+      border-radius: 8px; font-size: 1em; cursor: pointer; color: #000;
+      font-weight: bold; transition: 0.3s;
+    }
+    .assistant-box button:hover { background: #ff3b2e; box-shadow: 0 0 15px #ff6f61; }
+    #answerBox {
+      margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px; min-height: 60px; font-style: italic; text-align: left;
+    }
+    .back-btn {
+      display: inline-block; margin-top: 20px; text-decoration: none;
+      color: #ffd35c; font-weight: bold; transition: 0.3s;
+    }
+    .back-btn:hover { color: #ffffff; text-shadow: 0 0 10px #ffd35c; }
+    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
+  </style>
+</head>
+<body>
+  <div class="assistant-container">
+    <h1>Mars AI Assistant</h1>
+    <div class="info">
+      <p><b>Discovery:</b> Known since antiquity (visible to the naked eye)</p>
+      <p><b>Parent Star:</b> Sun</p>
+      <p><b>Size:</b> ~6,779 km diameter (about half of Earth)</p>
+      <p><b>Distance from Earth:</b> ~54.6 million km at closest approach</p>
+      <p><b>Description:</b> Mars, the "Red Planet," is one of the most promising worlds for colonization. It has seasons, polar ice caps, canyons, and signs of ancient rivers and lakes.</p>
+      <p><b>Fun Fact:</b> Mars hosts the tallest volcano in the Solar System—Olympus Mons, nearly 3 times taller than Mount Everest.</p>
+    </div>
+
+    <h2>Breathing / Oxygen</h2>
+    <p>The atmosphere is 95% carbon dioxide. Oxygen must be generated artificially, possibly using MOXIE-like reactors to split CO₂ into O₂.</p>
+
+    <h2>Water & Sewage</h2>
+    <p>Subsurface ice and polar caps provide water sources. Recycling and purification systems would make water sustainable.</p>
+
+    <h2>Food Production</h2>
+    <p>Greenhouses with hydroponics and controlled lighting could grow crops, possibly even in Martian soil with treatment.</p>
+
+    <h2>Energy</h2>
+    <p>Solar panels work well due to abundant sunlight, but dust storms may reduce efficiency. Nuclear reactors provide backup power.</p>
+
+    <h2>Shelter</h2>
+    <p>Radiation is a major threat. Habitats would be built underground, covered with regolith, or even inside lava tubes.</p>
+
+    <div class="assistant-box">
+      <h2>Ask me anything about Mars</h2>
+      <input type="text" id="userQuestion" placeholder="Type your question...">
+      <button id="askButton">Ask</button>
+      <div id="answerBox">Tip: Try asking about oxygen, water, food, energy, or shelter.</div>
+    </div>
+    <a href="{{ url_for('index') }}" class="back-btn">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    const askButton = document.getElementById("askButton");
+    const userQuestion = document.getElementById("userQuestion");
+    const answerBox = document.getElementById("answerBox");
+
+    const knowledge = {
+      "oxygen": "Mars’ air is mostly CO₂. Oxygen must be generated using electrolysis or MOXIE reactors.",
+      "water": "Mars has subsurface ice and polar caps. Colonies can mine and recycle it.",
+      "food": "Greenhouses with hydroponics will grow crops, maybe using treated Martian soil.",
+      "energy": "Solar panels work but dust storms may block sunlight. Nuclear reactors ensure constant power.",
+      "shelter": "Radiation is dangerous. Colonists must live underground or inside shielded domes."
+    };
+
+    function getAnswer() {
+      const q = userQuestion.value.toLowerCase();
+      let response = "I don’t have that info yet. Try asking about: oxygen, water, food, energy, or shelter.";
+      for (let key in knowledge) { if (q.includes(key)) { response = knowledge[key]; break; } }
+      answerBox.innerHTML = response;
+      userQuestion.value = "";
+    }
+    askButton.addEventListener("click", getAnswer);
+    userQuestion.addEventListener("keyup", (event) => { if (event.key === "Enter") getAnswer(); });
+  </script>
+</body>
+</html>

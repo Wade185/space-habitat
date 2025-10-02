@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jupiter LXX - Habitat Assistant</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+    body {
+      background: radial-gradient(circle at top, #0a0f2c, #1c2340, #2b2a6a, #000);
+      background-attachment: fixed;
+      color: #f1f1f1;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+    }
+    .assistant-container {
+      background: rgba(20, 20, 40, 0.85);
+      border-radius: 15px;
+      padding: 30px;
+      width: 850px;
+      max-width: 95%;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .assistant-container h1 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #00eaff;
+      text-shadow: 0 0 10px #00eaff, 0 0 20px #0095ff;
+      margin-bottom: 20px;
+    }
+    .info p { margin: 8px 0; font-size: 1.05em; }
+    h2 { margin-top: 25px; font-size: 1.5em; color: #ffdd57; text-shadow: 0 0 5px #ffae00; }
+    p { margin: 10px 0; line-height: 1.5; }
+    .assistant-box {
+      margin-top: 30px; padding: 20px; border: 2px solid #00eaff; border-radius: 10px;
+      background: rgba(0, 20, 40, 0.6); text-align: center; box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
+    }
+    .assistant-box input {
+      width: 70%; padding: 12px; margin-top: 15px; border: none; border-radius: 8px;
+      outline: none; font-size: 1em;
+    }
+    .assistant-box button {
+      margin-left: 10px; padding: 12px 20px; background: #00eaff; border: none;
+      border-radius: 8px; font-size: 1em; cursor: pointer; color: #000;
+      font-weight: bold; transition: 0.3s;
+    }
+    .assistant-box button:hover { background: #0095ff; box-shadow: 0 0 15px #00eaff; }
+    #answerBoxJupiterLXX {
+      margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px; min-height: 60px; font-style: italic; text-align: left;
+    }
+    .back-btn {
+      display: inline-block; margin-top: 20px; text-decoration: none;
+      color: #ffdd57; font-weight: bold; transition: 0.3s;
+    }
+    .back-btn:hover { color: #ffffff; text-shadow: 0 0 10px #ffdd57; }
+    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
+  </style>
+</head>
+<body>
+  <div class="assistant-container">
+    <h1>Jupiter LXX AI Assistant</h1>
+    <div class="info">
+      <p><b>Discovery:</b> 2017 using Subaru Telescope</p>
+      <p><b>Parent Planet:</b> Jupiter</p>
+      <p><b>Group:</b> Pasiphae group (retrograde irregular moon)</p>
+      <p><b>Size:</b> ~2 km diameter (tiny irregular body)</p>
+      <p><b>Distance from Jupiter:</b> ~23 million km</p>
+      <p><b>Description:</b> Jupiter LXX is a small retrograde irregular satellite, dark and likely captured from the outer solar system.</p>
+      <p><b>Fun Fact:</b> It is so small that it is more like an asteroid than a typical moon.</p>
+    </div>
+
+    <h2>Breathing / Oxygen</h2>
+    <p>No atmosphere, no oxygen. Colonists would need fully sealed habitats with oxygen supply.</p>
+
+    <h2>Water & Sewage</h2>
+    <p>Water presence unknown. Any colony must import ice/water or recycle waste efficiently.</p>
+
+    <h2>Food Production</h2>
+    <p>No natural soil. Hydroponics and lab-grown food are necessary in sealed bases.</p>
+
+    <h2>Energy</h2>
+    <p>Solar energy is weak but possible with large panels. Nuclear power is more efficient.</p>
+
+    <h2>Shelter</h2>
+    <p>Due to tiny size and no gravity, habitats would be underground modules or sealed domes anchored to surface.</p>
+
+    <div class="assistant-box">
+      <h2>Ask me anything about Jupiter LXX</h2>
+      <input type="text" id="userQuestionJupiterLXX" placeholder="Type your question...">
+      <button id="askButtonJupiterLXX">Ask</button>
+      <div id="answerBoxJupiterLXX">Tip: Try asking about oxygen, water, food, energy, or shelter.</div>
+    </div>
+    <a href="{{ url_for('index') }}" class="back-btn">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    const askButtonJupiterLXX = document.getElementById("askButtonJupiterLXX");
+    const userQuestionJupiterLXX = document.getElementById("userQuestionJupiterLXX");
+    const answerBoxJupiterLXX = document.getElementById("answerBoxJupiterLXX");
+
+    const knowledgeJupiterLXX = {
+      "oxygen": "Jupiter LXX has no atmosphere, so no oxygen. Colonists need sealed oxygen habitats.",
+      "water": "No confirmed water. Any settlement must import water or recycle efficiently.",
+      "food": "No soil or biosphere. Hydroponics or synthetic food is required.",
+      "energy": "Solar power is weak here. Nuclear energy is more practical.",
+      "shelter": "Due to no atmosphere and low gravity, habitats must be anchored or underground."
+    };
+
+    function getAnswerJupiterLXX() {
+      const q = userQuestionJupiterLXX.value.toLowerCase();
+      let response = "I don’t have that info yet. Try oxygen, water, food, energy, or shelter.";
+      for (let key in knowledgeJupiterLXX) {
+        if (q.includes(key)) { response = knowledgeJupiterLXX[key]; break; }
+      }
+      answerBoxJupiterLXX.innerHTML = response;
+      userQuestionJupiterLXX.value = "";
+    }
+
+    askButtonJupiterLXX.addEventListener("click", getAnswerJupiterLXX);
+    userQuestionJupiterLXX.addEventListener("keyup", (event) => {
+      if (event.key === "Enter") getAnswerJupiterLXX();
+    });
+  </script>
+</body>
+</html>

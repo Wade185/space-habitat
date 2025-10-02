@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Metis - Habitat Assistant</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+    body {
+      background: radial-gradient(circle at top, #0d0d2b, #1b1f3b, #2d2c68, #000);
+      color: #f1f1f1; min-height: 100vh; display: flex;
+      justify-content: center; align-items: flex-start; padding: 40px;
+    }
+    .assistant-container {
+      background: rgba(20, 20, 40, 0.85); border-radius: 15px; padding: 30px;
+      width: 850px; max-width: 95%; box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+      backdrop-filter: blur(10px); animation: fadeIn 1.5s ease-in-out;
+    }
+    .assistant-container h1 { text-align: center; font-size: 2.2em; color: #00eaff;
+      text-shadow: 0 0 10px #00eaff, 0 0 20px #0095ff; margin-bottom: 20px; }
+    .info p { margin: 8px 0; font-size: 1.05em; }
+    h2 { margin-top: 25px; font-size: 1.5em; color: #ffdd57; text-shadow: 0 0 5px #ffae00; }
+    p { margin: 10px 0; line-height: 1.5; }
+    .assistant-box { margin-top: 30px; padding: 20px; border: 2px solid #00eaff;
+      border-radius: 10px; background: rgba(0, 20, 40, 0.6); text-align: center;
+      box-shadow: 0 0 20px rgba(0, 234, 255, 0.3); }
+    .assistant-box input { width: 70%; padding: 12px; margin-top: 15px;
+      border: none; border-radius: 8px; outline: none; font-size: 1em; }
+    .assistant-box button { margin-left: 10px; padding: 12px 20px; background: #00eaff;
+      border: none; border-radius: 8px; font-size: 1em; cursor: pointer; color: #000;
+      font-weight: bold; transition: 0.3s; }
+    .assistant-box button:hover { background: #0095ff; box-shadow: 0 0 15px #00eaff; }
+    #answerBox { margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px; min-height: 60px; font-style: italic; text-align: left; }
+    .back-btn { display: inline-block; margin-top: 20px; text-decoration: none;
+      color: #ffdd57; font-weight: bold; transition: 0.3s; }
+    .back-btn:hover { color: #ffffff; text-shadow: 0 0 10px #ffdd57; }
+    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);} }
+  </style>
+</head>
+<body>
+  <div class="assistant-container">
+    <h1>Metis AI Assistant</h1>
+    <div class="info">
+      <p><b>Discovery:</b> 1979, by Stephen P. Synnott (Voyager 1 images)</p>
+      <p><b>Parent Planet:</b> Jupiter</p>
+      <p><b>Size:</b> ~60 km across</p>
+      <p><b>Distance from Earth:</b> ~628 million km</p>
+      <p><b>Description:</b> Metis is the innermost moon of Jupiter, orbiting within its rings. Its small size and proximity to Jupiter make it an extreme environment.</p>
+      <p><b>Fun Fact:</b> Metis helps supply material to Jupiter’s main ring through dust shed from its surface.</p>
+    </div>
+
+    <h2>Breathing / Oxygen</h2>
+    <p>No atmosphere. Colonists must bring and recycle oxygen.</p>
+
+    <h2>Water & Sewage</h2>
+    <p>No natural water. Supplies would come from ice mined from nearby moons like Europa or Ganymede.</p>
+
+    <h2>Food Production</h2>
+    <p>Only possible in closed biospheres with hydroponics and synthetic food production.</p>
+
+    <h2>Energy</h2>
+    <p>Solar energy is weak at Jupiter’s distance. Nuclear reactors would be the primary power source.</p>
+
+    <h2>Shelter</h2>
+    <p>Structures must be shielded heavily to survive Jupiter’s deadly radiation.</p>
+
+    <div class="assistant-box">
+      <h2>Ask me anything about Metis</h2>
+      <input type="text" id="userQuestion" placeholder="Type your question...">
+      <button id="askButton">Ask</button>
+      <div id="answerBox">Tip: Try asking about oxygen, water, food, farming, energy, or shelter.</div>
+    </div>
+    <a href="{{ url_for('index') }}" class="back-btn">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    const askButton = document.getElementById("askButton");
+    const userQuestion = document.getElementById("userQuestion");
+    const answerBox = document.getElementById("answerBox");
+
+    const knowledge = {
+      "oxygen": "Metis has no atmosphere. Oxygen must be recycled in habitats.",
+      "water": "No water here. Supplies would be imported from icy moons.",
+      "food": "Food production must happen inside controlled hydroponic systems.",
+      "energy": "Nuclear reactors are the best option, since solar power is too weak.",
+      "shelter": "Massive shielding is needed to protect from Jupiter’s intense radiation."
+    };
+
+    function getAnswer() {
+      const q = userQuestion.value.toLowerCase();
+      let response = "I don’t have that info yet. Try asking about: oxygen, water, food, energy, or shelter.";
+      for (let key in knowledge) { if (q.includes(key)) { response = knowledge[key]; break; } }
+      answerBox.innerHTML = response;
+      userQuestion.value = "";
+    }
+    askButton.addEventListener("click", getAnswer);
+    userQuestion.addEventListener("keyup", (event) => { if (event.key === "Enter") getAnswer(); });
+  </script>
+</body>
+</html>

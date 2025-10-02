@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Mercury",
+    "description": "No moons",
+    "image": "https://space-facts.com/wp-content/uploads/mercury-transparent.png"
+  },
+  {
+    "name": "Venus",
+    "description": "No moons",
+    "image": "https://space-facts.com/wp-content/uploads/venus-transparent.png"
+  },
+  {
+    "name": "Earth",
+    "description": "Our home planet",
+    "image": "https://space-facts.com/wp-content/uploads/earth-transparent.png"
+  },
+  {
+    "name": "Moon",
+    "description": "Earth's only moon",
+    "image": "https://space-facts.com/wp-content/uploads/moon-transparent.png"
+  },
+  {
+    "name": "Mars",
+    "description": "The Red Planet",
+    "image": "https://space-facts.com/wp-content/uploads/mars-transparent.png"
+  },
+  {
+    "name": "Phobos",
+    "description": "Moon of Mars"
+  },
+  {
+    "name": "Deimos",
+    "description": "Moon of Mars"
+  },
+  {
+    "name": "Jupiter",
+    "description": "Gas giant with 95 moons",
+    "image": "https://space-facts.com/wp-content/uploads/jupiter-transparent.png"
+  },
+  {
+    "name": "Saturn",
+    "description": "Gas giant with 146 moons",
+    "image": "https://space-facts.com/wp-content/uploads/saturn-transparent.png"
+  },
+  {
+    "name": "Uranus",
+    "description": "Ice giant with 27 moons",
+    "image": "https://space-facts.com/wp-content/uploads/uranus-transparent.png"
+  },
+  {
+    "name": "Neptune",
+    "description": "Ice giant with 16 moons",
+    "image": "https://space-facts.com/wp-content/uploads/neptune-transparent.png"
+  },
+  {
+    "name": "Pluto",
+    "description": "Dwarf planet",
+    "image": "https://space-facts.com/wp-content/uploads/pluto-transparent.png"
+  }
+]
+
+

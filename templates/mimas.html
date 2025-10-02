@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mimas - Habitat Assistant</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+    body {
+      background: radial-gradient(circle at top, #0a0f2c, #1c2340, #2b2a6a, #000);
+      color: #f1f1f1; min-height: 100vh; display: flex;
+      justify-content: center; align-items: flex-start; padding: 40px;
+    }
+    .assistant-container {
+      background: rgba(20, 20, 40, 0.85); border-radius: 15px; padding: 30px;
+      width: 850px; max-width: 95%; box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+      backdrop-filter: blur(10px); animation: fadeIn 1.5s ease-in-out;
+    }
+    .assistant-container h1 { text-align: center; font-size: 2.2em; color: #00eaff;
+      text-shadow: 0 0 10px #00eaff, 0 0 20px #0095ff; margin-bottom: 20px; }
+    .info p { margin: 8px 0; font-size: 1.05em; }
+    h2 { margin-top: 25px; font-size: 1.5em; color: #ffdd57; text-shadow: 0 0 5px #ffae00; }
+    p { margin: 10px 0; line-height: 1.5; }
+    .assistant-box { margin-top: 30px; padding: 20px; border: 2px solid #00eaff;
+      border-radius: 10px; background: rgba(0, 20, 40, 0.6); text-align: center;
+      box-shadow: 0 0 20px rgba(0, 234, 255, 0.3); }
+    .assistant-box input { width: 70%; padding: 12px; margin-top: 15px;
+      border: none; border-radius: 8px; outline: none; font-size: 1em; }
+    .assistant-box button { margin-left: 10px; padding: 12px 20px; background: #00eaff;
+      border: none; border-radius: 8px; font-size: 1em; cursor: pointer; color: #000;
+      font-weight: bold; transition: 0.3s; }
+    .assistant-box button:hover { background: #0095ff; box-shadow: 0 0 15px #00eaff; }
+    #answerBox { margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px; min-height: 60px; font-style: italic; text-align: left; }
+    .back-btn { display: inline-block; margin-top: 20px; text-decoration: none;
+      color: #ffdd57; font-weight: bold; transition: 0.3s; }
+    .back-btn:hover { color: #ffffff; text-shadow: 0 0 10px #ffdd57; }
+    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);} }
+  </style>
+</head>
+<body>
+  <div class="assistant-container">
+    <h1>Mimas AI Assistant</h1>
+    <div class="info">
+      <p><b>Discovery:</b> 1789, by William Herschel</p>
+      <p><b>Parent Planet:</b> Saturn</p>
+      <p><b>Size:</b> ~396 km diameter</p>
+      <p><b>Distance from Earth:</b> ~1.3 billion km</p>
+      <p><b>Description:</b> Mimas is famous for its huge Herschel Crater, giving it the look of the “Death Star.” Its icy surface shows signs of impact history.</p>
+      <p><b>Fun Fact:</b> Despite its size, Mimas may hide a liquid water ocean beneath its crust.</p>
+    </div>
+
+    <h2>Breathing / Oxygen</h2>
+    <p>No air; closed-loop oxygen systems are needed.</p>
+
+    <h2>Water & Sewage</h2>
+    <p>Water ice is abundant and can be melted, purified, and recycled.</p>
+
+    <h2>Food Production</h2>
+    <p>Farms would be underground in domes, powered by LED lighting.</p>
+
+    <h2>Energy</h2>
+    <p>Nuclear and geothermal (if subsurface ocean vents exist) could provide energy.</p>
+
+    <h2>Shelter</h2>
+    <p>Subsurface ice caves could house colonies, offering radiation protection.</p>
+
+    <div class="assistant-box">
+      <h2>Ask me anything about Mimas</h2>
+      <input type="text" id="userQuestion" placeholder="Type your question...">
+      <button id="askButton">Ask</button>
+      <div id="answerBox">Tip: Try asking about oxygen, water, food, farming, energy, or shelter.</div>
+    </div>
+    <a href="{{ url_for('index') }}" class="back-btn">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    const askButton = document.getElementById("askButton");
+    const userQuestion = document.getElementById("userQuestion");
+    const answerBox = document.getElementById("answerBox");
+
+    const knowledge = {
+      "oxygen": "No natural air. Colonists would recycle oxygen inside bases.",
+      "water": "Mimas has abundant water ice for melting and purification.",
+      "food": "Hydroponic and bioreactor farming systems can support colonists.",
+      "energy": "Mainly nuclear, with potential geothermal from a hidden ocean.",
+      "shelter": "Underground ice caves provide natural shielding."
+    };
+
+    function getAnswer() {
+      const q = userQuestion.value.toLowerCase();
+      let response = "I don’t have that info yet. Try asking about: oxygen, water, food, energy, or shelter.";
+      for (let key in knowledge) { if (q.includes(key)) { response = knowledge[key]; break; } }
+      answerBox.innerHTML = response;
+      userQuestion.value = "";
+    }
+    askButton.addEventListener("click", getAnswer);
+    userQuestion.addEventListener("keyup", (event) => { if (event.key === "Enter") getAnswer(); });
+  </script>
+</body>
+</html>

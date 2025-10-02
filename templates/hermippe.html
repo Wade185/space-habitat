@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hermippe - Habitat Assistant</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+    body { background: radial-gradient(circle at top, #0a0f2c, #1c2340, #2b2a6a, #000); background-attachment: fixed; color: #f1f1f1; min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: 40px; }
+    .assistant-container { background: rgba(20, 20, 40, 0.85); border-radius: 15px; padding: 30px; width: 850px; max-width: 95%; box-shadow: 0 0 25px rgba(0, 200, 255, 0.4); backdrop-filter: blur(10px); animation: fadeIn 1.5s ease-in-out; }
+    .assistant-container h1 { text-align: center; font-size: 2.2em; color: #00eaff; text-shadow: 0 0 10px #00eaff, 0 0 20px #0095ff; margin-bottom: 20px; }
+    .info p { margin: 8px 0; font-size: 1.05em; }
+    h2 { margin-top: 25px; font-size: 1.5em; color: #ffdd57; text-shadow: 0 0 5px #ffae00; }
+    p { margin: 10px 0; line-height: 1.5; }
+    .assistant-box { margin-top: 30px; padding: 20px; border: 2px solid #00eaff; border-radius: 10px; background: rgba(0, 20, 40, 0.6); text-align: center; box-shadow: 0 0 20px rgba(0, 234, 255, 0.3); }
+    .assistant-box input { width: 70%; padding: 12px; margin-top: 15px; border: none; border-radius: 8px; outline: none; font-size: 1em; }
+    .assistant-box button { margin-left: 10px; padding: 12px 20px; background: #00eaff; border: none; border-radius: 8px; font-size: 1em; cursor: pointer; color: #000; font-weight: bold; transition: 0.3s; }
+    .assistant-box button:hover { background: #0095ff; box-shadow: 0 0 15px #00eaff; }
+    #answerBox { margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 8px; min-height: 60px; font-style: italic; text-align: left; }
+    .back-btn { display: inline-block; margin-top: 20px; text-decoration: none; color: #ffdd57; font-weight: bold; transition: 0.3s; }
+    .back-btn:hover { color: #ffffff; text-shadow: 0 0 10px #ffdd57; }
+    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
+  </style>
+</head>
+<body>
+  <div class="assistant-container">
+    <h1>Hermippe AI Assistant</h1>
+    <div class="info">
+      <p><b>Discovery:</b> 2001 by Scott S. Sheppard</p>
+      <p><b>Parent Planet:</b> Jupiter</p>
+      <p><b>Size:</b> ~4 km diameter</p>
+      <p><b>Distance from Earth:</b> ~628 million km</p>
+      <p><b>Description:</b> Hermippe is one of Jupiter’s small outer irregular moons, part of the Ananke group.</p>
+      <p><b>Fun Fact:</b> Hermippe’s orbit is retrograde, meaning it moves opposite to Jupiter’s rotation.</p>
+    </div>
+
+    <h2>Breathing / Oxygen</h2>
+    <p>Hermippe has no atmosphere. To make oxygen:</p>
+    <ul>
+      <li>Electrolysis of water brought from Earth or icy moons like Europa.</li>
+      <li>Plants inside greenhouses converting CO₂ into O₂.</li>
+      <li>Artificial oxygen generators splitting CO₂.</li>
+      <li>Storage tanks for emergencies.</li>
+    </ul>
+
+    <h2>Water & Sewage</h2>
+    <p>No water sources exist. Water strategy:</p>
+    <ul>
+      <li>Import ice blocks from Europa or Ganymede.</li>
+      <li>Recycle every drop of water and human waste.</li>
+      <li>Advanced sewage treatment plants inside habitats.</li>
+      <li>Closed-loop systems to minimize loss.</li>
+    </ul>
+
+    <h2>Food Production</h2>
+    <p>Food must be grown in sealed farms:</p>
+    <ul>
+      <li>Hydroponic and aeroponic farming units.</li>
+      <li>LED lights powered by nuclear or solar systems.</li>
+      <li>Genetically engineered crops that require less water.</li>
+      <li>3D printed synthetic meat for protein supply.</li>
+    </ul>
+
+    <h2>Energy</h2>
+    <p>Options for reliable power:</p>
+    <ul>
+      <li>Nuclear reactors (stable and strong).</li>
+      <li>Solar panels (weak but usable with large arrays).</li>
+      <li>Backup fuel cells from hydrogen imports.</li>
+    </ul>
+
+    <h2>Shelter</h2>
+    <p>Habitats must protect from radiation and cold:</p>
+    <ul>
+      <li>Underground bunkers carved into rock.</li>
+      <li>Domes made of regolith with shielding layers.</li>
+      <li>Inflatable bases with metal protection.</li>
+      <li>AI-controlled climate regulation inside habitats.</li>
+    </ul>
+
+    <div class="assistant-box">
+      <h2>Ask me anything about Hermippe</h2>
+      <input type="text" id="userQuestion" placeholder="Type your question...">
+      <button id="askButton">Ask</button>
+      <div id="answerBox">Tip: Try asking about oxygen, water, food, energy, or shelter.</div>
+    </div>
+    <a href="{{ url_for('index') }}" class="back-btn">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    const askButton = document.getElementById("askButton");
+    const userQuestion = document.getElementById("userQuestion");
+    const answerBox = document.getElementById("answerBox");
+
+    const knowledge = {
+      "oxygen": "Oxygen on Hermippe can be made by splitting water molecules through electrolysis, or by plants converting CO₂ to O₂ in greenhouses.",
+      "breath": "No breathable air here. You must stay inside sealed habitats.",
+      "air": "Completely airless. Oxygen must be imported or generated.",
+      "water": "No water on Hermippe. It must be recycled or imported from icy moons.",
+      "sewage": "Waste and water are recycled in closed-loop systems.",
+      "food": "Food is grown in hydroponic farms using LED lighting and recycled nutrients.",
+      "farming": "Hydroponics and aeroponics are the only way to farm here.",
+      "agriculture": "Artificial greenhouses with AI climate control enable agriculture.",
+      "energy": "Nuclear power is most reliable. Solar is weak but usable with huge panels.",
+      "power": "Reactors generate steady electricity. Solar is only supplementary.",
+      "shelter": "Habitats must be underground or shielded domes to block radiation.",
+      "habitat": "Pressurized, AI-regulated bases are required for survival."
+    };
+
+    function getAnswer() {
+      const q = userQuestion.value.toLowerCase();
+      let response = "I don’t have that info yet. Try oxygen, water, food, energy, or shelter.";
+      for (let key in knowledge) {
+        if (q.includes(key)) { response = knowledge[key]; break; }
+      }
+      answerBox.innerHTML = response;
+      userQuestion.value = "";
+    }
+
+    askButton.addEventListener("click", getAnswer);
+    userQuestion.addEventListener("keyup", (event) => { if (event.key === "Enter") getAnswer(); });
+  </script>
+</body>
+</html>

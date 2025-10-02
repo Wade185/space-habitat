@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Phobos - Habitat Assistant</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+    body {
+      background: radial-gradient(circle at top, #0a0f2c, #1c2340, #2b2a6a, #000);
+      background-attachment: fixed;
+      color: #f1f1f1;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+    }
+    .assistant-container {
+      background: rgba(20, 20, 40, 0.85);
+      border-radius: 15px;
+      padding: 30px;
+      width: 850px;
+      max-width: 95%;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .assistant-container h1 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #00eaff;
+      text-shadow: 0 0 10px #00eaff, 0 0 20px #0095ff;
+      margin-bottom: 20px;
+    }
+    .info p { margin: 8px 0; font-size: 1.05em; }
+    h2 { margin-top: 25px; font-size: 1.5em; color: #ffdd57; text-shadow: 0 0 5px #ffae00; }
+    p { margin: 10px 0; line-height: 1.5; }
+    .assistant-box {
+      margin-top: 30px; padding: 20px; border: 2px solid #00eaff; border-radius: 10px;
+      background: rgba(0, 20, 40, 0.6); text-align: center; box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
+    }
+    .assistant-box input {
+      width: 70%; padding: 12px; margin-top: 15px; border: none; border-radius: 8px;
+      outline: none; font-size: 1em;
+    }
+    .assistant-box button {
+      margin-left: 10px; padding: 12px 20px; background: #00eaff; border: none;
+      border-radius: 8px; font-size: 1em; cursor: pointer; color: #000;
+      font-weight: bold; transition: 0.3s;
+    }
+    .assistant-box button:hover { background: #0095ff; box-shadow: 0 0 15px #00eaff; }
+    #answerBoxPhobos {
+      margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px; min-height: 60px; font-style: italic; text-align: left;
+    }
+    .back-btn {
+      display: inline-block; margin-top: 20px; text-decoration: none;
+      color: #ffdd57; font-weight: bold; transition: 0.3s;
+    }
+    .back-btn:hover { color: #ffffff; text-shadow: 0 0 10px #ffdd57; }
+    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
+  </style>
+</head>
+<body>
+  <div class="assistant-container">
+    <h1>Phobos AI Assistant</h1>
+    <div class="info">
+      <p><b>Discovery:</b> 1877 by Asaph Hall</p>
+      <p><b>Parent Planet:</b> Mars</p>
+      <p><b>Size:</b> ~22 km diameter</p>
+      <p><b>Distance from Earth:</b> ~78 million km (at closest)</p>
+      <p><b>Description:</b> Phobos is the larger of Mars’s two moons, small and irregularly shaped, and orbits extremely close to Mars.</p>
+      <p><b>Fun Fact:</b> Phobos is slowly spiraling inward and may break apart in ~50 million years.</p>
+    </div>
+
+    <h2>Breathing / Oxygen</h2>
+    <p>No atmosphere. Colonies need airtight domes with oxygen recycling.</p>
+
+    <h2>Water & Sewage</h2>
+    <p>Water may be mined from Martian ice deposits nearby, but Phobos itself is dry.</p>
+
+    <h2>Food Production</h2>
+    <p>No native food. Hydroponic greenhouses needed for colonists.</p>
+
+    <h2>Energy</h2>
+    <p>Solar power is feasible due to Mars’ proximity to the Sun, but nuclear backup is ideal.</p>
+
+    <h2>Shelter</h2>
+    <p>Phobos has almost no gravity. Colonies would be anchored habitats, shielded from radiation.</p>
+
+    <div class="assistant-box">
+      <h2>Ask me anything about Phobos</h2>
+      <input type="text" id="userQuestionPhobos" placeholder="Type your question...">
+      <button id="askButtonPhobos">Ask</button>
+      <div id="answerBoxPhobos">Tip: Try asking about oxygen, water, food, energy, or shelter.</div>
+    </div>
+    <a href="{{ url_for('index') }}" class="back-btn">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    const askButtonPhobos = document.getElementById("askButtonPhobos");
+    const userQuestionPhobos = document.getElementById("userQuestionPhobos");
+    const answerBoxPhobos = document.getElementById("answerBoxPhobos");
+
+    const knowledgePhobos = {
+      "oxygen": "Phobos has no atmosphere. Oxygen must be provided in sealed habitats.",
+      "water": "Phobos is dry. Colonists may import or extract water from Mars.",
+      "food": "No food sources. Hydroponic farms required.",
+      "energy": "Solar power is usable here, with nuclear as backup.",
+      "shelter": "Phobos has weak gravity. Anchored, radiation-shielded habitats are necessary."
+    };
+
+    function getAnswerPhobos() {
+      const q = userQuestionPhobos.value.toLowerCase();
+      let response = "I don’t have that info yet. Try oxygen, water, food, energy, or shelter.";
+      for (let key in knowledgePhobos) {
+        if (q.includes(key)) { response = knowledgePhobos[key]; break; }
+      }
+      answerBoxPhobos.innerHTML = response;
+      userQuestionPhobos.value = "";
+    }
+    askButtonPhobos.addEventListener("click", getAnswerPhobos);
+    userQuestionPhobos.addEventListener("keyup", (event) => { if (event.key === "Enter") getAnswerPhobos(); });
+  </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rhea - Habitat Assistant</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+    body {
+      background: radial-gradient(circle at top, #0a0f2c, #1c2340, #2b2a6a, #000);
+      background-attachment: fixed;
+      color: #f1f1f1;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+    }
+    .assistant-container {
+      background: rgba(20, 20, 40, 0.85);
+      border-radius: 15px;
+      padding: 30px;
+      width: 850px;
+      max-width: 95%;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .assistant-container h1 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #00eaff;
+      text-shadow: 0 0 10px #00eaff, 0 0 20px #0095ff;
+      margin-bottom: 20px;
+    }
+    .info p { margin: 8px 0; font-size: 1.05em; }
+    h2 { margin-top: 25px; font-size: 1.5em; color: #ffdd57; text-shadow: 0 0 5px #ffae00; }
+    p { margin: 10px 0; line-height: 1.5; }
+    .assistant-box {
+      margin-top: 30px; padding: 20px; border: 2px solid #00eaff; border-radius: 10px;
+      background: rgba(0, 20, 40, 0.6); text-align: center; box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
+    }
+    .assistant-box input {
+      width: 70%; padding: 12px; margin-top: 15px; border: none; border-radius: 8px;
+      outline: none; font-size: 1em;
+    }
+    .assistant-box button {
+      margin-left: 10px; padding: 12px 20px; background: #00eaff; border: none;
+      border-radius: 8px; font-size: 1em; cursor: pointer; color: #000;
+      font-weight: bold; transition: 0.3s;
+    }
+    .assistant-box button:hover { background: #0095ff; box-shadow: 0 0 15px #00eaff; }
+    #answerBoxRhea {
+      margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px; min-height: 60px; font-style: italic; text-align: left;
+    }
+    .back-btn {
+      display: inline-block; margin-top: 20px; text-decoration: none;
+      color: #ffdd57; font-weight: bold; transition: 0.3s;
+    }
+    .back-btn:hover { color: #ffffff; text-shadow: 0 0 10px #ffdd57; }
+    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
+  </style>
+</head>
+<body>
+  <div class="assistant-container">
+    <h1>Rhea AI Assistant</h1>
+    <div class="info">
+      <p><b>Discovery:</b> 1672 by Giovanni Cassini</p>
+      <p><b>Parent Planet:</b> Saturn</p>
+      <p><b>Size:</b> ~1,527 km diameter</p>
+      <p><b>Distance from Earth:</b> ~1.27 billion km</p>
+      <p><b>Description:</b> Rhea is Saturn’s second-largest moon, icy with a lightly cratered surface.</p>
+      <p><b>Fun Fact:</b> Rhea may have a tenuous ring system, making it unique among moons.</p>
+    </div>
+
+    <h2>Breathing / Oxygen</h2>
+    <p>No atmosphere. Oxygen must be supplied in sealed habitats.</p>
+
+    <h2>Water & Sewage</h2>
+    <p>No liquid water. Ice can be mined and recycled in closed systems.</p>
+
+    <h2>Food Production</h2>
+    <p>No native food. Hydroponic farming or lab-grown food is required.</p>
+
+    <h2>Energy</h2>
+    <p>Solar energy is weak; nuclear power is preferred.</p>
+
+    <h2>Shelter</h2>
+    <p>Pressurized domes or underground habitats are necessary to shield radiation.</p>
+
+    <div class="assistant-box">
+      <h2>Ask me anything about Rhea</h2>
+      <input type="text" id="userQuestionRhea" placeholder="Type your question...">
+      <button id="askButtonRhea">Ask</button>
+      <div id="answerBoxRhea">Tip: Try asking about oxygen, water, food, energy, or shelter.</div>
+    </div>
+    <a href="{{ url_for('index') }}" class="back-btn">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    const askButtonRhea = document.getElementById("askButtonRhea");
+    const userQuestionRhea = document.getElementById("userQuestionRhea");
+    const answerBoxRhea = document.getElementById("answerBoxRhea");
+
+    const knowledgeRhea = {
+      "oxygen": "Rhea has no atmosphere. Colonists must provide oxygen in habitats.",
+      "water": "No liquid water. Ice must be mined or recycled.",
+      "food": "Hydroponic farms or lab-grown food required.",
+      "energy": "Nuclear power is preferred due to weak solar energy.",
+      "shelter": "Radiation-protected domes or underground habitats are necessary."
+    };
+
+    function getAnswerRhea() {
+      const q = userQuestionRhea.value.toLowerCase();
+      let response = "I don’t have that info yet. Try oxygen, water, food, energy, or shelter.";
+      for (let key in knowledgeRhea) {
+        if (q.includes(key)) { response = knowledgeRhea[key]; break; }
+      }
+      answerBoxRhea.innerHTML = response;
+      userQuestionRhea.value = "";
+    }
+    askButtonRhea.addEventListener("click", getAnswerRhea);
+    userQuestionRhea.addEventListener("keyup", (event) => { if (event.key === "Enter") getAnswerRhea(); });
+  </script>
+</body>
+</html>
