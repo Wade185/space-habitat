@@ -125,27 +125,380 @@
   </div>
 
   <section class="cards" id="cards">
-    <div class="card">
-      <img src="static/earth.jpg" alt="Earth">
-      <h3>Earth</h3>
-      <p>Our home planet with air, water, and all essentials. Your survival starts here.</p>
-    </div>
-    <div class="card">
-      <img src="static/mars.jpg" alt="Mars">
-      <h3>Mars</h3>
-      <p>The Red Planet, a frontier for human settlement. Learn how to produce oxygen and food here.</p>
-    </div>
-    <div class="card">
-      <img src="static/moon.jpg" alt="Moon">
-      <h3>Moon</h3>
-      <p>Earth’s satellite and our first step to space colonization. Build bases in lunar craters.</p>
-    </div>
-    <div class="card">
-      <img src="static/jupiter.jpg" alt="Jupiter">
-      <h3>Jupiter</h3>
-      <p>The gas giant. You cannot land here, but its moons may be habitable!</p>
-    </div>
-    <!-- Add more planets/moons here following the same format -->
+        <a href="{{ url_for('planet_page', planet='aitne') }}" class="card">
+  <img src="{{ url_for('static', filename='aitne.jpg') }}" alt="Aitne">
+  <h2>Aitne</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='aegaeon') }}" class="card">
+  <img src="{{ url_for('static', filename='aegaeon.jpg') }}" alt="Aegaeon">
+  <h2>Aegaeon</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='aegir') }}" class="card">
+  <img src="{{ url_for('static', filename='aegir.jpg') }}" alt="Aegir">
+  <h2>Aegir</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='antheaoede') }}" class="card">
+  <img src="{{ url_for('static', filename='antheaoede.jpg') }}" alt="Antheaoede">
+  <h2>Antheaoede</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='callisto') }}" class="card">
+  <img src="{{ url_for('static', filename='callisto.jpg') }}" alt="Callisto">
+  <h2>Callisto</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='ceres') }}" class="card">
+  <img src="{{ url_for('static', filename='ceres.jpg') }}" alt="Ceres">
+  <h2>Ceres</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='chaldene') }}" class="card">
+  <img src="{{ url_for('static', filename='chaldene.jpg') }}" alt="Chaldene">
+  <h2>Chaldene</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='cyllene') }}" class="card">
+  <img src="{{ url_for('static', filename='cyllene.jpg') }}" alt="Cyllene">
+  <h2>Cyllene</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='daphnis') }}" class="card">
+  <img src="{{ url_for('static', filename='daphnis.jpg') }}" alt="Daphnis">
+  <h2>Daphnis</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='dia') }}" class="card">
+  <img src="{{ url_for('static', filename='dia.jpg') }}" alt="Dia">
+  <h2>Dia</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='dione') }}" class="card">
+  <img src="{{ url_for('static', filename='dione.jpg') }}" alt="Dione">
+  <h2>Dione</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='enceladus') }}" class="card">
+  <img src="{{ url_for('static', filename='enceladus.jpg') }}" alt="Enceladus">
+  <h2>Enceladus</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='epimetheus') }}" class="card">
+  <img src="{{ url_for('static', filename='epimetheus.jpg') }}" alt="Epimetheus">
+  <h2>Epimetheus</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='erinome') }}" class="card">
+  <img src="{{ url_for('static', filename='erinome.jpg') }}" alt="Erinome">
+  <h2>Erinome</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='eris') }}" class="card">
+  <img src="{{ url_for('static', filename='eris.jpg') }}" alt="Eris">
+  <h2>Eris</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='erriapus') }}" class="card">
+  <img src="{{ url_for('static', filename='erriapus.jpg') }}" alt="Erriapus">
+  <h2>Erriapus</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='euanthe') }}" class="card">
+  <img src="{{ url_for('static', filename='euanthe.jpg') }}" alt="Euanthe">
+  <h2>Euanthe</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='eukelade') }}" class="card">
+  <img src="{{ url_for('static', filename='eukelade.jpg') }}" alt="Eukelade">
+  <h2>Eukelade</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='euporie') }}" class="card">
+  <img src="{{ url_for('static', filename='euporie.jpg') }}" alt="Euporie">
+  <h2>Euporie</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='europa') }}" class="card">
+  <img src="{{ url_for('static', filename='europa.jpg') }}" alt="Europa">
+  <h2>Europa</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='eurydome') }}" class="card">
+  <img src="{{ url_for('static', filename='eurydome.jpg') }}" alt="Eurydome">
+  <h2>Eurydome</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='farbauti') }}" class="card">
+  <img src="{{ url_for('static', filename='farbauti.jpg') }}" alt="Farbauti">
+  <h2>Farbauti</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='ganymede') }}" class="card">
+  <img src="{{ url_for('static', filename='ganymede.jpg') }}" alt="Ganymede">
+  <h2>Ganymede</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='harpalyke') }}" class="card">
+  <img src="{{ url_for('static', filename='harpalyke.jpg') }}" alt="Harpalyke">
+  <h2>Harpalyke</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='hermippe') }}" class="card">
+  <img src="{{ url_for('static', filename='hermippe.jpg') }}" alt="Hermippe">
+  <h2>Hermippe</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='hyperion') }}" class="card">
+  <img src="{{ url_for('static', filename='hyperion.jpg') }}" alt="Hyperion">
+  <h2>Hyperion</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='lijiraq') }}" class="card">
+  <img src="{{ url_for('static', filename='lijiraq.jpg') }}" alt="Lijiraq">
+  <h2>Lijiraq</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='loge') }}" class="card">
+  <img src="{{ url_for('static', filename='loge.jpg') }}" alt="Loge">
+  <h2>Loge</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='lysithea') }}" class="card">
+  <img src="{{ url_for('static', filename='lysithea.jpg') }}" alt="Lysithea">
+  <h2>Lysithea</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='megaclite') }}" class="card">
+  <img src="{{ url_for('static', filename='megaclite.jpg') }}" alt="Megaclite">
+  <h2>Megaclite</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='metis') }}" class="card">
+  <img src="{{ url_for('static', filename='metis.jpg') }}" alt="Metis">
+  <h2>Metis</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='mimas') }}" class="card">
+  <img src="{{ url_for('static', filename='mimas.jpg') }}" alt="Mimas">
+  <h2>Mimas</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='mneme') }}" class="card">
+  <img src="{{ url_for('static', filename='mneme.jpg') }}" alt="Mneme">
+  <h2>Mneme</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='mundilfari') }}" class="card">
+  <img src="{{ url_for('static', filename='mundilfari.jpg') }}" alt="Mundilfari">
+  <h2>Mundilfari</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='narvi') }}" class="card">
+  <img src="{{ url_for('static', filename='narvi.jpg') }}" alt="Narvi">
+  <h2>Narvi</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='nereid') }}" class="card">
+  <img src="{{ url_for('static', filename='nereid.jpg') }}" alt="Nereid">
+  <h2>Nereid</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='neso') }}" class="card">
+  <img src="{{ url_for('static', filename='neso.jpg') }}" alt="Neso">
+  <h2>Neso</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='nix') }}" class="card">
+  <img src="{{ url_for('static', filename='nix.jpg') }}" alt="Nix">
+  <h2>Nix</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='oberon') }}" class="card">
+  <img src="{{ url_for('static', filename='oberon.jpg') }}" alt="Oberon">
+  <h2>Oberon</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='ophelia') }}" class="card">
+  <img src="{{ url_for('static', filename='ophelia.jpg') }}" alt="Ophelia">
+  <h2>Ophelia</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='orthosie') }}" class="card">
+  <img src="{{ url_for('static', filename='orthosie.jpg') }}" alt="Orthosie">
+  <h2>Orthosie</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='pallene') }}" class="card">
+  <img src="{{ url_for('static', filename='pallene.jpg') }}" alt="Pallene">
+  <h2>Pallene</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='pan') }}" class="card">
+  <img src="{{ url_for('static', filename='pan.jpg') }}" alt="Pan">
+  <h2>Pan</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='pandora') }}" class="card">
+  <img src="{{ url_for('static', filename='pandora.jpg') }}" alt="Pandora">
+  <h2>Pandora</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='pasiphae') }}" class="card">
+  <img src="{{ url_for('static', filename='pasiphae.jpg') }}" alt="Pasiphae">
+  <h2>Pasiphae</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='phoebe') }}" class="card">
+  <img src="{{ url_for('static', filename='phoebe.jpg') }}" alt="Phoebe">
+  <h2>Phoebe</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='pluto') }}" class="card">
+  <img src="{{ url_for('static', filename='pluto.jpg') }}" alt="Pluto">
+  <h2>Pluto</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='polydeuces') }}" class="card">
+  <img src="{{ url_for('static', filename='polydeuces.jpg') }}" alt="Polydeuces">
+  <h2>Polydeuces</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='praxidike') }}" class="card">
+  <img src="{{ url_for('static', filename='praxidike.jpg') }}" alt="Praxidike">
+  <h2>Praxidike</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='prometheus') }}" class="card">
+  <img src="{{ url_for('static', filename='prometheus.jpg') }}" alt="Prometheus">
+  <h2>Prometheus</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='prospero') }}" class="card">
+  <img src="{{ url_for('static', filename='prospero.jpg') }}" alt="Prospero">
+  <h2>Prospero</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='proteus') }}" class="card">
+  <img src="{{ url_for('static', filename='proteus.jpg') }}" alt="Proteus">
+  <h2>Proteus</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='rhea') }}" class="card">
+  <img src="{{ url_for('static', filename='rhea.jpg') }}" alt="Rhea">
+  <h2>Rhea</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='setebos') }}" class="card">
+  <img src="{{ url_for('static', filename='setebos.jpg') }}" alt="Setebos">
+  <h2>Setebos</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='siarnaq') }}" class="card">
+  <img src="{{ url_for('static', filename='siarnaq.jpg') }}" alt="Siarnaq">
+  <h2>Siarnaq</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='sinope') }}" class="card">
+  <img src="{{ url_for('static', filename='sinope.jpg') }}" alt="Sinope">
+  <h2>Sinope</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='skathi') }}" class="card">
+  <img src="{{ url_for('static', filename='skathi.jpg') }}" alt="Skathi">
+  <h2>Skathi</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='suttungr') }}" class="card">
+  <img src="{{ url_for('static', filename='suttungr.jpg') }}" alt="Suttungr">
+  <h2>Suttungr</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='sycorax') }}" class="card">
+  <img src="{{ url_for('static', filename='sycorax.jpg') }}" alt="Sycorax">
+  <h2>Sycorax</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='tarvos') }}" class="card">
+  <img src="{{ url_for('static', filename='tarvos.jpg') }}" alt="Tarvos">
+  <h2>Tarvos</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='telesto') }}" class="card">
+  <img src="{{ url_for('static', filename='telesto.jpg') }}" alt="Telesto">
+  <h2>Telesto</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='thelxinoe') }}" class="card">
+  <img src="{{ url_for('static', filename='thelxinoe.jpg') }}" alt="Thelxinoe">
+  <h2>Thelxinoe</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='themisto') }}" class="card">
+  <img src="{{ url_for('static', filename='themisto.jpg') }}" alt="Themisto">
+  <h2>Themisto</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='tethys') }}" class="card">
+  <img src="{{ url_for('static', filename='tethys.jpg') }}" alt="Tethys">
+  <h2>Tethys</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='thalassa') }}" class="card">
+  <img src="{{ url_for('static', filename='thalassa.jpg') }}" alt="Thalassa">
+  <h2>Thalassa</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='titan') }}" class="card">
+  <img src="{{ url_for('static', filename='titan.jpg') }}" alt="Titan">
+  <h2>Titan</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='titania') }}" class="card">
+  <img src="{{ url_for('static', filename='titania.jpg') }}" alt="Titania">
+  <h2>Titania</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='triton') }}" class="card">
+  <img src="{{ url_for('static', filename='triton.jpg') }}" alt="Triton">
+  <h2>Triton</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='umbriel') }}" class="card">
+  <img src="{{ url_for('static', filename='umbriel.jpg') }}" alt="Umbriel">
+  <h2>Umbriel</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='uranus') }}" class="card">
+  <img src="{{ url_for('static', filename='uranus.jpg') }}" alt="Uranus">
+  <h2>Uranus</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='venus') }}" class="card">
+  <img src="{{ url_for('static', filename='venus.jpg') }}" alt="Venus">
+  <h2>Venus</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='ymir') }}" class="card">
+  <img src="{{ url_for('static', filename='ymir.jpg') }}" alt="Ymir">
+  <h2>Ymir</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='mars') }}" class="card">
+  <img src="{{ url_for('static', filename='mars.jpg') }}" alt="Mars">
+  <h2>Mars</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='moon') }}" class="card">
+  <img src="{{ url_for('static', filename='moon.jpg') }}" alt="Moon">
+  <h2>Moon</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='phobos') }}" class="card">
+  <img src="{{ url_for('static', filename='phobos.jpg') }}" alt="Phobos">
+  <h2>Phobos</h2>
+</a>
   </section>
 
   <footer>
