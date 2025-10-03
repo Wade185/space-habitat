@@ -2,191 +2,169 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Choose a Planet or Moon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Space Habitat</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: url("static/stars-bg.jpg") no-repeat center center fixed;
+      font-family: 'Trebuchet MS', sans-serif;
+      background: url('static/stars-bg.jpg') no-repeat center center fixed;
       background-size: cover;
-      color: white;
+      color: #fff;
+    }
+
+    header {
       text-align: center;
-      padding: 40px;
-      min-height: 100vh;
+      padding: 50px 20px 20px;
+      background: rgba(0, 0, 0, 0.6);
     }
-    h1 {
-      font-size: 2.5em;
-      color: #ffdd57;
-      text-shadow: 0 0 15px #ffae00;
-      margin-bottom: 30px;
+
+    header h1 {
+      font-size: 3em;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-shadow: 0 0 15px #00eaff, 0 0 30px #0077ff;
+      margin: 0;
+      letter-spacing: 3px;
     }
-    .grid {
+
+    .brief {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      font-size: 1.2em;
+      line-height: 1.8em;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0, 200, 255, 0.6);
+    }
+
+    .search-container {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .search-container input {
+      width: 50%;
+      padding: 12px;
+      font-size: 1em;
+      border: none;
+      border-radius: 25px;
+      outline: none;
+      box-shadow: 0 0 12px #00eaff;
+    }
+
+    .cards {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 25px;
-      margin-top: 20px;
+      gap: 20px;
+      padding: 40px;
     }
+
     .card {
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.8);
       border-radius: 12px;
-      text-decoration: none;
-      color: white;
       overflow: hidden;
-      transition: 0.3s;
-      box-shadow: 0 0 15px rgba(0, 234, 255, 0.3);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      text-align: center;
+      padding: 15px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
     }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #00eaff;
+    }
+
     .card img {
       width: 100%;
-      height: 160px;
+      border-radius: 10px;
+      height: 180px;
       object-fit: cover;
     }
-    .card span {
-      padding: 15px;
-      font-size: 1.1em;
-      font-weight: bold;
-    }
-    .card:hover {
-      background: rgba(0, 234, 255, 0.2);
-      box-shadow: 0 0 25px #00eaff;
-      transform: scale(1.03);
-    }
-    .back-btn {
-      display: inline-block;
-      margin-top: 40px;
-      text-decoration: none;
-      color: #00eaff;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-    .back-btn:hover {
-      color: #fff;
+
+    .card h3 {
+      margin: 15px 0 10px;
+      font-size: 1.4em;
       text-shadow: 0 0 10px #00eaff;
     }
-    @media (max-width: 1000px) {
-      .grid { grid-template-columns: repeat(2, 1fr); }
+
+    .card p {
+      font-size: 0.95em;
+      line-height: 1.5em;
+      color: #ddd;
     }
-    @media (max-width: 600px) {
-      .grid { grid-template-columns: 1fr; }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.6);
+      margin-top: 30px;
+      font-size: 0.9em;
+      letter-spacing: 1px;
     }
   </style>
 </head>
 <body>
-  <h1>🌍 Select a Planet or Moon</h1>
+  <header>
+    <h1>The Space Habitat</h1>
+  </header>
 
-  <div class="grid">
-    <!-- Earth -->
-    <a href="moon.html" class="card">
-      <img src="static/moon.jpg" alt="Moon">
-      <span>🌕 Earth’s Moon</span>
-    </a>
+  <section class="brief">
+    <p>
+      Welcome to <b>Pixel Pioneers’ Space Habitat Project</b> 🚀🌌.  
+      Here, each celestial body—planets and moons—becomes your home.  
+      By clicking on a card, you unlock an AI assistant that guides you to survive and thrive in that environment, helping you with food, water, shelter, and energy production.  
+      Our mission is to inspire humanity to dream beyond Earth and imagine building a lifelong future across the cosmos.
+    </p>
+  </section>
 
-    <!-- Jupiter Moons -->
-    <a href="europa.html" class="card">
-      <img src="static/europa.jpg" alt="Europa">
-      <span>Europa</span>
-    </a>
-    <a href="ganymede.html" class="card">
-      <img src="static/ganymede.jpg" alt="Ganymede">
-      <span>Ganymede</span>
-    </a>
-    <a href="callisto.html" class="card">
-      <img src="static/callisto.jpg" alt="Callisto">
-      <span>Callisto</span>
-    </a>
-    <a href="erinome.html" class="card">
-      <img src="static/erinome.jpg" alt="Erinome">
-      <span>Erinome</span>
-    </a>
-    <a href="euanthe.html" class="card">
-      <img src="static/euanthe.jpg" alt="Euanthe">
-      <span>Euanthe</span>
-    </a>
-    <a href="eukelade.html" class="card">
-      <img src="static/eukelade.jpg" alt="Eukelade">
-      <span>Eukelade</span>
-    </a>
-    <a href="europie.html" class="card">
-      <img src="static/europie.jpg" alt="Europie">
-      <span>Europie</span>
-    </a>
-    <a href="eurydome.html" class="card">
-      <img src="static/eurydome.jpg" alt="Eurydome">
-      <span>Eurydome</span>
-    </a>
-    <a href="orthosie.html" class="card">
-      <img src="static/orthosie.jpg" alt="Orthosie">
-      <span>Orthosie</span>
-    </a>
-    <a href="harpalyke.html" class="card">
-      <img src="static/harpalyke.jpg" alt="Harpalyke">
-      <span>Harpalyke</span>
-    </a>
-    <a href="hermippe.html" class="card">
-      <img src="static/hermippe.jpg" alt="Hermippe">
-      <span>Hermippe</span>
-    </a>
-    <a href="erriapus.html" class="card">
-      <img src="static/erriapus.jpg" alt="Erriapus">
-      <span>Erriapus</span>
-    </a>
-    <a href="nix.html" class="card">
-      <img src="static/nix.jpg" alt="Nix">
-      <span>Nix</span>
-    </a>
-
-    <!-- Saturn Moons -->
-    <a href="hyperion.html" class="card">
-      <img src="static/hyperion.jpg" alt="Hyperion">
-      <span>Hyperion</span>
-    </a>
-    <a href="pallene.html" class="card">
-      <img src="static/pallene.jpg" alt="Pallene">
-      <span>Pallene</span>
-    </a>
-    <a href="ophelia.html" class="card">
-      <img src="static/ophelia.jpg" alt="Ophelia">
-      <span>Ophelia</span>
-    </a>
-    <a href="mundilfari.html" class="card">
-      <img src="static/mundilfari.jpg" alt="Mundilfari">
-      <span>Mundilfari</span>
-    </a>
-    <a href="lijiraq.html" class="card">
-      <img src="static/lijiraq.jpg" alt="Lijiraq">
-      <span>Lijiraq</span>
-    </a>
-    <a href="narvi.html" class="card">
-      <img src="static/narvi.jpg" alt="Narvi">
-      <span>Narvi</span>
-    </a>
-
-    <!-- Uranus Moons -->
-    <a href="oberon.html" class="card">
-      <img src="static/oberon.jpg" alt="Oberon">
-      <span>Oberon</span>
-    </a>
-
-    <!-- Neptune Moons -->
-    <a href="nereid.html" class="card">
-      <img src="static/nereid.jpg" alt="Nereid">
-      <span>Nereid</span>
-    </a>
-    <a href="nese.html" class="card">
-      <img src="static/nese.jpg" alt="Nese">
-      <span>Nese</span>
-    </a>
-
-    <!-- Dwarf Planets -->
-    <a href="eris.html" class="card">
-      <img src="static/eris.jpg" alt="Eris">
-      <span>Eris</span>
-    </a>
+  <div class="search-container">
+    <input type="text" id="searchBar" onkeyup="searchCards()" placeholder="🔍 Search for a planet or moon...">
   </div>
 
-  <a href="index.html" class="back-btn">⬅ Back to Main Menu</a>
+  <section class="cards" id="cards">
+    <div class="card">
+      <img src="static/earth.jpg" alt="Earth">
+      <h3>Earth</h3>
+      <p>Our home planet with air, water, and all essentials. Your survival starts here.</p>
+    </div>
+    <div class="card">
+      <img src="static/mars.jpg" alt="Mars">
+      <h3>Mars</h3>
+      <p>The Red Planet, a frontier for human settlement. Learn how to produce oxygen and food here.</p>
+    </div>
+    <div class="card">
+      <img src="static/moon.jpg" alt="Moon">
+      <h3>Moon</h3>
+      <p>Earth’s satellite and our first step to space colonization. Build bases in lunar craters.</p>
+    </div>
+    <div class="card">
+      <img src="static/jupiter.jpg" alt="Jupiter">
+      <h3>Jupiter</h3>
+      <p>The gas giant. You cannot land here, but its moons may be habitable!</p>
+    </div>
+    <!-- Add more planets/moons here following the same format -->
+  </section>
+
+  <footer>
+    🌍 Pixel Pioneers | The Space Habitat Project ✨
+  </footer>
+
+  <script>
+    function searchCards() {
+      let input = document.getElementById("searchBar").value.toLowerCase();
+      let cards = document.getElementsByClassName("card");
+      for (let i = 0; i < cards.length; i++) {
+        let title = cards[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+        if (title.includes(input)) {
+          cards[i].style.display = "block";
+        } else {
+          cards[i].style.display = "none";
+        }
+      }
+    }
+  </script>
 </body>
 </html>
-
