@@ -2,55 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Space Habitat</title>
+  <title>Space Habitat - Beyond Earth Survival</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #0b0c10;
-      color: #fff;
       margin: 0;
       padding: 0;
-      text-align: center;
+      color: #ffffff;
+      background: url("{{ url_for('static', filename='stars-bg.jpg') }}") no-repeat center center fixed;
+      background-size: cover;
     }
+
     h1 {
+      text-align: center;
       padding: 20px;
-      color: #66fcf1;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #0099ff;
     }
+
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      grid-template-columns: repeat(4, 1fr); /* 4 cards in a row */
       gap: 20px;
       padding: 20px;
     }
+
     .card {
-      background: #1f2833;
-      border-radius: 10px;
+      background: rgba(20, 20, 40, 0.85);
+      border-radius: 12px;
       overflow: hidden;
       text-decoration: none;
       color: white;
       transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
     }
+
     .card:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 15px #45a29e;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
     }
+
     .card img {
       width: 100%;
-      height: 120px;
+      height: 140px;
       object-fit: cover;
     }
+
     .card h2 {
-      margin: 10px 0;
+      margin: 12px 0;
       font-size: 1.1em;
     }
   </style>
 </head>
 <body>
-  <h1></h1> Space Habitat</h1>
+  <h1>🌌 Space Habitat - Beyond Earth Survival 🌌</h1>
   <div class="grid">
 
-    <!-- Loop over all planets -->
+    <!-- Sample 8 cards (replace/extend for all 76) -->
     <a href="{{ url_for('planet_page', planet='aegaeon') }}" class="card">
       <img src="{{ url_for('static', filename='aegaeon.jpg') }}" alt="Aegaeon">
       <h2>Aegaeon</h2>
@@ -89,93 +98,6 @@
     <a href="{{ url_for('planet_page', planet='chaldene') }}" class="card">
       <img src="{{ url_for('static', filename='chaldene.jpg') }}" alt="Chaldene">
       <h2>Chaldene</h2>
-    </a>
-
-    <a href="{{ url_for('planet_page', planet='cyllene') }}" class="card">
-      <img src="{{ url_for('static', filename='cyllene.jpg') }}" alt="Cyllene">
-      <h2>Cyllene</h2>
-    </a>
-
-    <a href="{{ url_for('planet_page', planet='daphnis') }}" class="card">
-      <img src="{{ url_for('static', filename='daphnis.jpg') }}" alt="Daphnis">
-      <h2>Daphnis</h2>
-    </a>
-
-    <a href="{{ url_for('planet_page', planet='dia') }}" class="card">
-      <img src="{{ url_for('static', filename='dia.jpg') }}" alt="Dia">
-      <h2>Dia</h2>
-    </a>
-
-    <a href="{{ url_for('planet_page', planet='dione') }}" class="card">
-      <img src="{{ url_for('static', filename='dione.jpg') }}" alt="Dione">
-      <h2>Dione</h2>
-    </a>
-
-    <a href="{{ url_for('planet_page', planet='enceladus') }}" class="card">
-      <img src="{{ url_for('static', filename='enceladus.jpg') }}" alt="Enceladus">
-      <h2>Enceladus</h2>
-    </a>
-
-    <a href="{{ url_for('planet_page', planet='epimetheus') }}" class="card">
-      <img src="{{ url_for('static', filename='epimetheus.jpg') }}" alt="Epimetheus">
-      <h2>Epimetheus</h2>
-    </a>
-
-    <a href="{{ url_for('planet_page', planet='erinome') }}" class="card">
-      <img src="{{ url_for('static', filename='erinome.jpg') }}" alt="Erinome">
-      <h2>Erinome</h2>
-    </a>
-
-    <a href="{{ url_for('planet_page', planet='eris') }}" class="card">
-      <img src="{{ url_for('static', filename='eris.jpg') }}" alt="Eris">
-      <h2>Eris</h2>
-    </a>
-
-    <a href="{{ url_for('planet_page', planet='erriapus') }}" class="card">
-      <img src="{{ url_for('static', filename='erriapus.jpg') }}" alt="Erriapus">
-      <h2>Erriapus</h2>
-    </a>
-
-    <a href="{{ url_for('planet_page', planet='euanthe') }}" class="card">
-      <img src="{{ url_for('static', filename='euanthe.jpg') }}" alt="Euanthe">
-      <h2>Euanthe</h2>
-    </a>
-
-    <a href="{{ url_for('planet_page', planet='eukelade') }}" class="card">
-      <img src="{{ url_for('static', filename='eukelade.jpg') }}" alt="Eukelade">
-      <h2>Eukelade</h2>
-    </a>
-
-    <a href="{{ url_for('planet_page', planet='euporie') }}" class="card">
-      <img src="{{ url_for('static', filename='euporie.jpg') }}" alt="Euporie">
-      <h2>Euporie</h2>
-    </a>
-
-    <a href="{{ url_for('planet_page', planet='europa') }}" class="card">
-      <img src="{{ url_for('static', filename='europa.jpg') }}" alt="Europa">
-      <h2>Europa</h2>
-    </a>
-
-    <a href="{{ url_for('planet_page', planet='eurydome') }}" class="card">
-      <img src="{{ url_for('static', filename='eurydome.jpg') }}" alt="Eurydome">
-      <h2>Eurydome</h2>
-    </a>
-
-    <!-- CONTINUE THIS SAME PATTERN FOR ALL 76 CELESTIAL BODIES UNTIL PHOBOS -->
-
-    <a href="{{ url_for('planet_page', planet='mars') }}" class="card">
-      <img src="{{ url_for('static', filename='mars.jpg') }}" alt="Mars">
-      <h2>Mars</h2>
-    </a>
-
-    <a href="{{ url_for('planet_page', planet='moon') }}" class="card">
-      <img src="{{ url_for('static', filename='moon.jpg') }}" alt="Moon">
-      <h2>Moon</h2>
-    </a>
-
-    <a href="{{ url_for('planet_page', planet='phobos') }}" class="card">
-      <img src="{{ url_for('static', filename='phobos.jpg') }}" alt="Phobos">
-      <h2>Phobos</h2>
     </a>
 
   </div>
