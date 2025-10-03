@@ -1,11 +1,218 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>callisto</title>
+  <meta charset="UTF-8">
+  <title>Callisto - Habitat Assistant</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #0a0f2c, #1c2340, #2b2a6a, #000);
+      background-attachment: fixed;
+      color: #f1f1f1;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+    }
+
+    .assistant-container {
+      background: rgba(20, 20, 40, 0.85);
+      border-radius: 15px;
+      padding: 30px;
+      width: 850px;
+      max-width: 95%;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .assistant-container h1 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #00eaff;
+      text-shadow: 0 0 10px #00eaff, 0 0 20px #0095ff;
+      margin-bottom: 20px;
+    }
+
+    .info p {
+      margin: 8px 0;
+      font-size: 1.05em;
+    }
+
+    h2 {
+      margin-top: 25px;
+      font-size: 1.5em;
+      color: #ffdd57;
+      text-shadow: 0 0 5px #ffae00;
+    }
+
+    p {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+
+    .assistant-box {
+      margin-top: 30px;
+      padding: 20px;
+      border: 2px solid #00eaff;
+      border-radius: 10px;
+      background: rgba(0, 20, 40, 0.6);
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
+    }
+
+    .assistant-box input {
+      width: 70%;
+      padding: 12px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      font-size: 1em;
+    }
+
+    .assistant-box button {
+      margin-left: 10px;
+      padding: 12px 20px;
+      background: #00eaff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      color: #000;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .assistant-box button:hover {
+      background: #0095ff;
+      box-shadow: 0 0 15px #00eaff;
+    }
+
+    #answerBox {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      min-height: 60px;
+      font-style: italic;
+      text-align: left;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #ffdd57;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      color: #ffffff;
+      text-shadow: 0 0 10px #ffdd57;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
 </head>
 <body>
-    <h1>callisto</h1>
-    <img src="{{ url_for('static', filename='callisto.jpg') }}" alt="callisto">
-    <p>Welcome to the habitat exploration page for <b>callisto</b>!</p>
+  <div class="assistant-container">
+    <h1>Callisto AI Assistant</h1>
+    <div class="info">
+      <p><b>Discovery:</b> 1610, by Galileo Galilei</p>
+      <p><b>Parent Planet:</b> Jupiter</p>
+      <p><b>Size:</b> ~4,821 km diameter</p>
+      <p><b>Distance from Earth:</b> ~628–930 million km (varies with orbit)</p>
+      <p><b>Description:</b> Callisto is the second-largest moon of Jupiter and the third-largest in the Solar System. It is heavily cratered, with an ancient surface, and may contain a subsurface salty ocean beneath its icy crust.</p>
+      <p><b>Fun Fact:</b> Callisto has one of the oldest and most heavily cratered surfaces in the Solar System, earning it the nickname "the dead moon."</p>
+    </div>
+
+    <h2>Breathing / Oxygen</h2>
+    <p>Callisto has a very thin atmosphere of carbon dioxide and oxygen, but it is far too thin to breathe. Oxygen for humans would need to be produced by splitting water ice or imported, then circulated within sealed habitats.</p>
+
+    <h2>Water & Sewage</h2>
+    <p>Callisto’s surface contains abundant water ice. Ice mining and purification systems could provide sustainable water supplies. Closed-loop recycling would ensure no waste is lost.</p>
+
+    <h2>Food Production</h2>
+    <p>Food would be cultivated in large underground or dome-based hydroponic farms. The possibility of in-situ resource use (ISRU) for nutrient extraction from ice/rock could reduce supply shipments from Earth.</p>
+
+    <h2>Energy</h2>
+    <p>Solar power is weak but still possible. Nuclear fission reactors or small modular reactors would provide reliable, continuous energy for colonies. Solar could serve as a supplementary energy source.</p>
+
+    <h2>Shelter</h2>
+    <p>Callisto’s radiation environment is less intense than Europa or Io, making it one of the safer Jovian moons. Habitats could be established underground or shielded by regolith to protect from cosmic radiation and impacts.</p>
+
+    <div class="assistant-box">
+      <h2>Ask me anything about Callisto</h2>
+      <input type="text" id="userQuestion" placeholder="Type your question...">
+      <button id="askButton">Ask</button>
+      <div id="answerBox">Tip: Try asking about oxygen, water, food, farming, energy, or shelter.</div>
+    </div>
+
+    <!-- Back to Home button -->
+    <a href="planet.html" class="back-btn">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    const askButton = document.getElementById("askButton");
+    const userQuestion = document.getElementById("userQuestion");
+    const answerBox = document.getElementById("answerBox");
+
+    // Knowledge base
+    const knowledge = {
+      "oxygen": "Breathing on Callisto: The atmosphere is too thin. Oxygen must be extracted from ice or imported, then managed in sealed habitats.",
+      "breath": "No natural breathable air. Humans require closed life-support systems with recycled oxygen.",
+      "air": "Callisto’s air is extremely thin, mostly CO₂ and oxygen in trace amounts—not suitable for humans.",
+
+      "water": "Water on Callisto: The moon is rich in surface ice. Mining, purification, and recycling would provide sustainable water supplies.",
+      "sewage": "Wastewater and sewage would be treated and recycled into potable water using closed-loop systems.",
+
+      "food": "Food Production: Hydroponic farms underground or in domes would supply crops. ISRU might help extract useful nutrients locally.",
+      "farming": "Farming would rely on artificial lighting, hydroponics, and efficient recycling of water and nutrients.",
+      "agriculture": "Agriculture would focus on algae, insect protein, and lab-grown meats to supplement fresh produce.",
+
+      "energy": "Energy on Callisto: Nuclear reactors provide primary power. Solar arrays could be supplemental but are weak at Jupiter’s distance.",
+      "power": "Small modular nuclear reactors ensure reliable power; solar panels are possible but less efficient.",
+
+      "shelter": "Shelter: Callisto is less exposed to Jupiter’s radiation, making it more habitable than Europa or Io. Subsurface habitats are ideal.",
+      "habitat": "Habitats would be buried under ice/regolith or shielded domes to protect colonists from cosmic rays and impacts."
+    };
+
+    function getAnswer() {
+      const q = userQuestion.value.toLowerCase();
+      let response = "I don’t have that info yet. Try asking about: oxygen, water, food, farming, energy, or shelter.";
+
+      for (let key in knowledge) {
+        if (q.includes(key)) {
+          response = knowledge[key];
+          break;
+        }
+      }
+
+      answerBox.innerHTML = response;
+      userQuestion.value = ""; // clear input after asking
+    }
+
+    // Button click
+    askButton.addEventListener("click", getAnswer);
+
+    // Enter key support
+    userQuestion.addEventListener("keyup", (event) => {
+      if (event.key === "Enter") {
+        getAnswer();
+      }
+    });
+  </script>
 </body>
 </html>
