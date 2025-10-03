@@ -1,11 +1,182 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>aegaeon</title>
+  <meta charset="UTF-8">
+  <title>Aegaeon - Habitat Assistant</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0a0f2c, #1c2340, #2b2a6a);
+      background-attachment: fixed;
+      color: #f1f1f1;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+    }
+
+    .assistant-container {
+      background: rgba(20, 20, 40, 0.85);
+      border-radius: 15px;
+      padding: 30px;
+      width: 800px;
+      max-width: 95%;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .assistant-container h1 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #00eaff;
+      text-shadow: 0 0 10px #00eaff, 0 0 20px #0095ff;
+      margin-bottom: 20px;
+    }
+
+    .info p {
+      margin: 8px 0;
+      font-size: 1.05em;
+    }
+
+    h2 {
+      margin-top: 25px;
+      font-size: 1.5em;
+      color: #ffdd57;
+      text-shadow: 0 0 5px #ffae00;
+    }
+
+    p {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+
+    .assistant-box {
+      margin-top: 30px;
+      padding: 20px;
+      border: 2px solid #00eaff;
+      border-radius: 10px;
+      background: rgba(0, 20, 40, 0.6);
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
+    }
+
+    .assistant-box input {
+      width: 70%;
+      padding: 12px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      font-size: 1em;
+    }
+
+    .assistant-box button {
+      margin-left: 10px;
+      padding: 12px 20px;
+      background: #00eaff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      color: #000;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .assistant-box button:hover {
+      background: #0095ff;
+      box-shadow: 0 0 15px #00eaff;
+    }
+
+    #answerBox {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      min-height: 50px;
+      font-style: italic;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #ffdd57;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      color: #ffffff;
+      text-shadow: 0 0 10px #ffdd57;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
 </head>
 <body>
-    <h1>aegaeon</h1>
-    <img src="{{ url_for('static', filename='aegaeon.jpg') }}" alt="aegaeon">
-    <p>Welcome to the habitat exploration page for <b>aegaeon</b>!</p>
+  <div class="assistant-container">
+    <h1>🪐 Aegaeon AI Assistant</h1>
+    <div class="info">
+      <p><b>Discovery:</b> 2008, Cassini spacecraft</p>
+      <p><b>Parent Planet:</b> Saturn</p>
+      <p><b>Size:</b> ~0.5 km radius</p>
+      <p><b>Distance from Earth:</b> ~1.2 billion km</p>
+      <p><b>Description:</b> Aegaeon is Saturn’s smallest named moon, orbiting within the G ring and contributing dust that maintains the ring.</p>
+      <p><b>Fun Fact:</b> Despite being tiny, Aegaeon has a huge impact on Saturn’s rings.</p>
+    </div>
+
+    <h2>🌬 Breathing / Oxygen</h2>
+    <p>O₂ could be produced by electrolysis of ice deposits or recycling systems.</p>
+
+    <h2>💧 Water & Sewage</h2>
+    <p>Ice within Saturn’s system could be mined, purified, and recycled.</p>
+
+    <h2>🌱 Food Production</h2>
+    <p>Hydroponics inside shielded domes would provide food sustainably.</p>
+
+    <h2>⚡ Energy</h2>
+    <p>Solar power is weak this far out, so nuclear energy would be required.</p>
+
+    <h2>🏠 Shelter</h2>
+    <p>Habitats must be radiation-shielded, possibly buried under regolith.</p>
+
+    <div class="assistant-box">
+      <h2>Ask me anything about Aegaeon 🚀</h2>
+      <input type="text" id="userQuestion" placeholder="Type your question...">
+      <button id="askButton">Ask</button>
+      <div id="answerBox"></div>
+    </div>
+
+    <a href="../index.html" class="back-btn">⬅ Back to Explorer</a>
+  </div>
+
+  <script>
+    // Simple placeholder JS logic for demonstration
+    const askButton = document.getElementById("askButton");
+    const userQuestion = document.getElementById("userQuestion");
+    const answerBox = document.getElementById("answerBox");
+
+    askButton.addEventListener("click", () => {
+      const q = userQuestion.value.trim();
+      if (!q) {
+        answerBox.innerHTML = "❓ Please type a question first!";
+      } else {
+        answerBox.innerHTML = "🤖 Thinking about: <b>" + q + "</b> ... (assistant response here)";
+      }
+    });
+  </script>
 </body>
 </html>
