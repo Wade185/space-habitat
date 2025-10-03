@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Space Habitat</title>
+  <title>Choose a Planet or Moon</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+      background: url("static/stars-bg.jpg") no-repeat center center fixed;
+      background-size: cover;
       color: white;
       text-align: center;
       padding: 40px;
@@ -17,23 +18,25 @@
       font-size: 2.5em;
       color: #ffdd57;
       text-shadow: 0 0 15px #ffae00;
+      margin-bottom: 30px;
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 20px;
-      margin-top: 40px;
+      margin-top: 20px;
     }
     a.card {
       display: block;
       padding: 20px;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.6);
       border-radius: 10px;
       text-decoration: none;
       color: white;
       transition: 0.3s;
       font-weight: bold;
       font-size: 1.2em;
+      box-shadow: 0 0 10px rgba(0, 234, 255, 0.3);
     }
     a.card:hover {
       background: rgba(0, 234, 255, 0.2);
@@ -50,6 +53,12 @@
     .back-btn:hover {
       color: #fff;
       text-shadow: 0 0 10px #00eaff;
+    }
+    @media (max-width: 1000px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -84,7 +93,6 @@
 
     <!-- Uranus Moons -->
     <a href="oberon.html" class="card">Oberon</a>
-    <a href="ophelia.html" class="card">Ophelia</a>
 
     <!-- Neptune Moons -->
     <a href="nereid.html" class="card">Nereid</a>
@@ -97,3 +105,4 @@
   <a href="index.html" class="back-btn">⬅ Back to Main Menu</a>
 </body>
 </html>
+
