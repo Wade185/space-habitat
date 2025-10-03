@@ -1,435 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Space Habitat
-    </title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="utf-8" />
+  <title>Celestial Habitat Assistant — All Bodies</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <style>
+    * { box-sizing: border-box; margin:0; padding:0; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #ffffff;
-      background: url("{{ url_for('static', filename='stars-bg.jpg') }}") no-repeat center center fixed;
-      background-size: cover;
+      background: radial-gradient(circle at top, #071022, #0f2038, #1a2a44, #000);
+      color:#eef6ff;
+      min-height:100vh;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:28px;
     }
-
-    h1 {
-      text-align: center;
-      padding: 20px;
-      color: #00ffff;
-      text-shadow: 0 0 10px #00ffff, 0 0 20px #0099ff;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr); /* 4 cards in a row */
-      gap: 20px;
-      padding: 20px;
-    }
-
     .card {
-      background: rgba(20, 20, 40, 0.85);
-      border-radius: 12px;
-      overflow: hidden;
-      text-decoration: none;
-      color: white;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+      width:920px;
+      max-width:96%;
+      background:rgba(12,18,28,0.86);
+      border-radius:14px;
+      padding:26px;
+      box-shadow:0 10px 40px rgba(0,170,255,0.08);
+      border:1px solid rgba(0,170,255,0.06);
+      backdrop-filter: blur(6px);
     }
-
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+    header { text-align:center; margin-bottom:18px; }
+    header h1 { color:#7ff0ff; font-size:1.9rem; text-shadow:0 0 12px rgba(0,200,255,0.12); }
+    .controls { display:flex; gap:12px; align-items:center; margin:18px 0 8px; flex-wrap:wrap; }
+    select, input[type="text"] {
+      padding:10px 12px; border-radius:8px; border:none; outline:none;
+      background:rgba(255,255,255,0.03); color:inherit; font-size:1rem;
+      min-width:220px;
     }
-
-    .card img {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
+    button {
+      padding:10px 14px; border-radius:8px; border:none; cursor:pointer;
+      background:linear-gradient(180deg,#00eaff,#0095ff); color:#001; font-weight:700;
+      box-shadow:0 6px 18px rgba(0,150,255,0.12);
     }
-
-    .card h2 {
-      margin: 12px 0;
-      font-size: 1.1em;
+    .grid { display:grid; grid-template-columns: 1fr 340px; gap:18px; align-items:start; margin-top:14px; }
+    .info {
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:16px; border-radius:10px; border:1px solid rgba(255,255,255,0.03);
+    }
+    .info h2 { color:#bff7ff; margin-bottom:8px; font-size:1.4rem; }
+    .info p { margin:8px 0; line-height:1.45; font-size:0.98rem; }
+    .assistant-box {
+      padding:14px; border-radius:10px; background:rgba(0,0,0,0.25); border:1px solid rgba(0,170,255,0.04);
+      min-height:220px;
+    }
+    .assistant-box h3 { color:#ffd66b; margin-bottom:10px; font-size:1.05rem; }
+    #answerBox { min-height:90px; padding:10px; background:rgba(255,255,255,0.02); border-radius:8px; font-style:italic; }
+    footer { margin-top:14px; text-align:center; color:rgba(255,255,255,0.6); font-size:0.92rem; }
+    @media (max-width:800px) {
+      .grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <h1> Space Habitat</h1>
-  <div class="grid">
-
-    <a href="{{ url_for('planet_page', planet='aitne') }}" class="card">
-  <img src="{{ url_for('static', filename='aitne.jpg') }}" alt="Aitne">
-  <h2>Aitne</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='aegaeon') }}" class="card">
-  <img src="{{ url_for('static', filename='aegaeon.jpg') }}" alt="Aegaeon">
-  <h2>Aegaeon</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='aegir') }}" class="card">
-  <img src="{{ url_for('static', filename='aegir.jpg') }}" alt="Aegir">
-  <h2>Aegir</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='callisto') }}" class="card">
-  <img src="{{ url_for('static', filename='callisto.jpg') }}" alt="Callisto">
-  <h2>Callisto</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='ceres') }}" class="card">
-  <img src="{{ url_for('static', filename='ceres.jpg') }}" alt="Ceres">
-  <h2>Ceres</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='chaldene') }}" class="card">
-  <img src="{{ url_for('static', filename='chaldene.jpg') }}" alt="Chaldene">
-  <h2>Chaldene</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='cyllene') }}" class="card">
-  <img src="{{ url_for('static', filename='cyllene.jpg') }}" alt="Cyllene">
-  <h2>Cyllene</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='daphnis') }}" class="card">
-  <img src="{{ url_for('static', filename='daphnis.jpg') }}" alt="Daphnis">
-  <h2>Daphnis</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='dia') }}" class="card">
-  <img src="{{ url_for('static', filename='dia.jpg') }}" alt="Dia">
-  <h2>Dia</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='dione') }}" class="card">
-  <img src="{{ url_for('static', filename='dione.jpg') }}" alt="Dione">
-  <h2>Dione</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='enceladus') }}" class="card">
-  <img src="{{ url_for('static', filename='enceladus.jpg') }}" alt="Enceladus">
-  <h2>Enceladus</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='epimetheus') }}" class="card">
-  <img src="{{ url_for('static', filename='epimetheus.jpg') }}" alt="Epimetheus">
-  <h2>Epimetheus</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='erinome') }}" class="card">
-  <img src="{{ url_for('static', filename='erinome.jpg') }}" alt="Erinome">
-  <h2>Erinome</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='eris') }}" class="card">
-  <img src="{{ url_for('static', filename='eris.jpg') }}" alt="Eris">
-  <h2>Eris</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='erriapus') }}" class="card">
-  <img src="{{ url_for('static', filename='erriapus.jpg') }}" alt="Erriapus">
-  <h2>Erriapus</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='euanthe') }}" class="card">
-  <img src="{{ url_for('static', filename='euanthe.jpg') }}" alt="Euanthe">
-  <h2>Euanthe</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='eukelade') }}" class="card">
-  <img src="{{ url_for('static', filename='eukelade.jpg') }}" alt="Eukelade">
-  <h2>Eukelade</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='euporie') }}" class="card">
-  <img src="{{ url_for('static', filename='euporie.jpg') }}" alt="Euporie">
-  <h2>Euporie</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='europa') }}" class="card">
-  <img src="{{ url_for('static', filename='europa.jpg') }}" alt="Europa">
-  <h2>Europa</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='eurydome') }}" class="card">
-  <img src="{{ url_for('static', filename='eurydome.jpg') }}" alt="Eurydome">
-  <h2>Eurydome</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='farbauti') }}" class="card">
-  <img src="{{ url_for('static', filename='farbauti.jpg') }}" alt="Farbauti">
-  <h2>Farbauti</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='ganymede') }}" class="card">
-  <img src="{{ url_for('static', filename='ganymede.jpg') }}" alt="Ganymede">
-  <h2>Ganymede</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='harpalyke') }}" class="card">
-  <img src="{{ url_for('static', filename='harpalyke.jpg') }}" alt="Harpalyke">
-  <h2>Harpalyke</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='hermippe') }}" class="card">
-  <img src="{{ url_for('static', filename='hermippe.jpg') }}" alt="Hermippe">
-  <h2>Hermippe</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='hyperion') }}" class="card">
-  <img src="{{ url_for('static', filename='hyperion.jpg') }}" alt="Hyperion">
-  <h2>Hyperion</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='lijiraq') }}" class="card">
-  <img src="{{ url_for('static', filename='lijiraq.jpg') }}" alt="Lijiraq">
-  <h2>Lijiraq</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='loge') }}" class="card">
-  <img src="{{ url_for('static', filename='loge.jpg') }}" alt="Loge">
-  <h2>Loge</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='lysithea') }}" class="card">
-  <img src="{{ url_for('static', filename='lysithea.jpg') }}" alt="Lysithea">
-  <h2>Lysithea</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='megaclite') }}" class="card">
-  <img src="{{ url_for('static', filename='megaclite.jpg') }}" alt="Megaclite">
-  <h2>Megaclite</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='metis') }}" class="card">
-  <img src="{{ url_for('static', filename='metis.jpg') }}" alt="Metis">
-  <h2>Metis</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='mimas') }}" class="card">
-  <img src="{{ url_for('static', filename='mimas.jpg') }}" alt="Mimas">
-  <h2>Mimas</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='mneme') }}" class="card">
-  <img src="{{ url_for('static', filename='mneme.jpg') }}" alt="Mneme">
-  <h2>Mneme</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='mundilfari') }}" class="card">
-  <img src="{{ url_for('static', filename='mundilfari.jpg') }}" alt="Mundilfari">
-  <h2>Mundilfari</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='narvi') }}" class="card">
-  <img src="{{ url_for('static', filename='narvi.jpg') }}" alt="Narvi">
-  <h2>Narvi</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='nereid') }}" class="card">
-  <img src="{{ url_for('static', filename='nereid.jpg') }}" alt="Nereid">
-  <h2>Nereid</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='neso') }}" class="card">
-  <img src="{{ url_for('static', filename='neso.jpg') }}" alt="Neso">
-  <h2>Neso</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='nix') }}" class="card">
-  <img src="{{ url_for('static', filename='nix.jpg') }}" alt="Nix">
-  <h2>Nix</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='oberon') }}" class="card">
-  <img src="{{ url_for('static', filename='oberon.jpg') }}" alt="Oberon">
-  <h2>Oberon</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='ophelia') }}" class="card">
-  <img src="{{ url_for('static', filename='ophelia.jpg') }}" alt="Ophelia">
-  <h2>Ophelia</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='orthosie') }}" class="card">
-  <img src="{{ url_for('static', filename='orthosie.jpg') }}" alt="Orthosie">
-  <h2>Orthosie</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='pallene') }}" class="card">
-  <img src="{{ url_for('static', filename='pallene.jpg') }}" alt="Pallene">
-  <h2>Pallene</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='pan') }}" class="card">
-  <img src="{{ url_for('static', filename='pan.jpg') }}" alt="Pan">
-  <h2>Pan</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='pandora') }}" class="card">
-  <img src="{{ url_for('static', filename='pandora.jpg') }}" alt="Pandora">
-  <h2>Pandora</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='pasiphae') }}" class="card">
-  <img src="{{ url_for('static', filename='pasiphae.jpg') }}" alt="Pasiphae">
-  <h2>Pasiphae</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='phoebe') }}" class="card">
-  <img src="{{ url_for('static', filename='phoebe.jpg') }}" alt="Phoebe">
-  <h2>Phoebe</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='pluto') }}" class="card">
-  <img src="{{ url_for('static', filename='pluto.jpg') }}" alt="Pluto">
-  <h2>Pluto</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='polydeuces') }}" class="card">
-  <img src="{{ url_for('static', filename='polydeuces.jpg') }}" alt="Polydeuces">
-  <h2>Polydeuces</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='praxidike') }}" class="card">
-  <img src="{{ url_for('static', filename='praxidike.jpg') }}" alt="Praxidike">
-  <h2>Praxidike</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='prometheus') }}" class="card">
-  <img src="{{ url_for('static', filename='prometheus.jpg') }}" alt="Prometheus">
-  <h2>Prometheus</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='prospero') }}" class="card">
-  <img src="{{ url_for('static', filename='prospero.jpg') }}" alt="Prospero">
-  <h2>Prospero</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='proteus') }}" class="card">
-  <img src="{{ url_for('static', filename='proteus.jpg') }}" alt="Proteus">
-  <h2>Proteus</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='rhea') }}" class="card">
-  <img src="{{ url_for('static', filename='rhea.jpg') }}" alt="Rhea">
-  <h2>Rhea</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='setebos') }}" class="card">
-  <img src="{{ url_for('static', filename='setebos.jpg') }}" alt="Setebos">
-  <h2>Setebos</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='siarnaq') }}" class="card">
-  <img src="{{ url_for('static', filename='siarnaq.jpg') }}" alt="Siarnaq">
-  <h2>Siarnaq</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='sinope') }}" class="card">
-  <img src="{{ url_for('static', filename='sinope.jpg') }}" alt="Sinope">
-  <h2>Sinope</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='skathi') }}" class="card">
-  <img src="{{ url_for('static', filename='skathi.jpg') }}" alt="Skathi">
-  <h2>Skathi</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='suttungr') }}" class="card">
-  <img src="{{ url_for('static', filename='suttungr.jpg') }}" alt="Suttungr">
-  <h2>Suttungr</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='sycorax') }}" class="card">
-  <img src="{{ url_for('static', filename='sycorax.jpg') }}" alt="Sycorax">
-  <h2>Sycorax</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='tarvos') }}" class="card">
-  <img src="{{ url_for('static', filename='tarvos.jpg') }}" alt="Tarvos">
-  <h2>Tarvos</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='telesto') }}" class="card">
-  <img src="{{ url_for('static', filename='telesto.jpg') }}" alt="Telesto">
-  <h2>Telesto</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='thelxinoe') }}" class="card">
-  <img src="{{ url_for('static', filename='thelxinoe.jpg') }}" alt="Thelxinoe">
-  <h2>Thelxinoe</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='themisto') }}" class="card">
-  <img src="{{ url_for('static', filename='themisto.jpg') }}" alt="Themisto">
-  <h2>Themisto</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='tethys') }}" class="card">
-  <img src="{{ url_for('static', filename='tethys.jpg') }}" alt="Tethys">
-  <h2>Tethys</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='thalassa') }}" class="card">
-  <img src="{{ url_for('static', filename='thalassa.jpg') }}" alt="Thalassa">
-  <h2>Thalassa</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='titan') }}" class="card">
-  <img src="{{ url_for('static', filename='titan.jpg') }}" alt="Titan">
-  <h2>Titan</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='titania') }}" class="card">
-  <img src="{{ url_for('static', filename='titania.jpg') }}" alt="Titania">
-  <h2>Titania</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='triton') }}" class="card">
-  <img src="{{ url_for('static', filename='triton.jpg') }}" alt="Triton">
-  <h2>Triton</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='umbriel') }}" class="card">
-  <img src="{{ url_for('static', filename='umbriel.jpg') }}" alt="Umbriel">
-  <h2>Umbriel</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='uranus') }}" class="card">
-  <img src="{{ url_for('static', filename='uranus.jpg') }}" alt="Uranus">
-  <h2>Uranus</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='venus') }}" class="card">
-  <img src="{{ url_for('static', filename='venus.jpg') }}" alt="Venus">
-  <h2>Venus</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='ymir') }}" class="card">
-  <img src="{{ url_for('static', filename='ymir.jpg') }}" alt="Ymir">
-  <h2>Ymir</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='mars') }}" class="card">
-  <img src="{{ url_for('static', filename='mars.jpg') }}" alt="Mars">
-  <h2>Mars</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='moon') }}" class="card">
-  <img src="{{ url_for('static', filename='moon.jpg') }}" alt="Moon">
-  <h2>Moon</h2>
-</a>
-
-<a href="{{ url_for('planet_page', planet='phobos') }}" class="card">
-  <img src="{{ url_for('static', filename='phobos.jpg') }}" alt="Phobos">
-  <h2>Phobos</h2>
-</a>
-
+  <div class="card">
+    <header>
+      <h1>Celestial Habitat Assistant — Quick Reference</h1>
+      <div style="margin-top:6px; color:rgba(255,255,255,0.7); font-size:0.95rem">
+        All names preloaded. Fill details (discovery, parent, size, etc.) later.
+      </div>
+    </header>
+
+    <div class="controls">
+      <label for="celestialSelect" style="font-weight:700; color:rgba(255,255,255,0.85)">Choose:</label>
+      <select id="celestialSelect" aria-label="Select celestial body"></select>
+
+      <input id="quickSearch" type="text" placeholder="Quick filter (type part of name)">
+
+      <button id="fillPlaceholders">Fill placeholders with example data</button>
+      <button id="exportJSON">Export JSON</button>
+    </div>
+
+    <div class="grid">
+      <div class="info">
+        <h2 id="nameDisplay">—</h2>
+
+        <p><strong>Discovery:</strong> <span id="discoveryDisplay">TBD</span></p>
+        <p><strong>Parent Planet:</strong> <span id="parentDisplay">TBD</span></p>
+        <p><strong>Size:</strong> <span id="sizeDisplay">TBD</span></p>
+        <p><strong>Distance from Earth:</strong> <span id="distanceDisplay">TBD</span></p>
+        <p><strong>Description:</strong> <span id="descriptionDisplay">TBD</span></p>
+        <p><strong>Fun Fact:</strong> <span id="funFactDisplay">TBD</span></p>
+
+        <hr style="margin:12px 0; border:none; border-top:1px solid rgba(255,255,255,0.04)">
+
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button id="prevBtn">◀ Prev</button>
+          <button id="nextBtn">Next ▶</button>
+          <button id="openPage">Open standalone page</button>
+        </div>
+      </div>
+
+      <div class="assistant-box">
+        <h3>Ask quick topics (oxygen, water, food, energy, shelter)</h3>
+        <input id="userQuestion" type="text" placeholder="Type your question..." style="width:100%; margin-bottom:10px;">
+        <div id="answerBox">Tip: click a body, then ask about oxygen/water/food/energy/shelter.</div>
+      </div>
+    </div>
+
+    <footer>
+      Generated list of names included. You can edit details in the JSON, export, or open a simple standalone page for any item.
+    </footer>
+  </div>
+
+  <script>
+    // Full list of names the user provided
+    const names = [
+"aoede","aitne","aegir","anthe","chaldene","callisto","ceres","daphnis","dia",
+"dione","enceladus","epimetheus","erinome","eris","erriapus","euanthe","eukelade",
+"euporie","europa","eurydome","farbauti","ganymede","harpalyke","hermippe","hyperion",
+"lijiraq","loge","lysithea","megaclite","metis","mimas","mneme","mundilfari","narvi",
+"nereid","neso","nix","oberon","ophelia","orthosie","pallene","pan","pandora","pasiphae",
+"phoebe","pluto","polydeuces","praxidike","prometheus","prospero","proteus","rhea",
+"setebos","siarnaq","sinope","skathi","suttungr","sycorax","tarvos","telesto",
+"thelxinoe","themisto","tethys","thalassa","titan","titania","triton","umbriel",
+"uranus","venus","ymir","mars","moon","phobos"
+    ];
+
+    // Create a data array with name + placeholder fields
+    const data = names.map(n => ({
+      name: capitalize(n),
+      discovery: "TBD",
+      parent: "TBD",
+      size: "TBD",
+      distance: "TBD",
+      description: "TBD — add a short description here.",
+      funFact: "TBD — add a fun fact."
+    }));
+
+    // DOM refs
+    const select = document.getElementById('celestialSelect');
+    const nameDisplay = document.getElementById('nameDisplay');
+    const discoveryDisplay = document.getElementById('discoveryDisplay');
+    const parentDisplay = document.getElementById('parentDisplay');
+    const sizeDisplay = document.getElementById('sizeDisplay');
+    const distanceDisplay = document.getElementById('distanceDisplay');
+    const descriptionDisplay = document.getElementById('descriptionDisplay');
+    const funFactDisplay = document.getElementById('funFactDisplay');
+
+    const quickSearch = document.getElementById('quickSearch');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const openPage = document.getElementById('openPage');
+    const userQuestion = document.getElementById('userQuestion');
+    const answerBox = document.getElementById('answerBox');
+    const fillPlaceholders = document.getElementById('fillPlaceholders');
+    const exportJSON = document.getElementById('exportJSON');
+
+    // populate dropdown
+    function populateOptions(list) {
+      select.innerHTML = '';
+      list.forEach((obj, idx) => {
+        const opt = document.createElement('option');
+        opt.value = idx;
+        opt.textContent = obj.name;
+        select.appendChild(opt);
+      });
+    }
+    populateOptions(data);
+
+    // display by index
+    let currentIndex = 0;
+    function displayIndex(i) {
+      if (i < 0) i = 0;
+      if (i >= data.length) i = data.length - 1;
+      currentIndex = i;
+      const obj = data[i];
+      select.value = i;
+      nameDisplay.textContent = obj.name;
+      discoveryDisplay.textContent = obj.discovery;
+      parentDisplay.textContent = obj.parent;
+      sizeDisplay.textContent = obj.size;
+      distanceDisplay.textContent = obj.distance;
+      descriptionDisplay.textContent = obj.description;
+      funFactDisplay.textContent = obj.funFact;
+      answerBox.textContent = "Tip: Ask about oxygen, water, food, energy, or shelter for this body.";
+    }
+    displayIndex(0);
+
+    select.addEventListener('change', (e) => {
+      displayIndex(Number(e.target.value));
+    });
+
+    prevBtn.addEventListener('click', () => displayIndex(currentIndex - 1));
+    nextBtn.addEventListener('click', () => displayIndex(currentIndex + 1));
+
+    // quick filter
+    quickSearch.addEventListener('input', () => {
+      const v = quickSearch.value.trim().toLowerCase();
+      if (!v) {
+        populateOptions(data);
+        return;
+      }
+      const filtered = data.filter(d => d.name.toLowerCase().includes(v));
+      populateOptions(filtered);
+      // select first in filtered
+      if (filtered.length) {
+        displayIndex(data.indexOf(filtered[0]));
+      } else {
+        // no results
+        select.innerHTML = '';
+        nameDisplay.textContent = 'No match';
+        discoveryDisplay.textContent = parentDisplay.textContent = sizeDisplay.textContent = distanceDisplay.textContent = descriptionDisplay.textContent = funFactDisplay.textContent = '—';
+      }
+    });
+
+    // simple Q/A knowledge base (generic)
+    const knowledge = {
+      "oxygen": "No natural breathable atmosphere. Oxygen must be produced (electrolysis of ice, recycling systems) inside sealed habitats.",
+      "air": "No breathable air exists naturally. Habitats must create and recycle air.",
+      "water": "Water should be mined as ice, purified, and recycled. Closed-loop water systems are essential.",
+      "sewage": "Wastewater must be filtered and recycled into usable water in space habitats.",
+      "food": "Hydroponics, aeroponics, algae, and lab-grown protein can supply food inside shielded farms.",
+      "farming": "Hydroponic and aeroponic systems combined with LED lighting are best for low-gravity/harsh environments.",
+      "energy": "Solar is weak far from the Sun; consider nuclear fission / compact reactors, or local sources if available.",
+      "shelter": "Shelters must be radiation-shielded (regolith cover or dedicated shielding), pressurized and insulated.",
+      "habitat": "Pressurized domes or underground habitats provide the best protection from radiation and micrometeoroids."
+    };
+
+    function answerQuestion(q) {
+      const lower = q.toLowerCase();
+      for (const key in knowledge) {
+        if (lower.includes(key)) return knowledge[key];
+      }
+      return "I don't have a specific answer for that. Try: oxygen, water, food, farming, energy, shelter.";
+    }
+
+    document.getElementById('userQuestion').addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') {
+        answerBox.textContent = answerQuestion(userQuestion.value || '');
+        userQuestion.value = '';
+      }
+    });
+
+    // Open a lightweight standalone page for the current item (data URI)
+    openPage.addEventListener('click', () => {
+      const obj = data[currentIndex];
+      const html = standaloneTemplate(obj);
+      const w = window.open();
+      w.document.write(html);
+      w.document.close();
+    });
+
+    // Fill placeholders with simple example data (quick)
+    fillPlaceholders.addEventListener('click', () => {
+      // This fills some plausible quick values for many obvious ones.
+      // NOTE: These are quick example values — verify before using as facts.
+      const quickMap = {
+        "Moon": { parent: "Earth", discovery: "Known since prehistory", size: "Radius ~1737 km", distance: "≈384,400 km", description: "Earth's natural satellite.", funFact: "Caused tides on Earth." },
+        "Mars": { parent: "Sun (planet)", discovery: "Known since prehistory", size: "Planet", distance: "Varies", description: "The Red Planet.", funFact: "Home to Phobos and Deimos." },
+        "Pluto": { parent: "Sun (dwarf planet)", discovery: "1930", size: "Dwarf planet ~1188 km radius (approx)", distance: "Varies", description: "Dwarf planet in Kuiper belt.", funFact: "Has a large moon Charon." },
+        "Venus": { parent: "Sun (planet)", discovery: "Known since prehistory", size: "Planet", distance: "Varies", description: "Second planet from Sun.", funFact: "Hottest planet in solar system." },
+        "Uranus": { parent: "Sun (planet)", discovery: "1781", size: "Planet", distance: "Varies", description: "Ice giant.", funFact: "Rotates on its side." },
+        "Titan": { parent: "Saturn", discovery: "1655 (Huygens)", size: "Large moon (~2575 km radius)", distance: "≈1.2 billion km", description: "Saturn's largest moon with thick atmosphere.", funFact: "Has liquid hydrocarbon lakes." },
+        "Europa": { parent: "Jupiter", discovery: "1610 (Galileo)", size: "Moon (~1560 km radius)", distance: "≈628 million km", description: "Icy moon likely with subsurface ocean.", funFact: "Candidate for subsurface life." },
+        "Ganymede": { parent: "Jupiter", discovery: "1610 (Galileo)", size: "Largest moon in Solar System (~2634 km radius)", distance: "≈628 million km", description: "Largest moon.", funFact: "Has its own magnetic field." },
+        "Callisto": { parent: "Jupiter", discovery: "1610 (Galileo)", size: "Large icy moon", description: "Heavily cratered." },
+        "Iapetus": { parent: "Saturn", discovery: "1671 (Cassini)", description: "Distinct two-tone coloration." }
+      };
+      data.forEach(d => {
+        if (quickMap[d.name]) {
+          Object.assign(d, quickMap[d.name]);
+        } else {
+          // generic quick fill for smaller moons
+          if (d.name.toLowerCase() === d.name) d.name = capitalize(d.name);
+          if (d.parent === "TBD") d.parent = "Likely a planet or dwarf planet (verify)";
+          if (d.discovery === "TBD") d.discovery = "Discovery: various (verify)";
+          if (d.size === "TBD") d.size = "Small moon/object (verify)";
+          if (d.distance === "TBD") d.distance = "Varies (verify)";
+          if (d.description === "TBD — add a short description here.") d.description = `A satellite or small body named ${d.name}. Replace with accurate info.`;
+          if (d.funFact === "TBD — add a fun fact.") d.funFact = `Fun fact placeholder for ${d.name}.`;
+        }
+      });
+      displayIndex(currentIndex);
+      alert('Placeholders filled with quick example data. Verify facts before use.');
+    });
+
+    // Export JSON
+    exportJSON.addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'celestial_data.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Utility: capitalize first letter
+    function capitalize(s) {
+      if (!s) return s;
+      return s.charAt(0).toUpperCase() + s.slice(1);
+    }
+
+    // Create a standalone HTML string for a single object
+    function standaloneTemplate(obj) {
+      const safe = (v) => String(v || '').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      return `<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>${safe(obj.name)} — Quick Page</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  body { font-family: Arial, Helvetica, sans-serif; background:#071022; color:#eef6ff; padding:20px; }
+  .card { max-width:820px; margin:0 auto; background:rgba(10,15,25,0.95); padding:18px; border-radius:10px; }
+  h1 { color:#7ff0ff; }
+  p { margin:8px 0; line-height:1.5; }
+  a { color:#ffd66b; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>${safe(obj.name)}</h1>
+    <p><strong>Discovery:</strong> ${safe(obj.discovery)}</p>
+    <p><strong>Parent:</strong> ${safe(obj.parent)}</p>
+    <p><strong>Size:</strong> ${safe(obj.size)}</p>
+    <p><strong>Distance:</strong> ${safe(obj.distance)}</p>
+    <p><strong>Description:</strong> ${safe(obj.description)}</p>
+    <p><strong>Fun Fact:</strong> ${safe(obj.funFact)}</p>
+    <p><a href="#" onclick="window.close()">Close</a></p>
   </div>
 </body>
+</html>`;
+    }
+
+    // Initial display is index 0 (already set)
+    displayIndex(0);
+  </script>
+</body>
 </html>
+
