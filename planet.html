@@ -70,6 +70,9 @@
       padding: 15px;
       transition: transform 0.3s, box-shadow 0.3s;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
     }
 
     .card:hover {
@@ -90,12 +93,6 @@
       text-shadow: 0 0 10px #00eaff;
     }
 
-    .card p {
-      font-size: 0.95em;
-      line-height: 1.5em;
-      color: #ddd;
-    }
-
     footer {
       text-align: center;
       padding: 15px;
@@ -113,11 +110,10 @@
 
   <section class="brief">
     <p>
-      Welcome to <b>Pixel Pioneers’ Space Habitat Project</b> 🚀🌌.  
-      Here, each celestial body—planets and moons—becomes your home.  
-      By clicking on a card, you unlock an AI assistant that guides you to survive and thrive in that environment, helping you with food, water, shelter, and energy production.  
-      Our mission is to inspire humanity to dream beyond Earth and imagine building a lifelong future across the cosmos.
-    </p>
+  Welcome to <b>Pixal Pioneers’ Space Habitat Project</b> — a mission dedicated to designing and exploring habitats beyond Earth.  
+  Our goal is to envision sustainable living on moons and planets, overcoming challenges like oxygen, water, food, and energy in alien environments.  
+  Click on any card to discover AI-powered insights for each celestial body, and learn how humans could survive and thrive beyond our home planet!
+  </p>
   </section>
 
   <div class="search-container">
@@ -125,7 +121,7 @@
   </div>
 
   <section class="cards" id="cards">
-        <a href="{{ url_for('planet_page', planet='aitne') }}" class="card">
+     <a href="{{ url_for('planet_page', planet='aitne') }}" class="card">
   <img src="{{ url_for('static', filename='aitne.jpg') }}" alt="Aitne">
   <h2>Aitne</h2>
 </a>
@@ -140,8 +136,10 @@
   <h2>Aegir</h2>
 </a>
 
+
+
 <a href="{{ url_for('planet_page', planet='callisto') }}" class="card">
-  <img src="{{ url_for('static/callisto.jpg') }}" alt="Callisto">
+  <img src="{{ url_for('static', filename='callisto.jpg') }}" alt="Callisto">
   <h2>Callisto</h2>
 </a>
 
@@ -199,6 +197,32 @@
   <img src="{{ url_for('static', filename='erriapus.jpg') }}" alt="Erriapus">
   <h2>Erriapus</h2>
 </a>
+
+<a href="{{ url_for('planet_page', planet='io') }}" class="card">
+  <img src="{{ url_for('static', filename='io.jpg') }}" alt="Io">
+  <h2>Io</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='leda') }}" class="card">
+  <img src="{{ url_for('static', filename='leda.jpg') }}" alt="Leda">
+  <h2>Leda</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='thyone') }}" class="card">
+  <img src="{{ url_for('static', filename='thyone.jpg') }}" alt="Thyone">
+  <h2>Thyone</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='jupiterlxx') }}" class="card">
+  <img src="{{ url_for('static', filename='jupiterlxx.jpg') }}" alt="Jupiter LXX">
+  <h2>Jupiter LXX</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='trinculo') }}" class="card">
+  <img src="{{ url_for('static', filename='trinculo.jpg') }}" alt="Trinculo">
+  <h2>Trinculo</h2>
+</a>
+
 
 <a href="{{ url_for('planet_page', planet='euanthe') }}" class="card">
   <img src="{{ url_for('static', filename='euanthe.jpg') }}" alt="Euanthe">
@@ -489,30 +513,50 @@
   <img src="{{ url_for('static', filename='moon.jpg') }}" alt="Moon">
   <h2>Moon</h2>
 </a>
+<a href="{{ url_for('planet_page', planet='jupiter') }}" class="card">
+  <img src="{{ url_for('static', filename='jupiter.jpg') }}" alt="Jupiter">
+  <h2>Jupiter</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='neptune') }}" class="card">
+  <img src="{{ url_for('static', filename='neptune.jpg') }}" alt="Neptune">
+  <h2>Neptune</h2>
+</a>
+
+<a href="{{ url_for('planet_page', planet='mercury') }}" class="card">
+  <img src="{{ url_for('static', filename='mercury.jpg') }}" alt="Mercury">
+  <h2>Mercury</h2>
+</a>
 
 <a href="{{ url_for('planet_page', planet='phobos') }}" class="card">
   <img src="{{ url_for('static', filename='phobos.jpg') }}" alt="Phobos">
   <h2>Phobos</h2>
 </a>
+
+
   </section>
 
   <footer>
-    🌍 Pixel Pioneers | The Space Habitat Project ✨
+    <p>&copy; 2025 Pixal Pioneers | Space Habitat Project</p>
   </footer>
 
   <script>
-    function searchCards() {
-      let input = document.getElementById("searchBar").value.toLowerCase();
-      let cards = document.getElementsByClassName("card");
-      for (let i = 0; i < cards.length; i++) {
-        let title = cards[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
-        if (title.includes(input)) {
-          cards[i].style.display = "block";
-        } else {
-          cards[i].style.display = "none";
-        }
+  function searchCards() {
+    let input = document.getElementById("searchBar").value.toLowerCase();
+    let cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+      // Get the name from h2 instead of h3
+      let title = card.querySelector("h2").textContent.toLowerCase();
+      if (title.includes(input)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
       }
-    }
-  </script>
+    });
+  }
+</script>
+
 </body>
 </html>
+
