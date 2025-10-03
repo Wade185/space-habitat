@@ -1,11 +1,218 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>aitne</title>
+  <meta charset="UTF-8">
+  <title>Aitne - Habitat Assistant</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #0a0f2c, #1c2340, #2b2a6a, #000);
+      background-attachment: fixed;
+      color: #f1f1f1;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+    }
+
+    .assistant-container {
+      background: rgba(20, 20, 40, 0.85);
+      border-radius: 15px;
+      padding: 30px;
+      width: 850px;
+      max-width: 95%;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .assistant-container h1 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #00eaff;
+      text-shadow: 0 0 10px #00eaff, 0 0 20px #0095ff;
+      margin-bottom: 20px;
+    }
+
+    .info p {
+      margin: 8px 0;
+      font-size: 1.05em;
+    }
+
+    h2 {
+      margin-top: 25px;
+      font-size: 1.5em;
+      color: #ffdd57;
+      text-shadow: 0 0 5px #ffae00;
+    }
+
+    p {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+
+    .assistant-box {
+      margin-top: 30px;
+      padding: 20px;
+      border: 2px solid #00eaff;
+      border-radius: 10px;
+      background: rgba(0, 20, 40, 0.6);
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
+    }
+
+    .assistant-box input {
+      width: 70%;
+      padding: 12px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      font-size: 1em;
+    }
+
+    .assistant-box button {
+      margin-left: 10px;
+      padding: 12px 20px;
+      background: #00eaff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      color: #000;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .assistant-box button:hover {
+      background: #0095ff;
+      box-shadow: 0 0 15px #00eaff;
+    }
+
+    #answerBox {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      min-height: 60px;
+      font-style: italic;
+      text-align: left;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #ffdd57;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      color: #ffffff;
+      text-shadow: 0 0 10px #ffdd57;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
 </head>
 <body>
-    <h1>aitne</h1>
-    <img src="{{ url_for('static', filename='aitne.jpg') }}" alt="aitne">
-    <p>Welcome to the habitat exploration page for <b>aitne</b>!</p>
+  <div class="assistant-container">
+    <h1>Aitne AI Assistant</h1>
+    <div class="info">
+      <p><b>Discovery:</b> 2001 by Scott S. Sheppard and team</p>
+      <p><b>Parent Planet:</b> Jupiter</p>
+      <p><b>Size:</b> ~3 km diameter</p>
+      <p><b>Distance from Earth:</b> ~628 million km</p>
+      <p><b>Description:</b> Aitne is one of Jupiter’s small irregular moons, part of the Carme group. It follows a retrograde orbit, meaning it travels opposite Jupiter’s rotation.</p>
+      <p><b>Fun Fact:</b> Aitne was named after a mythological nymph associated with Mount Etna in Sicily.</p>
+    </div>
+
+    <h2>Breathing / Oxygen</h2>
+    <p>No natural atmosphere exists. Oxygen must be produced through ice electrolysis or habitat recycling systems.</p>
+
+    <h2>Water & Sewage</h2>
+    <p>Local resources are scarce. Colonists would need to import or harvest ice from nearby Jovian moons and recycle water completely.</p>
+
+    <h2>Food Production</h2>
+    <p>Closed-loop hydroponics, algae farming, and bioreactors would supply nutrition inside shielded domes.</p>
+
+    <h2>Energy</h2>
+    <p>Solar energy is very weak at Jupiter’s distance. Nuclear fission reactors would be essential, with future fusion as an option.</p>
+
+    <h2>Shelter</h2>
+    <p>Habitats must have heavy radiation shielding, since Jupiter’s magnetosphere is extremely harsh. Underground bases or regolith domes are preferred.</p>
+
+    <div class="assistant-box">
+      <h2>Ask me anything about Aitne</h2>
+      <input type="text" id="userQuestion" placeholder="Type your question...">
+      <button id="askButton">Ask</button>
+      <div id="answerBox">Tip: Try asking about oxygen, water, food, farming, energy, or shelter.</div>
+    </div>
+
+    <!-- Back to Home button -->
+    <a href="planet.html" class="back-btn">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    const askButton = document.getElementById("askButton");
+    const userQuestion = document.getElementById("userQuestion");
+    const answerBox = document.getElementById("answerBox");
+
+    // Knowledge base
+    const knowledge = {
+      "oxygen": "No atmosphere exists on Aitne. Oxygen must be artificially generated by electrolysis of ice or closed-loop recycling systems.",
+      "breath": "No natural air. Colonists must rely on sealed habitats with artificial oxygen generation.",
+      "air": "Aitne has no air at all. Habitats must create and circulate oxygen internally.",
+
+      "water": "Water would need to be imported or mined from icy moons nearby and recycled indefinitely.",
+      "sewage": "Wastewater would be processed, filtered, and recycled back into clean water for colonists.",
+
+      "food": "Food on Aitne: Hydroponics, algae farming, and lab-grown protein would feed colonists.",
+      "farming": "No soil farming possible. Hydroponics and artificial lighting systems would sustain crops.",
+      "agriculture": "Farming would depend on aeroponics, hydroponics, and bioreactors for protein sources.",
+
+      "energy": "Energy on Aitne: Solar is weak. Colonies would rely heavily on nuclear fission or compact reactors.",
+      "power": "The main power source would be nuclear reactors, as solar energy is insufficient.",
+
+      "shelter": "Shelter: Radiation shielding is critical. Habitats would be built underground or protected by regolith.",
+      "habitat": "Habitats must resist radiation and micrometeoroid impacts. Underground bases are safest."
+    };
+
+    function getAnswer() {
+      const q = userQuestion.value.toLowerCase();
+      let response = "I don’t have that info yet. Try asking about: oxygen, water, food, farming, energy, or shelter.";
+
+      for (let key in knowledge) {
+        if (q.includes(key)) {
+          response = knowledge[key];
+          break;
+        }
+      }
+
+      answerBox.innerHTML = response;
+      userQuestion.value = ""; // clear input after asking
+    }
+
+    // Button click
+    askButton.addEventListener("click", getAnswer);
+
+    // Enter key support
+    userQuestion.addEventListener("keyup", (event) => {
+      if (event.key === "Enter") {
+        getAnswer();
+      }
+    });
+  </script>
 </body>
 </html>
