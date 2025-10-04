@@ -1,11 +1,139 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>neptune</title>
+  <meta charset="UTF-8">
+  <title>Neptune - Habitat Assistant</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+    body {
+      background: radial-gradient(circle at top, #0a0f2c, #1c2340, #2b2a6a, #000);
+      background-attachment: fixed;
+      color: #f1f1f1;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+    }
+    .assistant-container {
+      background: rgba(20, 20, 40, 0.85);
+      border-radius: 15px;
+      padding: 30px;
+      width: 850px;
+      max-width: 95%;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .assistant-container h1 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #00eaff;
+      text-shadow: 0 0 10px #00eaff, 0 0 20px #0095ff;
+      margin-bottom: 20px;
+    }
+    .info p { margin: 8px 0; font-size: 1.05em; }
+    h2 { margin-top: 25px; font-size: 1.5em; color: #ffdd57; text-shadow: 0 0 5px #ffae00; }
+    p { margin: 10px 0; line-height: 1.5; }
+    .assistant-box {
+      margin-top: 30px; padding: 20px; border: 2px solid #00eaff; border-radius: 10px;
+      background: rgba(0, 20, 40, 0.6); text-align: center; box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
+    }
+    .assistant-box input {
+      width: 70%; padding: 12px; margin-top: 15px; border: none; border-radius: 8px;
+      outline: none; font-size: 1em;
+    }
+    .assistant-box button {
+      margin-left: 10px; padding: 12px 20px; background: #00eaff; border: none;
+      border-radius: 8px; font-size: 1em; cursor: pointer; color: #000;
+      font-weight: bold; transition: 0.3s;
+    }
+    .assistant-box button:hover { background: #0095ff; box-shadow: 0 0 15px #00eaff; }
+    #answerBox {
+      margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px; min-height: 60px; font-style: italic; text-align: left;
+    }
+    .back-btn {
+      display: inline-block; margin-top: 20px; text-decoration: none;
+      color: #ffdd57; font-weight: bold; transition: 0.3s;
+    }
+    .back-btn:hover { color: #ffffff; text-shadow: 0 0 10px #ffdd57; }
+    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
+  </style>
 </head>
 <body>
-    <h1>neptune</h1>
-    <img src="{{ url_for('static', filename='neptune.jpg') }}" alt="neptune">
-    <p>Welcome to the habitat exploration page for <b>neptune</b>!</p>
+  <div class="assistant-container">
+    <h1>Neptune AI Assistant</h1>
+    <div class="info">
+      <p><b>Discovery:</b> 1846 by Johann Galle & Urbain Le Verrier</p>
+      <p><b>Parent Star:</b> Sun</p>
+      <p><b>Size:</b> ~49,244 km diameter (4th largest planet)</p>
+      <p><b>Distance from Earth:</b> ~4.3 billion km (on average)</p>
+      <p><b>Description:</b> Neptune is the eighth and farthest planet from the Sun. 
+      It is an ice giant with a dynamic atmosphere of hydrogen, helium, and methane, giving it a vivid blue color. 
+      Neptune has the strongest winds in the Solar System.</p>
+      <p><b>Fun Fact:</b> A year on Neptune lasts 165 Earth years!</p>
+    </div>
+
+    <h2>Breathing / Oxygen</h2>
+    <p>Neptune’s atmosphere has no oxygen — it is mostly hydrogen, helium, and methane. Colonists need life-support habitats.</p>
+
+    <h2>Water & Sewage</h2>
+    <p>Neptune’s interior contains water, ammonia, and methane ices, but not accessible at the surface. All water must be extracted or imported.</p>
+
+    <h2>Food Production</h2>
+    <p>No natural food sources. Hydroponic farms in sealed domes would be required.</p>
+
+    <h2>Energy</h2>
+    <p>Solar power is extremely weak here. Nuclear fusion or fission reactors would be the best energy solution.</p>
+
+    <h2>Shelter</h2>
+    <p>Habitats would need to be built on floating platforms in Neptune’s upper atmosphere, since the planet has no solid surface.</p>
+
+    <div class="assistant-box">
+      <h2>Ask me anything about Neptune</h2>
+      <input type="text" id="userQuestion" placeholder="Type your question...">
+      <button id="askButton">Ask</button>
+      <div id="answerBox">Tip: Try asking about oxygen, water, food, energy, or shelter.</div>
+    </div>
+    <a href="{{ url_for('index') }}" class="back-btn">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    const askButton = document.getElementById("askButton");
+    const userQuestion = document.getElementById("userQuestion");
+    const answerBox = document.getElementById("answerBox");
+
+    const knowledge = {
+      "oxygen": "Neptune has no oxygen. Its atmosphere is hydrogen, helium, and methane.",
+      "breath": "No breathable air exists on Neptune.",
+      "air": "Mostly hydrogen and helium, with some methane.",
+
+      "water": "Water exists deep inside Neptune but not accessible on the surface.",
+      "sewage": "Water and sewage must be recycled in life-support systems.",
+
+      "food": "No food on Neptune. Hydroponics inside sealed habitats is required.",
+      "farming": "Only possible in space habitats orbiting Neptune.",
+      "agriculture": "Needs artificial controlled environments.",
+
+      "energy": "Solar power is too weak. Nuclear power is the most practical energy source.",
+      "power": "Fission or fusion reactors would provide reliable energy.",
+
+      "shelter": "No solid surface. Habitats would need to float in the upper atmosphere.",
+      "habitat": "Floating cities in the upper atmosphere could be designed."
+    };
+
+    function getAnswer() {
+      const q = userQuestion.value.toLowerCase();
+      let response = "I don’t have that info yet. Try oxygen, water, food, energy, or shelter.";
+      for (let key in knowledge) {
+        if (q.includes(key)) { response = knowledge[key]; break; }
+      }
+      answerBox.innerHTML = response;
+      userQuestion.value = "";
+    }
+    askButton.addEventListener("click", getAnswer);
+    userQuestion.addEventListener("keyup", (event) => { if (event.key === "Enter") getAnswer(); });
+  </script>
 </body>
 </html>
