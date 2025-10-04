@@ -7,157 +7,468 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Trebuchet MS', sans-serif;
-      background: url('static/stars-bg.jpg') no-repeat center center fixed;
+      font-family: Arial, sans-serif;
+      background: url("static/stars-bg.jpg") no-repeat center center fixed;
       background-size: cover;
-      color: #fff;
-    }
-
-    header {
+      color: white;
       text-align: center;
-      padding: 50px 20px 20px;
-      background: rgba(0, 0, 0, 0.6);
     }
-
-    header h1 {
-      font-size: 3em;
-      font-weight: bold;
-      text-transform: uppercase;
-      text-shadow: 0 0 15px #00eaff, 0 0 30px #0077ff;
-      margin: 0;
-      letter-spacing: 3px;
-    }
-
-    .brief {
-      max-width: 800px;
-      margin: 20px auto;
+    h1 {
       padding: 20px;
-      background: rgba(0, 0, 0, 0.7);
-      border-radius: 10px;
-      font-size: 1.2em;
-      line-height: 1.8em;
-      text-align: center;
-      box-shadow: 0 0 15px rgba(0, 200, 255, 0.6);
+      font-size: 2.5rem;
     }
-
-    .search-container {
-      text-align: center;
-      margin: 30px 0;
-    }
-
-    .search-container input {
-      width: 50%;
-      padding: 12px;
-      font-size: 1em;
-      border: none;
-      border-radius: 25px;
-      outline: none;
-      box-shadow: 0 0 12px #00eaff;
-    }
-
-    .cards {
+    .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
-      padding: 40px;
+      padding: 20px;
+      max-width: 1400px;
+      margin: auto;
     }
-
     .card {
-      background: rgba(0, 0, 0, 0.8);
-      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 15px;
       overflow: hidden;
-      text-align: center;
-      padding: 15px;
-      transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
-      cursor: pointer;
       text-decoration: none;
-      color: inherit;
+      color: white;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #00eaff;
-    }
-
     .card img {
       width: 100%;
-      border-radius: 10px;
-      height: 180px;
+      height: 160px;
       object-fit: cover;
     }
-
-    .card h3 {
-      margin: 15px 0 10px;
-      font-size: 1.4em;
-      text-shadow: 0 0 10px #00eaff;
+    .card h2 {
+      margin: 10px 0;
+      font-size: 1.3rem;
     }
-
-    footer {
-      text-align: center;
-      padding: 15px;
-      background: rgba(0, 0, 0, 0.6);
-      margin-top: 30px;
-      font-size: 0.9em;
-      letter-spacing: 1px;
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.8);
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>The Space Habitat</h1>
-  </header>
+  <h1>🌌 Space Habitat – Beyond Earth Survival</h1>
+  <div class="grid">
+    
+    <!-- 81 celestial bodies -->
+    <a href="planet.html?name=aegaeon" class="card">
+      <img src="static/aegaeon.jpg" alt="Aegaeon">
+      <h2>Aegaeon</h2>
+    </a>
 
-  <section class="brief">
-    <p>
-      Welcome to <b>Pixal Pioneers’ Space Habitat Project</b> — a mission dedicated to designing and exploring habitats beyond Earth.  
-      Our goal is to envision sustainable living on moons and planets, overcoming challenges like oxygen, water, food, and energy in alien environments.  
-      Click on any card to discover AI-powered insights for each celestial body!
-    </p>
-  </section>
+    <a href="planet.html?name=aitne" class="card">
+      <img src="static/aitne.jpg" alt="Aitne">
+      <h2>Aitne</h2>
+    </a>
 
-  <div class="search-container">
-    <input type="text" id="searchBar" onkeyup="searchCards()" placeholder="🔍 Search for a planet or moon...">
+    <a href="planet.html?name=aoede" class="card">
+      <img src="static/aoede.jpg" alt="Aoede">
+      <h2>Aoede</h2>
+    </a>
+
+    <a href="planet.html?name=aegir" class="card">
+      <img src="static/aegir.jpg" alt="Aegir">
+      <h2>Aegir</h2>
+    </a>
+
+    <a href="planet.html?name=anthe" class="card">
+      <img src="static/anthe.jpg" alt="Anthe">
+      <h2>Anthe</h2>
+    </a>
+
+    <a href="planet.html?name=callisto" class="card">
+      <img src="static/callisto.jpg" alt="Callisto">
+      <h2>Callisto</h2>
+    </a>
+
+    <a href="planet.html?name=ceres" class="card">
+      <img src="static/ceres.jpg" alt="Ceres">
+      <h2>Ceres</h2>
+    </a>
+
+    <a href="planet.html?name=chaldene" class="card">
+      <img src="static/chaldene.jpg" alt="Chaldene">
+      <h2>Chaldene</h2>
+    </a>
+
+    <a href="planet.html?name=cyllene" class="card">
+      <img src="static/cyllene.jpg" alt="Cyllene">
+      <h2>Cyllene</h2>
+    </a>
+
+    <a href="planet.html?name=daphnis" class="card">
+      <img src="static/daphnis.jpg" alt="Daphnis">
+      <h2>Daphnis</h2>
+    </a>
+
+    <a href="planet.html?name=dia" class="card">
+      <img src="static/dia.jpg" alt="Dia">
+      <h2>Dia</h2>
+    </a>
+
+    <a href="planet.html?name=dione" class="card">
+      <img src="static/dione.jpg" alt="Dione">
+      <h2>Dione</h2>
+    </a>
+
+    <a href="planet.html?name=enceladus" class="card">
+      <img src="static/enceladus.jpg" alt="Enceladus">
+      <h2>Enceladus</h2>
+    </a>
+
+    <a href="planet.html?name=epimetheus" class="card">
+      <img src="static/epimetheus.jpg" alt="Epimetheus">
+      <h2>Epimetheus</h2>
+    </a>
+
+    <a href="planet.html?name=erinome" class="card">
+      <img src="static/erinome.jpg" alt="Erinome">
+      <h2>Erinome</h2>
+    </a>
+
+    <a href="planet.html?name=eris" class="card">
+      <img src="static/eris.jpg" alt="Eris">
+      <h2>Eris</h2>
+    </a>
+
+    <a href="planet.html?name=erriapus" class="card">
+      <img src="static/erriapus.jpg" alt="Erriapus">
+      <h2>Erriapus</h2>
+    </a>
+
+    <a href="planet.html?name=euanthe" class="card">
+      <img src="static/euanthe.jpg" alt="Euanthe">
+      <h2>Euanthe</h2>
+    </a>
+
+    <a href="planet.html?name=eukelade" class="card">
+      <img src="static/eukelade.jpg" alt="Eukelade">
+      <h2>Eukelade</h2>
+    </a>
+
+    <a href="planet.html?name=euporie" class="card">
+      <img src="static/euporie.jpg" alt="Euporie">
+      <h2>Euporie</h2>
+    </a>
+
+    <a href="planet.html?name=europa" class="card">
+      <img src="static/europa.jpg" alt="Europa">
+      <h2>Europa</h2>
+    </a>
+
+    <a href="planet.html?name=eurydome" class="card">
+      <img src="static/eurydome.jpg" alt="Eurydome">
+      <h2>Eurydome</h2>
+    </a>
+
+    <a href="planet.html?name=farbauti" class="card">
+      <img src="static/farbauti.jpg" alt="Farbauti">
+      <h2>Farbauti</h2>
+    </a>
+
+    <a href="planet.html?name=ganymede" class="card">
+      <img src="static/ganymede.jpg" alt="Ganymede">
+      <h2>Ganymede</h2>
+    </a>
+
+    <a href="planet.html?name=harpalyke" class="card">
+      <img src="static/harpalyke.jpg" alt="Harpalyke">
+      <h2>Harpalyke</h2>
+    </a>
+
+    <a href="planet.html?name=jupiter" class="card">
+      <img src="static/jupiter.jpg" alt="Jupiter">
+      <h2>Jupiter</h2>
+    </a>
+
+    <a href="planet.html?name=neptune" class="card">
+      <img src="static/neptune.jpg" alt="Neptune">
+      <h2>Neptune</h2>
+    </a>
+
+    <a href="planet.html?name=mercury" class="card">
+      <img src="static/mercury.jpg" alt="Mercury">
+      <h2>Mercury</h2>
+    </a>
+
+    <a href="planet.html?name=hermippe" class="card">
+      <img src="static/hermippe.jpg" alt="Hermippe">
+      <h2>Hermippe</h2>
+    </a>
+
+    <a href="planet.html?name=hyperion" class="card">
+      <img src="static/hyperion.jpg" alt="Hyperion">
+      <h2>Hyperion</h2>
+    </a>
+
+    <a href="planet.html?name=lijiraq" class="card">
+      <img src="static/lijiraq.jpg" alt="Lijiraq">
+      <h2>Lijiraq</h2>
+    </a>
+
+    <a href="planet.html?name=loge" class="card">
+      <img src="static/loge.jpg" alt="Loge">
+      <h2>Loge</h2>
+    </a>
+
+    <a href="planet.html?name=lysithea" class="card">
+      <img src="static/lysithea.jpg" alt="Lysithea">
+      <h2>Lysithea</h2>
+    </a>
+
+    <a href="planet.html?name=megaclite" class="card">
+      <img src="static/megaclite.jpg" alt="Megaclite">
+      <h2>Megaclite</h2>
+    </a>
+
+    <a href="planet.html?name=metis" class="card">
+      <img src="static/metis.jpg" alt="Metis">
+      <h2>Metis</h2>
+    </a>
+
+    <a href="planet.html?name=mimas" class="card">
+      <img src="static/mimas.jpg" alt="Mimas">
+      <h2>Mimas</h2>
+    </a>
+
+    <a href="planet.html?name=mneme" class="card">
+      <img src="static/mneme.jpg" alt="Mneme">
+      <h2>Mneme</h2>
+    </a>
+
+    <a href="planet.html?name=mundilfari" class="card">
+      <img src="static/mundilfari.jpg" alt="Mundilfari">
+      <h2>Mundilfari</h2>
+    </a>
+
+    <a href="planet.html?name=narvi" class="card">
+      <img src="static/narvi.jpg" alt="Narvi">
+      <h2>Narvi</h2>
+    </a>
+
+    <a href="planet.html?name=nereid" class="card">
+      <img src="static/nereid.jpg" alt="Nereid">
+      <h2>Nereid</h2>
+    </a>
+
+    <a href="planet.html?name=neso" class="card">
+      <img src="static/neso.jpg" alt="Neso">
+      <h2>Neso</h2>
+    </a>
+
+    <a href="planet.html?name=nix" class="card">
+      <img src="static/nix.jpg" alt="Nix">
+      <h2>Nix</h2>
+    </a>
+
+    <a href="planet.html?name=oberon" class="card">
+      <img src="static/oberon.jpg" alt="Oberon">
+      <h2>Oberon</h2>
+    </a>
+
+    <a href="planet.html?name=ophelia" class="card">
+      <img src="static/ophelia.jpg" alt="Ophelia">
+      <h2>Ophelia</h2>
+    </a>
+
+    <a href="planet.html?name=orthosie" class="card">
+      <img src="static/orthosie.jpg" alt="Orthosie">
+      <h2>Orthosie</h2>
+    </a>
+
+    <a href="planet.html?name=pallene" class="card">
+      <img src="static/pallene.jpg" alt="Pallene">
+      <h2>Pallene</h2>
+    </a>
+
+    <a href="planet.html?name=pan" class="card">
+      <img src="static/pan.jpg" alt="Pan">
+      <h2>Pan</h2>
+    </a>
+
+    <a href="planet.html?name=pandora" class="card">
+      <img src="static/pandora.jpg" alt="Pandora">
+      <h2>Pandora</h2>
+    </a>
+
+    <a href="planet.html?name=pasiphae" class="card">
+      <img src="static/pasiphae.jpg" alt="Pasiphae">
+      <h2>Pasiphae</h2>
+    </a>
+
+    <a href="planet.html?name=phoebe" class="card">
+      <img src="static/phoebe.jpg" alt="Phoebe">
+      <h2>Phoebe</h2>
+    </a>
+
+    <a href="planet.html?name=pluto" class="card">
+      <img src="static/pluto.jpg" alt="Pluto">
+      <h2>Pluto</h2>
+    </a>
+
+    <a href="planet.html?name=polydeuces" class="card">
+      <img src="static/polydeuces.jpg" alt="Polydeuces">
+      <h2>Polydeuces</h2>
+    </a>
+
+    <a href="planet.html?name=praxidike" class="card">
+      <img src="static/praxidike.jpg" alt="Praxidike">
+      <h2>Praxidike</h2>
+    </a>
+
+    <a href="planet.html?name=prometheus" class="card">
+      <img src="static/prometheus.jpg" alt="Prometheus">
+      <h2>Prometheus</h2>
+    </a>
+
+    <a href="planet.html?name=prospero" class="card">
+      <img src="static/prospero.jpg" alt="Prospero">
+      <h2>Prospero</h2>
+    </a>
+
+    <a href="planet.html?name=proteus" class="card">
+      <img src="static/proteus.jpg" alt="Proteus">
+      <h2>Proteus</h2>
+    </a>
+
+    <a href="planet.html?name=rhea" class="card">
+      <img src="static/rhea.jpg" alt="Rhea">
+      <h2>Rhea</h2>
+    </a>
+
+    <a href="planet.html?name=setebos" class="card">
+      <img src="static/setebos.jpg" alt="Setebos">
+      <h2>Setebos</h2>
+    </a>
+
+    <a href="planet.html?name=siarnaq" class="card">
+      <img src="static/siarnaq.jpg" alt="Siarnaq">
+      <h2>Siarnaq</h2>
+    </a>
+
+    <a href="planet.html?name=sinope" class="card">
+      <img src="static/sinope.jpg" alt="Sinope">
+      <h2>Sinope</h2>
+    </a>
+
+    <a href="planet.html?name=skathi" class="card">
+      <img src="static/skathi.jpg" alt="Skathi">
+      <h2>Skathi</h2>
+    </a>
+
+    <a href="planet.html?name=suttungr" class="card">
+      <img src="static/suttungr.jpg" alt="Suttungr">
+      <h2>Suttungr</h2>
+    </a>
+
+    <a href="planet.html?name=sycorax" class="card">
+      <img src="static/sycorax.jpg" alt="Sycorax">
+      <h2>Sycorax</h2>
+    </a>
+
+    <a href="planet.html?name=tarvos" class="card">
+      <img src="static/tarvos.jpg" alt="Tarvos">
+      <h2>Tarvos</h2>
+    </a>
+
+    <a href="planet.html?name=telesto" class="card">
+      <img src="static/telesto.jpg" alt="Telesto">
+      <h2>Telesto</h2>
+    </a>
+
+    <a href="planet.html?name=thelxinoe" class="card">
+      <img src="static/thelxinoe.jpg" alt="Thelxinoe">
+      <h2>Thelxinoe</h2>
+    </a>
+
+    <a href="planet.html?name=themisto" class="card">
+      <img src="static/themisto.jpg" alt="Themisto">
+      <h2>Themisto</h2>
+    </a>
+
+    <a href="planet.html?name=tethys" class="card">
+      <img src="static/tethys.jpg" alt="Tethys">
+      <h2>Tethys</h2>
+    </a>
+
+    <a href="planet.html?name=thalassa" class="card">
+      <img src="static/thalassa.jpg" alt="Thalassa">
+      <h2>Thalassa</h2>
+    </a>
+
+    <a href="planet.html?name=titan" class="card">
+      <img src="static/titan.jpg" alt="Titan">
+      <h2>Titan</h2>
+    </a>
+
+    <a href="planet.html?name=titania" class="card">
+      <img src="static/titania.jpg" alt="Titania">
+      <h2>Titania</h2>
+    </a>
+
+    <a href="planet.html?name=triton" class="card">
+      <img src="static/triton.jpg" alt="Triton">
+      <h2>Triton</h2>
+    </a>
+
+    <a href="planet.html?name=umbriel" class="card">
+      <img src="static/umbriel.jpg" alt="Umbriel">
+      <h2>Umbriel</h2>h2>
+    </a>
+
+        <a href="planet.html?name=uranus" class="card">
+      <img src="static/uranus.jpg" alt="Uranus">
+      <h2>Uranus</h2>
+    </a>
+
+    <a href="planet.html?name=venus" class="card">
+      <img src="static/venus.jpg" alt="Venus">
+      <h2>Venus</h2>
+    </a>
+
+    <a href="planet.html?name=ymir" class="card">
+      <img src="static/ymir.jpg" alt="Ymir">
+      <h2>Ymir</h2>
+    </a>
+
+    <a href="planet.html?name=moon" class="card">
+      <img src="static/moon.jpg" alt="Moon">
+      <h2>Moon</h2>
+    </a>
+
+    <a href="planet.html?name=charon" class="card">
+      <img src="static/charon.jpg" alt="Charon">
+      <h2>Charon</h2>
+    </a>
+
+    <a href="planet.html?name=hydra" class="card">
+      <img src="static/hydra.jpg" alt="Hydra">
+      <h2>Hydra</h2>
+    </a>
+
+    <a href="planet.html?name=kerberos" class="card">
+      <img src="static/kerberos.jpg" alt="Kerberos">
+      <h2>Kerberos</h2>
+    </a>
+
+    <a href="planet.html?name=styx" class="card">
+      <img src="static/styx.jpg" alt="Styx">
+      <h2>Styx</h2>
+    </a>
+
+    <a href="planet.html?name=deimos" class="card">
+      <img src="static/deimos.jpg" alt="Deimos">
+      <h2>Deimos</h2>
+    </a>
+
+    <a href="planet.html?name=phobos" class="card">
+      <img src="static/phobos.jpg" alt="Phobos">
+      <h2>Phobos</h2>
+    </a>
+
   </div>
-
-  <section class="cards" id="cards">
-    <!-- Example cards, add all bodies here -->
-    <a href="{{ url_for('planet_page', planet='aitne') }}" class="card">
-      <img src="{{ url_for('static', filename='aitne.jpg') }}" alt="Aitne">
-      <h3>Aitne</h3>
-    </a>
-
-    <a href="{{ url_for('planet_page', planet='callisto') }}" class="card">
-      <img src="{{ url_for('static', filename='callisto.jpg') }}" alt="Callisto">
-      <h3>Callisto</h3>
-    </a>
-
-    <a href="{{ url_for('planet_page', planet='ceres') }}" class="card">
-      <img src="{{ url_for('static', filename='ceres.jpg') }}" alt="Ceres">
-      <h3>Ceres</h3>
-    </a>
-
-    <a href="{{ url_for('planet_page', planet='ganymede') }}" class="card">
-      <img src="{{ url_for('static', filename='ganymede.jpg') }}" alt="Ganymede">
-      <h3>Ganymede</h3>
-    </a>
-  </section>
-
-  <footer>
-    © 2025 Pixal Pioneers | Space Habitat Project
-  </footer>
-
-  <script>
-    function searchCards() {
-      const input = document.getElementById('searchBar').value.toLowerCase();
-      const cards = document.getElementsByClassName('card');
-      for (let i = 0; i < cards.length; i++) {
-        let text = cards[i].innerText.toLowerCase();
-        cards[i].style.display = text.includes(input) ? "block" : "none";
-      }
-    }
-  </script>
 </body>
 </html>
-
 
