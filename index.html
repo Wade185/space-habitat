@@ -57,40 +57,41 @@
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
       gap: 20px;
       padding: 40px;
     }
 
     .card {
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(20, 20, 40, 0.85);
       border-radius: 12px;
-      overflow: hidden;
       text-align: center;
-      padding: 15px;
-      transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
-      cursor: pointer;
+      padding: 20px;
       text-decoration: none;
-      color: inherit;
+      color: #f1f1f1;
+      box-shadow: 0 0 20px rgba(0, 200, 255, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .card:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 25px #00eaff;
+      box-shadow: 0 0 30px rgba(0, 234, 255, 0.6);
     }
 
     .card img {
       width: 100%;
-      border-radius: 10px;
-      height: 180px;
+      max-width: 120px;
+      height: 120px;
       object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 2px solid #00eaff;
     }
 
-    .card h3 {
-      margin: 15px 0 10px;
-      font-size: 1.4em;
-      text-shadow: 0 0 10px #00eaff;
+    .card h2 {
+      font-size: 1.2em;
+      color: #ffdd57;
+      text-shadow: 0 0 5px #ffae00;
     }
 
     footer {
@@ -120,478 +121,94 @@
     <input type="text" id="searchBar" onkeyup="searchCards()" placeholder="🔍 Search for a planet or moon...">
   </div>
 
-  <a href="templates/aegaeon.html" class="card">
-  <img src="static/aegaeon.jpg" alt="Aegaeon">
-  <h2>Aegaeon</h2>
-</a>
-
-<a href="templates/aitne.html" class="card">
-  <img src="static/aitne.jpg" alt="Aitne">
-  <h2>Aitne</h2>
-</a>
-
-<a href="templates/aoede.html" class="card">
-  <img src="static/aoede.jpg" alt="Aoede">
-  <h2>Aoede</h2>
-</a>
-
-<a href="templates/aegir.html" class="card">
-  <img src="static/aegir.jpg" alt="Aegir">
-  <h2>Aegir</h2>
-</a>
-
-<a href="templates/anthe.html" class="card">
-  <img src="static/anthe.jpg" alt="Anthe">
-  <h2>Anthe</h2>
-</a>
-
-<a href="templates/callisto.html" class="card">
-  <img src="static/callisto.jpg" alt="Callisto">
-  <h2>Callisto</h2>
-</a>
-
-<a href="templates/ceres.html" class="card">
-  <img src="static/ceres.jpg" alt="Ceres">
-  <h2>Ceres</h2>
-</a>
-
-<a href="templates/chaldene.html" class="card">
-  <img src="static/chaldene.jpg" alt="Chaldene">
-  <h2>Chaldene</h2>
-</a>
-
-<a href="templates/cyllene.html" class="card">
-  <img src="static/cyllene.jpg" alt="Cyllene">
-  <h2>Cyllene</h2>
-</a>
-
-<a href="templates/daphnis.html" class="card">
-  <img src="static/daphnis.jpg" alt="Daphnis">
-  <h2>Daphnis</h2>
-</a>
-
-<a href="templates/dia.html" class="card">
-  <img src="static/dia.jpg" alt="Dia">
-  <h2>Dia</h2>
-</a>
-
-<a href="templates/dione.html" class="card">
-  <img src="static/dione.jpg" alt="Dione">
-  <h2>Dione</h2>
-</a>
-
-<a href="templates/enceladus.html" class="card">
-  <img src="static/enceladus.jpg" alt="Enceladus">
-  <h2>Enceladus</h2>
-</a>
-
-<a href="templates/epimetheus.html" class="card">
-  <img src="static/epimetheus.jpg" alt="Epimetheus">
-  <h2>Epimetheus</h2>
-</a>
-
-<a href="templates/erinome.html" class="card">
-  <img src="static/erinome.jpg" alt="Erinome">
-  <h2>Erinome</h2>
-</a>
-
-<a href="templates/eris.html" class="card">
-  <img src="static/eris.jpg" alt="Eris">
-  <h2>Eris</h2>
-</a>
-
-<a href="templates/erriapus.html" class="card">
-  <img src="static/erriapus.jpg" alt="Erriapus">
-  <h2>Erriapus</h2>
-</a>
-
-<a href="templates/euanthe.html" class="card">
-  <img src="static/euanthe.jpg" alt="Euanthe">
-  <h2>Euanthe</h2>
-</a>
-
-<a href="templates/eukelade.html" class="card">
-  <img src="static/eukelade.jpg" alt="Eukelade">
-  <h2>Eukelade</h2>
-</a>
-
-<a href="templates/euporie.html" class="card">
-  <img src="static/euporie.jpg" alt="Euporie">
-  <h2>Euporie</h2>
-</a>
-
-<a href="templates/europa.html" class="card">
-  <img src="static/europa.jpg" alt="Europa">
-  <h2>Europa</h2>
-</a>
-
-<a href="templates/eurydome.html" class="card">
-  <img src="static/eurydome.jpg" alt="Eurydome">
-  <h2>Eurydome</h2>
-</a>
-
-<a href="templates/farbauti.html" class="card">
-  <img src="static/farbauti.jpg" alt="Farbauti">
-  <h2>Farbauti</h2>
-</a>
-
-<a href="templates/ganymede.html" class="card">
-  <img src="static/ganymede.jpg" alt="Ganymede">
-  <h2>Ganymede</h2>
-</a>
-
-<a href="templates/harpalyke.html" class="card">
-  <img src="static/harpalyke.jpg" alt="Harpalyke">
-  <h2>Harpalyke</h2>
-</a>
-
-<a href="templates/jupiter.html" class="card">
-  <img src="static/jupiter.jpg" alt="Jupiter">
-  <h2>Jupiter</h2>
-</a>
-
-<a href="templates/neptune.html" class="card">
-  <img src="static/neptune.jpg" alt="Neptune">
-  <h2>Neptune</h2>
-</a>
-
-<a href="templates/mercury.html" class="card">
-  <img src="static/mercury.jpg" alt="Mercury">
-  <h2>Mercury</h2>
-</a>
-
-<a href="templates/hermippe.html" class="card">
-  <img src="static/hermippe.jpg" alt="Hermippe">
-  <h2>Hermippe</h2>
-</a>
-
-<a href="templates/hyperion.html" class="card">
-  <img src="static/hyperion.jpg" alt="Hyperion">
-  <h2>Hyperion</h2>
-</a>
-
-<a href="templates/lijiraq.html" class="card">
-  <img src="static/lijiraq.jpg" alt="Lijiraq">
-  <h2>Lijiraq</h2>
-</a>
-
-  <!-- Loge -->
-<a href="templates/loge.html" class="card">
-  <img src="static/loge.jpg" alt="Loge">
-  <h2>Loge</h2>
-</a>
-
-<!-- Lysithea -->
-<a href="templates/lysithea.html" class="card">
-  <img src="static/lysithea.jpg" alt="Lysithea">
-  <h2>Lysithea</h2>
-</a>
-
-<!-- Megaclite -->
-<a href="templates/megaclite.html" class="card">
-  <img src="static/megaclite.jpg" alt="Megaclite">
-  <h2>Megaclite</h2>
-</a>
-
-<!-- Metis -->
-<a href="templates/metis.html" class="card">
-  <img src="static/metis.jpg" alt="Metis">
-  <h2>Metis</h2>
-</a>
-
-<!-- Mimas -->
-<a href="templates/mimas.html" class="card">
-  <img src="static/mimas.jpg" alt="Mimas">
-  <h2>Mimas</h2>
-</a>
-
-<!-- Mneme -->
-<a href="templates/mneme.html" class="card">
-  <img src="static/mneme.jpg" alt="Mneme">
-  <h2>Mneme</h2>
-</a>
-
-<!-- Mundilfari -->
-<a href="templates/mundilfari.html" class="card">
-  <img src="static/mundilfari.jpg" alt="Mundilfari">
-  <h2>Mundilfari</h2>
-</a>
-
-<!-- Narvi -->
-<a href="templates/narvi.html" class="card">
-  <img src="static/narvi.jpg" alt="Narvi">
-  <h2>Narvi</h2>
-</a>
-
-<!-- Nereid -->
-<a href="templates/nereid.html" class="card">
-  <img src="static/nereid.jpg" alt="Nereid">
-  <h2>Nereid</h2>
-</a>
-
-<!-- Neso -->
-<a href="templates/neso.html" class="card">
-  <img src="static/neso.jpg" alt="Neso">
-  <h2>Neso</h2>
-</a>
-
-<!-- Nix -->
-<a href="templates/nix.html" class="card">
-  <img src="static/nix.jpg" alt="Nix">
-  <h2>Nix</h2>
-</a>
-
-<!-- Oberon -->
-<a href="templates/oberon.html" class="card">
-  <img src="static/oberon.jpg" alt="Oberon">
-  <h2>Oberon</h2>
-</a>
-
-<!-- Ophelia -->
-<a href="templates/ophelia.html" class="card">
-  <img src="static/ophelia.jpg" alt="Ophelia">
-  <h2>Ophelia</h2>
-</a>
-
-<!-- Orthosie -->
-<a href="templates/orthosie.html" class="card">
-  <img src="static/orthosie.jpg" alt="Orthosie">
-  <h2>Orthosie</h2>
-</a>
-
-<!-- Pallene -->
-<a href="templates/pallene.html" class="card">
-  <img src="static/pallene.jpg" alt="Pallene">
-  <h2>Pallene</h2>
-</a>
-
-<!-- Pan -->
-<a href="templates/pan.html" class="card">
-  <img src="static/pan.jpg" alt="Pan">
-  <h2>Pan</h2>
-</a>
-
-<!-- Pandora -->
-<a href="templates/pandora.html" class="card">
-  <img src="static/pandora.jpg" alt="Pandora">
-  <h2>Pandora</h2>
-</a>
-
-<!-- Pasiphae -->
-<a href="templates/pasiphae.html" class="card">
-  <img src="static/pasiphae.jpg" alt="Pasiphae">
-  <h2>Pasiphae</h2>
-</a>
-
-<!-- Phoebe -->
-<a href="templates/phoebe.html" class="card">
-  <img src="static/phoebe.jpg" alt="Phoebe">
-  <h2>Phoebe</h2>
-</a>
-
-<!-- Pluto -->
-<a href="templates/pluto.html" class="card">
-  <img src="static/pluto.jpg" alt="Pluto">
-  <h2>Pluto</h2>
-</a>
-
-<!-- Polydeuces -->
-<a href="templates/polydeuces.html" class="card">
-  <img src="static/polydeuces.jpg" alt="Polydeuces">
-  <h2>Polydeuces</h2>
-</a>
-
-<!-- Praxidike -->
-<a href="templates/praxidike.html" class="card">
-  <img src="static/praxidike.jpg" alt="Praxidike">
-  <h2>Praxidike</h2>
-</a>
-
-<!-- Prometheus -->
-<a href="templates/prometheus.html" class="card">
-  <img src="static/prometheus.jpg" alt="Prometheus">
-  <h2>Prometheus</h2>
-</a>
-
-<!-- Prospero -->
-<a href="templates/prospero.html" class="card">
-  <img src="static/prospero.jpg" alt="Prospero">
-  <h2>Prospero</h2>
-</a>
-
-<!-- Proteus -->
-<a href="templates/proteus.html" class="card">
-  <img src="static/proteus.jpg" alt="Proteus">
-  <h2>Proteus</h2>
-</a>
-
-<!-- Rhea -->
-<a href="templates/rhea.html" class="card">
-  <img src="static/rhea.jpg" alt="Rhea">
-  <h2>Rhea</h2>
-</a>
-
-<!-- Setebos -->
-<a href="templates/setebos.html" class="card">
-  <img src="static/setebos.jpg" alt="Setebos">
-  <h2>Setebos</h2>
-</a>
-
-<!-- Siarnaq -->
-<a href="templates/siarnaq.html" class="card">
-  <img src="static/siarnaq.jpg" alt="Siarnaq">
-  <h2>Siarnaq</h2>
-</a>
-
-<!-- Sinope -->
-<a href="templates/sinope.html" class="card">
-  <img src="static/sinope.jpg" alt="Sinope">
-  <h2>Sinope</h2>
-</a>
-
-<!-- Skathi -->
-<a href="templates/skathi.html" class="card">
-  <img src="static/skathi.jpg" alt="Skathi">
-  <h2>Skathi</h2>
-</a>
-
-<!-- Suttungr -->
-<a href="templates/suttungr.html" class="card">
-  <img src="static/suttungr.jpg" alt="Suttungr">
-  <h2>Suttungr</h2>
-</a>
-
-<!-- Sycorax -->
-<a href="templates/sycorax.html" class="card">
-  <img src="static/sycorax.jpg" alt="Sycorax">
-  <h2>Sycorax</h2>
-</a>
-
-<!-- Tarvos -->
-<a href="templates/tarvos.html" class="card">
-  <img src="static/tarvos.jpg" alt="Tarvos">
-  <h2>Tarvos</h2>
-</a>
-
-<!-- Telesto -->
-<a href="templates/telesto.html" class="card">
-  <img src="static/telesto.jpg" alt="Telesto">
-  <h2>Telesto</h2>
-</a>
-
-<!-- Thelxinoe -->
-<a href="templates/thelxinoe.html" class="card">
-  <img src="static/thelxinoe.jpg" alt="Thelxinoe">
-  <h2>Thelxinoe</h2>
-</a>
-
-<!-- Themisto -->
-<a href="templates/themisto.html" class="card">
-  <img src="static/themisto.jpg" alt="Themisto">
-  <h2>Themisto</h2>
-</a>
-
-<!-- Tethys -->
-<a href="templates/tethys.html" class="card">
-  <img src="static/tethys.jpg" alt="Tethys">
-  <h2>Tethys</h2>
-</a>
-
-<!-- Thalassa -->
-<a href="templates/thalassa.html" class="card">
-  <img src="static/thalassa.jpg" alt="Thalassa">
-  <h2>Thalassa</h2>
-</a>
-
-<!-- Titan -->
-<a href="templates/titan.html" class="card">
-  <img src="static/titan.jpg" alt="Titan">
-  <h2>Titan</h2>
-</a>
-
-<!-- Titania -->
-<a href="templates/titania.html" class="card">
-  <img src="static/titania.jpg" alt="Titania">
-  <h2>Titania</h2>
-</a>
-
-<!-- Triton -->
-<a href="templates/triton.html" class="card">
-  <img src="static/triton.jpg" alt="Triton">
-  <h2>Triton</h2>
-</a>
-
-<!-- Umbriel -->
-<a href="templates/umbriel.html" class="card">
-  <img src="static/umbriel.jpg" alt="Umbriel">
-  <h2>Umbriel</h2>
-</a>
-
-<!-- Uranus -->
-<a href="templates/uranus.html" class="card">
-  <img src="static/uranus.jpg" alt="Uranus">
-  <h2>Uranus</h2>
-</a>
-
-<!-- Venus -->
-<a href="templates/venus.html" class="card">
-  <img src="static/venus.jpg" alt="Venus">
-  <h2>Venus</h2>
-</a>
-
-<!-- Ymir -->
-<a href="templates/ymir.html" class="card">
-  <img src="static/ymir.jpg" alt="Ymir">
-  <h2>Ymir</h2>
-</a>
-
-<!-- Moon -->
-<a href="templates/moon.html" class="card">
-  <img src="static/moon.jpg" alt="Moon">
-  <h2>Moon</h2>
-</a>
-
-<!-- Charon -->
-<a href="templates/charon.html" class="card">
-  <img src="static/charon.jpg" alt="Charon">
-  <h2>Charon</h2>
-</a>
-
-<!-- Hydra -->
-<a href="templates/hydra.html" class="card">
-  <img src="static/hydra.jpg" alt="Hydra">
-  <h2>Hydra</h2>
-</a>
-
-<!-- Kerberos -->
-<a href="templates/kerberos.html" class="card">
-  <img src="static/kerberos.jpg" alt="Kerberos">
-  <h2>Kerberos</h2>
-</a>
-
-<!-- Styx -->
-<a href="templates/styx.html" class="card">
-  <img src="static/styx.jpg" alt="Styx">
-  <h2>Styx</h2>
-</a>
-
-<!-- Deimos -->
-<a href="templates/deimos.html" class="card">
-  <img src="static/deimos.jpg" alt="Deimos">
-  <h2>Deimos</h2>
-</a>
-
-<!-- Phobos -->
-<a href="templates/phobos.html" class="card">
-  <img src="static/phobos.jpg" alt="Phobos">
-  <h2>Phobos</h2>
-</a>
+  <div class="cards">
+    <!-- 83 cards from previous index.html -->
+    <a href="templates/aegaeon.html" class="card"><img src="static/aegaeon.jpg"><h2>Aegaeon</h2></a>
+    <a href="templates/aitne.html" class="card"><img src="static/aitne.jpg"><h2>Aitne</h2></a>
+    <a href="templates/aoede.html" class="card"><img src="static/aoede.jpg"><h2>Aoede</h2></a>
+    <a href="templates/aegir.html" class="card"><img src="static/aegir.jpg"><h2>Aegir</h2></a>
+    <a href="templates/anthe.html" class="card"><img src="static/anthe.jpg"><h2>Anthe</h2></a>
+    <a href="templates/callisto.html" class="card"><img src="static/callisto.jpg"><h2>Callisto</h2></a>
+    <a href="templates/ceres.html" class="card"><img src="static/ceres.jpg"><h2>Ceres</h2></a>
+    <a href="templates/chaldene.html" class="card"><img src="static/chaldene.jpg"><h2>Chaldene</h2></a>
+    <a href="templates/cyllene.html" class="card"><img src="static/cyllene.jpg"><h2>Cyllene</h2></a>
+    <a href="templates/daphnis.html" class="card"><img src="static/daphnis.jpg"><h2>Daphnis</h2></a>
+    <a href="templates/dia.html" class="card"><img src="static/dia.jpg"><h2>Dia</h2></a>
+    <a href="templates/dione.html" class="card"><img src="static/dione.jpg"><h2>Dione</h2></a>
+    <a href="templates/enceladus.html" class="card"><img src="static/enceladus.jpg"><h2>Enceladus</h2></a>
+    <a href="templates/epimetheus.html" class="card"><img src="static/epimetheus.jpg"><h2>Epimetheus</h2></a>
+    <a href="templates/erinome.html" class="card"><img src="static/erinome.jpg"><h2>Erinome</h2></a>
+    <a href="templates/eris.html" class="card"><img src="static/eris.jpg"><h2>Eris</h2></a>
+    <a href="templates/erriapus.html" class="card"><img src="static/erriapus.jpg"><h2>Erriapus</h2></a>
+    <a href="templates/euanthe.html" class="card"><img src="static/euanthe.jpg"><h2>Euanthe</h2></a>
+    <a href="templates/eukelade.html" class="card"><img src="static/eukelade.jpg"><h2>Eukelade</h2></a>
+    <a href="templates/euporie.html" class="card"><img src="static/euporie.jpg"><h2>Euporie</h2></a>
+    <a href="templates/europa.html" class="card"><img src="static/europa.jpg"><h2>Europa</h2></a>
+    <a href="templates/eurydome.html" class="card"><img src="static/eurydome.jpg"><h2>Eurydome</h2></a>
+    <a href="templates/farbauti.html" class="card"><img src="static/farbauti.jpg"><h2>Farbauti</h2></a>
+    <a href="templates/ganymede.html" class="card"><img src="static/ganymede.jpg"><h2>Ganymede</h2></a>
+        <a href="templates/harpalyke.html" class="card"><img src="static/harpalyke.jpg"><h2>Harpalyke</h2></a>
+    <a href="templates/jupiter.html" class="card"><img src="static/jupiter.jpg"><h2>Jupiter</h2></a>
+    <a href="templates/neptune.html" class="card"><img src="static/neptune.jpg"><h2>Neptune</h2></a>
+    <a href="templates/mercury.html" class="card"><img src="static/mercury.jpg"><h2>Mercury</h2></a>
+    <a href="templates/hermippe.html" class="card"><img src="static/hermippe.jpg"><h2>Hermippe</h2></a>
+    <a href="templates/hyperion.html" class="card"><img src="static/hyperion.jpg"><h2>Hyperion</h2></a>
+    <a href="templates/lijiraq.html" class="card"><img src="static/lijiraq.jpg"><h2>Lijiraq</h2></a>
+    <a href="templates/loge.html" class="card"><img src="static/loge.jpg"><h2>Loge</h2></a>
+    <a href="templates/lysithea.html" class="card"><img src="static/lysithea.jpg"><h2>Lysithea</h2></a>
+    <a href="templates/megaclite.html" class="card"><img src="static/megaclite.jpg"><h2>Megaclite</h2></a>
+    <a href="templates/metis.html" class="card"><img src="static/metis.jpg"><h2>Metis</h2></a>
+    <a href="templates/mimas.html" class="card"><img src="static/mimas.jpg"><h2>Mimas</h2></a>
+    <a href="templates/mneme.html" class="card"><img src="static/mneme.jpg"><h2>Mneme</h2></a>
+    <a href="templates/mundilfari.html" class="card"><img src="static/mundilfari.jpg"><h2>Mundilfari</h2></a>
+    <a href="templates/narvi.html" class="card"><img src="static/narvi.jpg"><h2>Narvi</h2></a>
+    <a href="templates/nereid.html" class="card"><img src="static/nereid.jpg"><h2>Nereid</h2></a>
+    <a href="templates/neso.html" class="card"><img src="static/neso.jpg"><h2>Neso</h2></a>
+    <a href="templates/nix.html" class="card"><img src="static/nix.jpg"><h2>Nix</h2></a>
+    <a href="templates/oberon.html" class="card"><img src="static/oberon.jpg"><h2>Oberon</h2></a>
+    <a href="templates/ophelia.html" class="card"><img src="static/ophelia.jpg"><h2>Ophelia</h2></a>
+    <a href="templates/orthosie.html" class="card"><img src="static/orthosie.jpg"><h2>Orthosie</h2></a>
+    <a href="templates/pallene.html" class="card"><img src="static/pallene.jpg"><h2>Pallene</h2></a>
+    <a href="templates/pan.html" class="card"><img src="static/pan.jpg"><h2>Pan</h2></a>
+    <a href="templates/pandora.html" class="card"><img src="static/pandora.jpg"><h2>Pandora</h2></a>
+    <a href="templates/pasiphae.html" class="card"><img src="static/pasiphae.jpg"><h2>Pasiphae</h2></a>
+    <a href="templates/phoebe.html" class="card"><img src="static/phoebe.jpg"><h2>Phoebe</h2></a>
+    <a href="templates/pluto.html" class="card"><img src="static/pluto.jpg"><h2>Pluto</h2></a>
+    <a href="templates/polydeuces.html" class="card"><img src="static/polydeuces.jpg"><h2>Polydeuces</h2></a>
+    <a href="templates/praxidike.html" class="card"><img src="static/praxidike.jpg"><h2>Praxidike</h2></a>
+    <a href="templates/prometheus.html" class="card"><img src="static/prometheus.jpg"><h2>Prometheus</h2></a>
+    <a href="templates/prospero.html" class="card"><img src="static/prospero.jpg"><h2>Prospero</h2></a>
+    <a href="templates/proteus.html" class="card"><img src="static/proteus.jpg"><h2>Proteus</h2></a>
+    <a href="templates/rhea.html" class="card"><img src="static/rhea.jpg"><h2>Rhea</h2></a>
+    <a href="templates/setebos.html" class="card"><img src="static/setebos.jpg"><h2>Setebos</h2></a>
+    <a href="templates/siarnaq.html" class="card"><img src="static/siarnaq.jpg"><h2>Siarnaq</h2></a>
+    <a href="templates/sinope.html" class="card"><img src="static/sinope.jpg"><h2>Sinope</h2></a>
+    <a href="templates/skathi.html" class="card"><img src="static/skathi.jpg"><h2>Skathi</h2></a>
+    <a href="templates/suttungr.html" class="card"><img src="static/suttungr.jpg"><h2>Suttungr</h2></a>
+    <a href="templates/sycorax.html" class="card"><img src="static/sycorax.jpg"><h2>Sycorax</h2></a>
+    <a href="templates/tarvos.html" class="card"><img src="static/tarvos.jpg"><h2>Tarvos</h2></a>
+    <a href="templates/telesto.html" class="card"><img src="static/telesto.jpg"><h2>Telesto</h2></a>
+    <a href="templates/thelxinoe.html" class="card"><img src="static/thelxinoe.jpg"><h2>Thelxinoe</h2></a>
+    <a href="templates/themisto.html" class="card"><img src="static/themisto.jpg"><h2>Themisto</h2></a>
+    <a href="templates/tethys.html" class="card"><img src="static/tethys.jpg"><h2>Tethys</h2></a>
+    <a href="templates/thalassa.html" class="card"><img src="static/thalassa.jpg"><h2>Thalassa</h2></a>
+    <a href="templates/titan.html" class="card"><img src="static/titan.jpg"><h2>Titan</h2></a>
+    <a href="templates/titania.html" class="card"><img src="static/titania.jpg"><h2>Titania</h2></a>
+    <a href="templates/triton.html" class="card"><img src="static/triton.jpg"><h2>Triton</h2></a>
+    <a href="templates/umbriel.html" class="card"><img src="static/umbriel.jpg"><h2>Umbriel</h2></a>
+    <a href="templates/uranus.html" class="card"><img src="static/uranus.jpg"><h2>Uranus</h2></a>
+    <a href="templates/venus.html" class="card"><img src="static/venus.jpg"><h2>Venus</h2></a>
+    <a href="templates/ymir.html" class="card"><img src="static/ymir.jpg"><h2>Ymir</h2></a>
+    <a href="templates/moon.html" class="card"><img src="static/moon.jpg"><h2>Moon</h2></a>
+    <a href="templates/charon.html" class="card"><img src="static/charon.jpg"><h2>Charon</h2></a>
+    <a href="templates/hydra.html" class="card"><img src="static/hydra.jpg"><h2>Hydra</h2></a>
+    <a href="templates/kerberos.html" class="card"><img src="static/kerberos.jpg"><h2>Kerberos</h2></a>
+    <a href="templates/styx.html" class="card"><img src="static/styx.jpg"><h2>Styx</h2></a>
+    <a href="templates/deimos.html" class="card"><img src="static/deimos.jpg"><h2>Deimos</h2></a>
+    <a href="templates/phobos.html" class="card"><img src="static/phobos.jpg"><h2>Phobos</h2></a>
+    <a href="templates/saturn.html" class="card"><img src="static/saturn.jpg"><h2>Saturn</h2></a>
 
   </div>
-</body>
-</html>
-
-  </section>
 
   <footer>
     © 2025 Pixal Pioneers | Space Habitat Project
@@ -609,3 +226,4 @@
   </script>
 </body>
 </html>
+
