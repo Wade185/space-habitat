@@ -1,11 +1,129 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>jupiter</title>
+  <meta charset="UTF-8">
+  <title>Jupiter - Habitat Assistant</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+    body {
+      background: radial-gradient(circle at top, #0a0f2c, #1c2340, #2b2a6a, #000);
+      background-attachment: fixed;
+      color: #f1f1f1;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+    }
+    .assistant-container {
+      background: rgba(20, 20, 40, 0.85);
+      border-radius: 15px;
+      padding: 30px;
+      width: 850px;
+      max-width: 95%;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .assistant-container h1 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #00eaff;
+      text-shadow: 0 0 10px #00eaff, 0 0 20px #0095ff;
+      margin-bottom: 20px;
+    }
+    .info p { margin: 8px 0; font-size: 1.05em; }
+    h2 { margin-top: 25px; font-size: 1.5em; color: #ffdd57; text-shadow: 0 0 5px #ffae00; }
+    p { margin: 10px 0; line-height: 1.5; }
+    .assistant-box {
+      margin-top: 30px; padding: 20px; border: 2px solid #00eaff; border-radius: 10px;
+      background: rgba(0, 20, 40, 0.6); text-align: center; box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
+    }
+    .assistant-box input {
+      width: 70%; padding: 12px; margin-top: 15px; border: none; border-radius: 8px;
+      outline: none; font-size: 1em;
+    }
+    .assistant-box button {
+      margin-left: 10px; padding: 12px 20px; background: #00eaff; border: none;
+      border-radius: 8px; font-size: 1em; cursor: pointer; color: #000;
+      font-weight: bold; transition: 0.3s;
+    }
+    .assistant-box button:hover { background: #0095ff; box-shadow: 0 0 15px #00eaff; }
+    #answerBoxJupiter {
+      margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px; min-height: 60px; font-style: italic; text-align: left;
+    }
+    .back-btn {
+      display: inline-block; margin-top: 20px; text-decoration: none;
+      color: #ffdd57; font-weight: bold; transition: 0.3s;
+    }
+    .back-btn:hover { color: #ffffff; text-shadow: 0 0 10px #ffdd57; }
+    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
+  </style>
 </head>
 <body>
-    <h1>jupiter</h1>
-    <img src="{{ url_for('static', filename='jupiter.jpg') }}" alt="jupiter">
-    <p>Welcome to the habitat exploration page for <b>jupiter</b>!</p>
+  <div class="assistant-container">
+    <h1>Jupiter AI Assistant</h1>
+    <div class="info">
+      <p><b>Discovery:</b> Known since ancient times</p>
+      <p><b>Type:</b> Gas Giant</p>
+      <p><b>Size:</b> ~139,820 km diameter (largest planet)</p>
+      <p><b>Distance from Earth:</b> ~588 million km (average)</p>
+      <p><b>Description:</b> Jupiter is the largest planet in the solar system, a gas giant mostly made of hydrogen and helium, with powerful storms like the Great Red Spot.</p>
+      <p><b>Fun Fact:</b> Jupiter has the shortest day of all planets, rotating once every 10 hours.</p>
+    </div>
+
+    <h2>Breathing / Oxygen</h2>
+    <p>Jupiter’s atmosphere is mostly hydrogen and helium with no oxygen to breathe. Humans cannot survive here without life support systems.</p>
+
+    <h2>Water & Sewage</h2>
+    <p>Liquid water cannot exist on Jupiter itself. Water must be obtained from its moons (like Europa) or imported.</p>
+
+    <h2>Food Production</h2>
+    <p>Jupiter has no solid surface for farming. Colonists would need orbital stations or moon bases with hydroponic or aeroponic systems.</p>
+
+    <h2>Energy</h2>
+    <p>Solar energy is weaker this far from the Sun. Nuclear power and fusion-based energy sources would be the most reliable options.</p>
+
+    <h2>Shelter</h2>
+    <p>No solid ground on Jupiter. Habitats would likely orbit Jupiter or exist on its moons. Strong shielding is needed against radiation belts.</p>
+
+    <div class="assistant-box">
+      <h2>Ask me anything about Jupiter</h2>
+      <input type="text" id="userQuestionJupiter" placeholder="Type your question...">
+      <button id="askButtonJupiter">Ask</button>
+      <div id="answerBoxJupiter">Tip: Try asking about oxygen, water, food, energy, or shelter.</div>
+    </div>
+    <a href="{{ url_for('index') }}" class="back-btn">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    const askButtonJupiter = document.getElementById("askButtonJupiter");
+    const userQuestionJupiter = document.getElementById("userQuestionJupiter");
+    const answerBoxJupiter = document.getElementById("answerBoxJupiter");
+
+    const knowledgeJupiter = {
+      "oxygen": "Jupiter’s atmosphere has no oxygen. Breathing requires artificial supply.",
+      "water": "Liquid water cannot exist on Jupiter itself. Water can be collected from its icy moons.",
+      "food": "No natural food source. Hydroponics in space stations or moon bases needed.",
+      "energy": "Solar is weak at Jupiter. Nuclear or fusion energy is most reliable.",
+      "shelter": "No solid surface. Habitats must orbit or be on moons, with heavy radiation shielding."
+    };
+
+    function getAnswerJupiter() {
+      const q = userQuestionJupiter.value.toLowerCase();
+      let response = "I don’t have that info yet. Try oxygen, water, food, energy, or shelter.";
+      for (let key in knowledgeJupiter) {
+        if (q.includes(key)) { response = knowledgeJupiter[key]; break; }
+      }
+      answerBoxJupiter.innerHTML = response;
+      userQuestionJupiter.value = "";
+    }
+
+    askButtonJupiter.addEventListener("click", getAnswerJupiter);
+    userQuestionJupiter.addEventListener("keyup", (event) => {
+      if (event.key === "Enter") getAnswerJupiter();
+    });
+  </script>
 </body>
 </html>
