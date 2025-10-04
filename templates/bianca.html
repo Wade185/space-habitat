@@ -1,11 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>bianca</title>
+  <meta charset="UTF-8">
+  <title>Bianca - Habitat Assistant</title>
+  <style>
+    * {margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;}
+    body {background:radial-gradient(circle at top,#0a0f2c,#1c2340,#2b2a6a,#000);background-attachment:fixed;color:#f1f1f1;min-height:100vh;display:flex;justify-content:center;align-items:flex-start;padding:40px;}
+    .assistant-container {background:rgba(20,20,40,0.85);border-radius:15px;padding:30px;width:850px;max-width:95%;box-shadow:0 0 25px rgba(0,200,255,0.4);backdrop-filter:blur(10px);animation:fadeIn 1.5s ease-in-out;}
+    .assistant-container h1 {text-align:center;font-size:2.2em;color:#00eaff;text-shadow:0 0 10px #00eaff,0 0 20px #0095ff;margin-bottom:20px;}
+    .info p {margin:8px 0;font-size:1.05em;}
+    h2 {margin-top:25px;font-size:1.5em;color:#ffdd57;text-shadow:0 0 5px #ffae00;}
+    p {margin:10px 0;line-height:1.5;}
+    .assistant-box {margin-top:30px;padding:20px;border:2px solid #00eaff;border-radius:10px;background:rgba(0,20,40,0.6);text-align:center;box-shadow:0 0 20px rgba(0,234,255,0.3);}
+    .assistant-box input {width:70%;padding:12px;margin-top:15px;border:none;border-radius:8px;outline:none;font-size:1em;}
+    .assistant-box button {margin-left:10px;padding:12px 20px;background:#00eaff;border:none;border-radius:8px;font-size:1em;cursor:pointer;color:#000;font-weight:bold;transition:0.3s;}
+    .assistant-box button:hover {background:#0095ff;box-shadow:0 0 15px #00eaff;}
+    #answerBox {margin-top:20px;padding:15px;background:rgba(255,255,255,0.1);border-radius:8px;min-height:60px;font-style:italic;text-align:left;}
+    .back-btn {display:inline-block;margin-top:20px;text-decoration:none;color:#ffdd57;font-weight:bold;transition:0.3s;}
+    .back-btn:hover {color:#fff;text-shadow:0 0 10px #ffdd57;}
+    @keyframes fadeIn {from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  </style>
 </head>
 <body>
-    <h1>bianca</h1>
-    <img src="{{ url_for('static', filename='bianca.jpg') }}" alt="bianca">
-    <p>Welcome to the habitat exploration page for <b>bianca</b>!</p>
+  <div class="assistant-container">
+    <h1>Bianca AI Assistant</h1>
+    <div class="info">
+      <p><b>Discovery:</b> 1986 by Voyager 2</p>
+      <p><b>Parent Planet:</b> Uranus</p>
+      <p><b>Size:</b> ~52 km diameter</p>
+      <p><b>Distance from Earth:</b> ~2.9 billion km</p>
+      <p><b>Description:</b> Bianca is a small inner moon of Uranus, part of the Portia Group, with an irregular shape and heavily cratered surface.</p>
+      <p><b>Fun Fact:</b> Named after a character in Shakespeare’s *The Taming of the Shrew*.</p>
+    </div>
+
+    <h2>Breathing / Oxygen</h2>
+    <p>No atmosphere — oxygen must be generated artificially inside habitats.</p>
+
+    <h2>Water & Sewage</h2>
+    <p>Possible ice sources could be harvested and recycled.</p>
+
+    <h2>Food Production</h2>
+    <p>Hydroponics or bioreactors for sustainable food.</p>
+
+    <h2>Energy</h2>
+    <p>Nuclear reactors required, as solar is too weak at Uranus.</p>
+
+    <h2>Shelter</h2>
+    <p>Regolith-shielded domes to protect from radiation and cold.</p>
+
+    <div class="assistant-box">
+      <h2>Ask me anything about Bianca</h2>
+      <input type="text" id="userQuestion" placeholder="Type your question...">
+      <button id="askButton">Ask</button>
+      <div id="answerBox">Tip: Try asking about oxygen, water, food, farming, energy, or shelter.</div>
+    </div>
+
+    <a href="{{ url_for('index') }}" class="back-btn">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    const askButton=document.getElementById("askButton"),userQuestion=document.getElementById("userQuestion"),answerBox=document.getElementById("answerBox");
+    const knowledge={
+      "oxygen":"No air exists on Bianca. Oxygen must be generated and recycled in sealed habitats.",
+      "water":"Water must come from possible ice mining and strict recycling.",
+      "sewage":"All waste must be purified and recycled into usable water.",
+      "food":"Food can only be grown hydroponically or using lab-grown protein.",
+      "farming":"Hydroponics and aeroponics provide crops. Traditional farming impossible.",
+      "energy":"Only nuclear energy is reliable on Bianca due to weak sunlight.",
+      "shelter":"Habitats need thick shielding against radiation and must be insulated against cold."
+    };
+    function getAnswer(){const q=userQuestion.value.toLowerCase();let r="I don’t have that info yet. Try asking about: oxygen, water, food, farming, energy, or shelter.";for(let k in knowledge){if(q.includes(k)){r=knowledge[k];break;}}answerBox.innerHTML=r;userQuestion.value="";}
+    askButton.addEventListener("click",getAnswer);userQuestion.addEventListener("keyup",e=>{if(e.key==="Enter")getAnswer();});
+  </script>
 </body>
 </html>
