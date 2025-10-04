@@ -1,11 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>venus</title>
+  <meta charset="UTF-8">
+  <title>Venus - Habitat Assistant</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+    body {
+      background: radial-gradient(circle at top, #0a0f2c, #1c2340, #2b2a6a, #000);
+      background-attachment: fixed;
+      color: #f1f1f1;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+    }
+    .assistant-container {
+      background: rgba(20, 20, 40, 0.85);
+      border-radius: 15px;
+      padding: 30px;
+      width: 850px;
+      max-width: 95%;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .assistant-container h1 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #00eaff;
+      text-shadow: 0 0 10px #00eaff, 0 0 20px #0095ff;
+      margin-bottom: 20px;
+    }
+    .info p { margin: 8px 0; font-size: 1.05em; }
+    h2 { margin-top: 25px; font-size: 1.5em; color: #ffdd57; text-shadow: 0 0 5px #ffae00; }
+    p { margin: 10px 0; line-height: 1.5; }
+    .assistant-box {
+      margin-top: 30px; padding: 20px; border: 2px solid #00eaff; border-radius: 10px;
+      background: rgba(0, 20, 40, 0.6); text-align: center; box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
+    }
+    .assistant-box input {
+      width: 70%; padding: 12px; margin-top: 15px; border: none; border-radius: 8px;
+      outline: none; font-size: 1em;
+    }
+    .assistant-box button {
+      margin-left: 10px; padding: 12px 20px; background: #00eaff; border: none;
+      border-radius: 8px; font-size: 1em; cursor: pointer; color: #000;
+      font-weight: bold; transition: 0.3s;
+    }
+    .assistant-box button:hover { background: #0095ff; box-shadow: 0 0 15px #00eaff; }
+    #answerBoxVenus {
+      margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px; min-height: 60px; font-style: italic; text-align: left;
+    }
+    .back-btn {
+      display: inline-block; margin-top: 20px; text-decoration: none;
+      color: #ffdd57; font-weight: bold; transition: 0.3s;
+    }
+    .back-btn:hover { color: #ffffff; text-shadow: 0 0 10px #ffdd57; }
+    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
+  </style>
 </head>
 <body>
-    <h1>venus</h1>
-    <img src="{{ url_for('static', filename='venus.jpg') }}" alt="venus">
-    <p>Welcome to the habitat exploration page for <b>venus</b>!</p>
+  <div class="assistant-container">
+    <h1>Venus AI Assistant</h1>
+    <div class="info">
+      <p><b>Discovery:</b> Known since ancient times</p>
+      <p><b>Type:</b> Terrestrial Planet</p>
+      <p><b>Diameter:</b> ~12,104 km</p>
+      <p><b>Distance from Earth:</b> ~41 million to 261 million km (varies)</p>
+      <p><b>Description:</b> Venus is the second planet from the Sun with a thick, toxic atmosphere mostly of CO₂ and surface temperatures around 465°C.</p>
+      <p><b>Fun Fact:</b> Venus rotates retrograde, meaning it spins in the opposite direction to most planets.</p>
+    </div>
+
+    <h2>Breathing / Oxygen</h2>
+    <p>Atmosphere is mostly CO₂ and sulfuric acid clouds. Breathing requires full life-support systems.</p>
+
+    <h2>Water & Sewage</h2>
+    <p>No liquid water on the surface. Water must be produced in colonies using imported or recycled sources.</p>
+
+    <h2>Food Production</h2>
+    <p>Hydroponics and lab-grown food inside pressurized domes are mandatory.</p>
+
+    <h2>Energy</h2>
+    <p>Solar energy is strong, but extreme temperatures and acid clouds require robust shielding.</p>
+
+    <h2>Shelter</h2>
+    <p>Colonies must be in high-altitude floating habitats or reinforced surface domes with protective coatings.</p>
+
+    <div class="assistant-box">
+      <h2>Ask me anything about Venus</h2>
+      <input type="text" id="userQuestionVenus" placeholder="Type your question...">
+      <button id="askButtonVenus">Ask</button>
+      <div id="answerBoxVenus">Tip: Try asking about oxygen, water, food, energy, or shelter.</div>
+    </div>
+    <a href="{{ url_for('index') }}" class="back-btn">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    const askButtonVenus = document.getElementById("askButtonVenus");
+    const userQuestionVenus = document.getElementById("userQuestionVenus");
+    const answerBoxVenus = document.getElementById("answerBoxVenus");
+
+    const knowledgeVenus = {
+      "oxygen": "Atmosphere is toxic; breathing requires life-support systems.",
+      "water": "No liquid water; must produce from imported/recycled sources.",
+      "food": "Hydroponics and lab-grown food inside pressurized domes are mandatory.",
+      "energy": "Solar energy is strong, but habitats need shielding from heat and acid.",
+      "shelter": "High-altitude floating habitats or reinforced domes required."
+    };
+
+    function getAnswerVenus() {
+      const q = userQuestionVenus.value.toLowerCase();
+      let response = "I don’t have that info yet. Try oxygen, water, food, energy, or shelter.";
+      for (let key in knowledgeVenus) {
+        if (q.includes(key)) { response = knowledgeVenus[key]; break; }
+      }
+      answerBoxVenus.innerHTML = response;
+      userQuestionVenus.value = "";
+    }
+    askButtonVenus.addEventListener("click", getAnswerVenus);
+    userQuestionVenus.addEventListener("keyup", (event) => { if (event.key === "Enter") getAnswerVenus(); });
+  </script>
 </body>
 </html>
