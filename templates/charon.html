@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Charon - Habitat Assistant</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
     body {
-      background: radial-gradient(circle at top, #08122a, #142045, #1c2a58, #000);
-      color: #f2f8fc;
+      background: radial-gradient(circle at top, #0a0f2c, #1c2340, #2b2a6a, #000);
+      background-attachment: fixed;
+      color: #f1f1f1;
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -16,109 +16,83 @@
       padding: 40px;
     }
     .assistant-container {
-      background: rgba(18, 20, 40, 0.85);
+      background: rgba(20, 20, 40, 0.85);
       border-radius: 15px;
-      padding: 28px;
-      width: 860px;
+      padding: 30px;
+      width: 850px;
       max-width: 95%;
-      box-shadow: 0 0 25px rgba(0, 200, 255, 0.35);
-      backdrop-filter: blur(8px);
-      animation: fadeIn 1.2s ease;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease-in-out;
     }
-    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
     .assistant-container h1 {
       text-align: center;
-      font-size: 2.2rem;
+      font-size: 2.2em;
       color: #00eaff;
-      margin-bottom: 18px;
-      text-shadow: 0 0 10px #00eaff, 0 0 16px #0075aa;
+      text-shadow: 0 0 10px #00eaff, 0 0 20px #0095ff;
+      margin-bottom: 20px;
     }
-    .info p { margin: 7px 0; font-size: 1rem; line-height: 1.4; }
-    h2 { margin-top: 22px; font-size: 1.4rem; color: #ffdd57; text-shadow: 0 0 6px #ffb400; }
-    p { margin: 8px 0; line-height: 1.5; }
+    .info p { margin: 8px 0; font-size: 1.05em; }
+    h2 { margin-top: 25px; font-size: 1.5em; color: #ffdd57; text-shadow: 0 0 5px #ffae00; }
+    p { margin: 10px 0; line-height: 1.5; }
     .assistant-box {
-      margin-top: 28px;
-      padding: 18px;
-      border: 1px solid #00eaff;
-      border-radius: 10px;
-      background: rgba(0, 20, 40, 0.55);
-      text-align: center;
-      box-shadow: 0 0 16px rgba(0, 200, 255, 0.25);
+      margin-top: 30px; padding: 20px; border: 2px solid #00eaff; border-radius: 10px;
+      background: rgba(0, 20, 40, 0.6); text-align: center; box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
     }
     .assistant-box input {
-      width: 68%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      outline: none;
-      font-size: 1rem;
-      background: rgba(255,255,255,0.08);
-      color: #fff;
+      width: 70%; padding: 12px; margin-top: 15px; border: none; border-radius: 8px;
+      outline: none; font-size: 1em;
     }
     .assistant-box button {
-      margin-left: 10px;
-      padding: 12px 20px;
-      background: #00eaff;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      color: #000;
-      font-weight: bold;
-      transition: 0.3s;
+      margin-left: 10px; padding: 12px 20px; background: #00eaff; border: none;
+      border-radius: 8px; font-size: 1em; cursor: pointer; color: #000;
+      font-weight: bold; transition: 0.3s;
     }
-    .assistant-box button:hover { background: #0095ff; box-shadow: 0 0 12px #00eaff; }
+    .assistant-box button:hover { background: #0095ff; box-shadow: 0 0 15px #00eaff; }
     #answerBox {
-      margin-top: 16px;
-      padding: 12px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 8px;
-      min-height: 60px;
-      font-style: italic;
-      text-align: left;
+      margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px; min-height: 60px; font-style: italic; text-align: left;
     }
     .back-btn {
-      display: inline-block;
-      margin-top: 20px;
-      text-decoration: none;
-      color: #ffdd57;
-      font-weight: bold;
+      display: inline-block; margin-top: 20px; text-decoration: none;
+      color: #ffdd57; font-weight: bold; transition: 0.3s;
     }
-    .back-btn:hover { color: #fff; text-shadow: 0 0 8px #ffdd57; }
+    .back-btn:hover { color: #ffffff; text-shadow: 0 0 10px #ffdd57; }
+    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
   </style>
 </head>
 <body>
   <div class="assistant-container">
-    <h1>Charon — Habitat Assistant</h1>
+    <h1>Charon AI Assistant</h1>
     <div class="info">
-      <p><b>Discovery:</b> 1978 by James Christy and Robert Harrington</p>
-      <p><b>Parent Planet:</b> Pluto (dwarf planet)</p>
+      <p><b>Discovery:</b> 1978, by James Christy</p>
+      <p><b>Parent Planet:</b> Pluto</p>
       <p><b>Size:</b> ~1,212 km diameter</p>
-      <p><b>Distance from Earth:</b> ~5.9 billion km (varies)</p>
-      <p><b>Description:</b> Charon is the largest moon of Pluto and is so big compared to Pluto that the two are sometimes considered a double dwarf planet system. Its surface is covered in water ice, with signs of past geological activity.</p>
-      <p><b>Fun Fact:</b> Charon always shows the same face to Pluto, and Pluto also shows the same face to Charon — they are tidally locked to each other.</p>
+      <p><b>Distance from Earth:</b> ~4.8–7.5 billion km (varies)</p>
+      <p><b>Description:</b> Charon is Pluto’s largest moon, so big that Pluto–Charon is often considered a double-dwarf-planet system. Its surface is covered with water ice and it has striking red polar regions caused by methane from Pluto’s atmosphere.</p>
+      <p><b>Fun Fact:</b> Charon is about half the size of Pluto, making their relationship unique in the Solar System. They orbit a point outside Pluto’s surface.</p>
     </div>
 
     <h2>Breathing / Oxygen</h2>
-    <p>Charon has no atmosphere. Habitats must supply and recycle oxygen with sealed life-support systems.</p>
+    <p>No atmosphere to breathe. Oxygen would need to be generated from water ice through electrolysis.</p>
 
     <h2>Water & Sewage</h2>
-    <p>Charon’s surface contains abundant water ice, which can be harvested and purified. Sewage and wastewater should be recycled for sustainable living.</p>
+    <p>Charon’s surface has abundant water ice. This could be mined, purified, and recycled within habitats.</p>
 
     <h2>Food Production</h2>
-    <p>No native sources of food. Colonies would rely on hydroponic farms and artificial lighting to grow crops within controlled environments.</p>
+    <p>Hydroponic and bioreactor farming would be necessary within domes to sustain colonies.</p>
 
     <h2>Energy</h2>
-    <p>Solar power is extremely weak at Pluto’s distance. Nuclear reactors or radioisotope power systems would be the main sources of energy.</p>
+    <p>Solar power is too weak this far out. Colonists would rely on nuclear fission or fusion reactors.</p>
 
     <h2>Shelter</h2>
-    <p>Colonies must be underground or shielded with thick ice/regolith to protect from cosmic radiation and extreme cold.</p>
+    <p>Habitats would likely be built underground or shielded with ice/regolith to protect against cosmic radiation.</p>
 
     <div class="assistant-box">
       <h2>Ask me anything about Charon</h2>
       <input type="text" id="userQuestion" placeholder="Type your question...">
       <button id="askButton">Ask</button>
-      <div id="answerBox">Tip: Try asking about oxygen, water, food, energy, or shelter.</div>
+      <div id="answerBox">Tip: Try asking about oxygen, water, food, farming, energy, or shelter.</div>
     </div>
 
   <a href="/space-habitat/index.html" class="back-btn">⬅ Back</a>
@@ -130,24 +104,28 @@
     const answerBox = document.getElementById("answerBox");
 
     const knowledge = {
-      "oxygen": "Charon has no atmosphere. Oxygen must be created and recycled in habitats.",
-      "air": "No air exists on Charon, it is a vacuum world.",
-      "water": "Charon has abundant water ice that can be harvested and purified.",
-      "sewage": "Wastewater must be recycled with advanced closed-loop systems.",
-      "food": "No natural food sources. Hydroponics and indoor farming are necessary.",
-      "farming": "Only possible in sealed agricultural domes with artificial lighting.",
-      "energy": "Solar energy is too weak. Nuclear reactors or RTGs are reliable sources.",
-      "power": "Colonies must depend on nuclear power systems.",
-      "shelter": "Habitats need to be underground or ice-shielded to block radiation and cold.",
-      "habitat": "Sealed domes or subsurface bases are required for survival."
+      "oxygen": "Charon has no atmosphere. Oxygen can be extracted from water ice using electrolysis.",
+      "breath": "Breathing requires sealed habitats with supplied oxygen.",
+      "air": "No natural air. Only artificial atmospheres in domes are possible.",
+
+      "water": "Charon has plenty of water ice, a valuable resource for colonists.",
+      "sewage": "Sewage would be processed in recycling systems to recover water.",
+
+      "food": "Hydroponic systems inside domes would provide food.",
+      "farming": "Indoor farming under artificial light is necessary.",
+      "agriculture": "Closed-loop greenhouses ensure survival far from Earth.",
+
+      "energy": "Energy: Nuclear reactors are essential on Charon.",
+      "power": "Solar power is ineffective here; nuclear fission or fusion is needed.",
+
+      "shelter": "Shelter: Underground bases shield against cosmic rays and micrometeorites.",
+      "habitat": "Habitats built into ice/regolith provide thermal and radiation protection."
     };
 
     function getAnswer() {
       const q = userQuestion.value.toLowerCase();
-      let response = "I don’t have that info yet. Try asking about oxygen, water, food, energy, or shelter.";
-      for (let key in knowledge) {
-        if (q.includes(key)) { response = knowledge[key]; break; }
-      }
+      let response = "I don’t have that info yet. Try asking about: oxygen, water, food, farming, energy, or shelter.";
+      for (let key in knowledge) { if (q.includes(key)) { response = knowledge[key]; break; } }
       answerBox.innerHTML = response;
       userQuestion.value = "";
     }
