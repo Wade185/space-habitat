@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Kerberos - Habitat Assistant</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
     body {
-      background: radial-gradient(circle at top, #0a0f28, #1a1a40, #000);
-      color: #f1f6ff;
+      background: radial-gradient(circle at top, #0a0f2c, #1c2340, #2b2a6a, #000);
+      background-attachment: fixed;
+      color: #f1f1f1;
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -16,103 +16,77 @@
       padding: 40px;
     }
     .assistant-container {
-      background: rgba(20, 20, 45, 0.85);
+      background: rgba(20, 20, 40, 0.85);
       border-radius: 15px;
-      padding: 28px;
-      width: 860px;
+      padding: 30px;
+      width: 850px;
       max-width: 95%;
-      box-shadow: 0 0 25px rgba(0, 200, 255, 0.35);
-      backdrop-filter: blur(8px);
-      animation: fadeIn 1.2s ease;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease-in-out;
     }
-    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
     .assistant-container h1 {
       text-align: center;
-      font-size: 2.2rem;
+      font-size: 2.2em;
       color: #00eaff;
-      margin-bottom: 18px;
-      text-shadow: 0 0 12px #00eaff, 0 0 18px #0080ff;
+      text-shadow: 0 0 10px #00eaff, 0 0 20px #0095ff;
+      margin-bottom: 20px;
     }
-    .info p { margin: 7px 0; font-size: 1rem; line-height: 1.4; }
-    h2 { margin-top: 22px; font-size: 1.4rem; color: #ffdd57; text-shadow: 0 0 6px #ffae00; }
-    p { margin: 8px 0; line-height: 1.5; }
+    .info p { margin: 8px 0; font-size: 1.05em; }
+    h2 { margin-top: 25px; font-size: 1.5em; color: #ffdd57; text-shadow: 0 0 5px #ffae00; }
+    p { margin: 10px 0; line-height: 1.5; }
     .assistant-box {
-      margin-top: 28px;
-      padding: 18px;
-      border: 1px solid #00eaff;
-      border-radius: 10px;
-      background: rgba(0, 30, 50, 0.55);
-      text-align: center;
-      box-shadow: 0 0 16px rgba(0, 200, 255, 0.25);
+      margin-top: 30px; padding: 20px; border: 2px solid #00eaff; border-radius: 10px;
+      background: rgba(0, 20, 40, 0.6); text-align: center; box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
     }
     .assistant-box input {
-      width: 68%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      outline: none;
-      font-size: 1rem;
-      background: rgba(255,255,255,0.08);
-      color: #fff;
+      width: 70%; padding: 12px; margin-top: 15px; border: none; border-radius: 8px;
+      outline: none; font-size: 1em;
     }
     .assistant-box button {
-      margin-left: 10px;
-      padding: 12px 20px;
-      background: #00eaff;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      color: #000;
-      font-weight: bold;
-      transition: 0.3s;
+      margin-left: 10px; padding: 12px 20px; background: #00eaff; border: none;
+      border-radius: 8px; font-size: 1em; cursor: pointer; color: #000;
+      font-weight: bold; transition: 0.3s;
     }
-    .assistant-box button:hover { background: #0095ff; box-shadow: 0 0 12px #00eaff; }
+    .assistant-box button:hover { background: #0095ff; box-shadow: 0 0 15px #00eaff; }
     #answerBox {
-      margin-top: 16px;
-      padding: 12px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 8px;
-      min-height: 60px;
-      font-style: italic;
-      text-align: left;
+      margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px; min-height: 60px; font-style: italic; text-align: left;
     }
     .back-btn {
-      display: inline-block;
-      margin-top: 20px;
-      text-decoration: none;
-      color: #ffdd57;
-      font-weight: bold;
+      display: inline-block; margin-top: 20px; text-decoration: none;
+      color: #ffdd57; font-weight: bold; transition: 0.3s;
     }
-    .back-btn:hover { color: #fff; text-shadow: 0 0 8px #ffdd57; }
+    .back-btn:hover { color: #ffffff; text-shadow: 0 0 10px #ffdd57; }
+    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
   </style>
 </head>
 <body>
   <div class="assistant-container">
-    <h1>Kerberos — Habitat Assistant</h1>
+    <h1>Kerberos AI Assistant</h1>
     <div class="info">
-      <p><b>Discovery:</b> 2011 by the Hubble Space Telescope Pluto Companion Search Team</p>
+      <p><b>Discovery:</b> 2011, by the Hubble Space Telescope Pluto Companion Search Team</p>
       <p><b>Parent Planet:</b> Pluto</p>
-      <p><b>Size:</b> ~19 km across (irregular shape)</p>
-      <p><b>Distance from Earth:</b> ~4.9 billion km</p>
-      <p><b>Description:</b> Kerberos is a small moon of Pluto with a double-lobed shape, resembling a peanut. Its surface is thought to be coated in water ice, giving it a reflective appearance.</p>
-      <p><b>Fun Fact:</b> Kerberos is named after the multi-headed dog from Greek mythology that guards the underworld.</p>
+      <p><b>Size:</b> ~19 km across</p>
+      <p><b>Distance from Earth:</b> ~5.9 billion km</p>
+      <p><b>Description:</b> Kerberos is one of Pluto’s small outer moons. It has a highly reflective icy surface and an irregular, double-lobed shape.</p>
+      <p><b>Fun Fact:</b> Kerberos is named after the three-headed dog of Greek mythology that guards the underworld, fitting its role as a moon of Pluto, god of the underworld.</p>
     </div>
 
     <h2>Breathing / Oxygen</h2>
-    <p>No atmosphere. Any settlement would need sealed life-support habitats to generate oxygen.</p>
+    <p>Kerberos has no atmosphere, meaning there’s no oxygen. Life support systems and pressurized habitats are required for survival.</p>
 
     <h2>Water & Sewage</h2>
-    <p>Kerberos likely has surface water ice. This could be harvested and melted for use, with closed-loop recycling systems handling sewage.</p>
+    <p>Its icy surface may contain frozen water. Extracting ice through heating systems could provide water. Waste would be recycled in closed-loop systems.</p>
 
     <h2>Food Production</h2>
-    <p>No natural resources. Colonists must grow food in pressurized hydroponic or aeroponic systems under artificial lighting.</p>
+    <p>All food must be grown in sealed greenhouses under artificial light. Hydroponic or aeroponic systems would sustain colonies.</p>
 
     <h2>Energy</h2>
-    <p>Solar energy is very weak at Pluto’s distance. Nuclear fission or compact fusion would be the only practical options.</p>
+    <p>Solar power is weak this far from the Sun. Nuclear or fusion power sources would be essential for sustainable energy.</p>
 
     <h2>Shelter</h2>
-    <p>Habitats would need thick shielding or underground construction to protect from radiation and micrometeoroid impacts.</p>
+    <p>Habitats must be underground or heavily shielded to protect from cosmic radiation and micro-impacts.</p>
 
     <div class="assistant-box">
       <h2>Ask me anything about Kerberos</h2>
@@ -121,7 +95,7 @@
       <div id="answerBox">Tip: Try asking about oxygen, water, food, energy, or shelter.</div>
     </div>
 
-  <a href="/space-habitat/index.html" class="back-btn">⬅ Back</a>
+<a href="/space-habitat/index.html" class="back-btn">⬅ Back</a>
   </div>
 
   <script>
@@ -130,24 +104,28 @@
     const answerBox = document.getElementById("answerBox");
 
     const knowledge = {
-      "oxygen": "Kerberos has no atmosphere. Oxygen must be fully artificial.",
-      "air": "No breathable air. Only sealed habitats make survival possible.",
-      "water": "Surface ice may exist on Kerberos and could be harvested.",
-      "sewage": "Closed-loop recycling would handle waste and reclaim water.",
-      "food": "No food sources. Hydroponics or lab-grown food needed.",
-      "farming": "Only possible inside sealed greenhouses with artificial lighting.",
-      "energy": "Nuclear power is essential; solar is too weak at Pluto’s orbit.",
-      "power": "Compact fission or fusion reactors would be needed.",
-      "shelter": "Habitats must be underground or heavily shielded.",
-      "habitat": "Only pressurized domes or buried bases could sustain life."
+      "oxygen": "Kerberos has no atmosphere. Oxygen must come from life-support systems.",
+      "breath": "There’s no breathable air here.",
+      "air": "No air exists — habitats must be sealed.",
+
+      "water": "Kerberos contains ice that could be melted for water.",
+      "sewage": "Water and waste recycling are mandatory for long-term survival.",
+
+      "food": "Food would come from hydroponics and imported supplies.",
+      "farming": "Farming happens inside climate-controlled domes.",
+      "agriculture": "Hydroponic agriculture sustains colonists.",
+
+      "energy": "Solar power is too weak — nuclear energy is required.",
+      "power": "Nuclear or fusion reactors supply necessary energy.",
+
+      "shelter": "Radiation and temperature extremes demand underground shelters.",
+      "habitat": "Pressurized, shielded structures ensure human safety."
     };
 
     function getAnswer() {
       const q = userQuestion.value.toLowerCase();
-      let response = "I don’t have that info yet. Try asking about oxygen, water, food, energy, or shelter.";
-      for (let key in knowledge) {
-        if (q.includes(key)) { response = knowledge[key]; break; }
-      }
+      let response = "I don’t have that info yet. Try asking about: oxygen, water, food, energy, or shelter.";
+      for (let key in knowledge) { if (q.includes(key)) { response = knowledge[key]; break; } }
       answerBox.innerHTML = response;
       userQuestion.value = "";
     }
