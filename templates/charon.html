@@ -1,11 +1,158 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>charon</title>
+  <meta charset="UTF-8" />
+  <title>Charon - Habitat Assistant</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+    body {
+      background: radial-gradient(circle at top, #08122a, #142045, #1c2a58, #000);
+      color: #f2f8fc;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+    }
+    .assistant-container {
+      background: rgba(18, 20, 40, 0.85);
+      border-radius: 15px;
+      padding: 28px;
+      width: 860px;
+      max-width: 95%;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.35);
+      backdrop-filter: blur(8px);
+      animation: fadeIn 1.2s ease;
+    }
+    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
+    .assistant-container h1 {
+      text-align: center;
+      font-size: 2.2rem;
+      color: #00eaff;
+      margin-bottom: 18px;
+      text-shadow: 0 0 10px #00eaff, 0 0 16px #0075aa;
+    }
+    .info p { margin: 7px 0; font-size: 1rem; line-height: 1.4; }
+    h2 { margin-top: 22px; font-size: 1.4rem; color: #ffdd57; text-shadow: 0 0 6px #ffb400; }
+    p { margin: 8px 0; line-height: 1.5; }
+    .assistant-box {
+      margin-top: 28px;
+      padding: 18px;
+      border: 1px solid #00eaff;
+      border-radius: 10px;
+      background: rgba(0, 20, 40, 0.55);
+      text-align: center;
+      box-shadow: 0 0 16px rgba(0, 200, 255, 0.25);
+    }
+    .assistant-box input {
+      width: 68%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+    }
+    .assistant-box button {
+      margin-left: 10px;
+      padding: 12px 20px;
+      background: #00eaff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      color: #000;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .assistant-box button:hover { background: #0095ff; box-shadow: 0 0 12px #00eaff; }
+    #answerBox {
+      margin-top: 16px;
+      padding: 12px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px;
+      min-height: 60px;
+      font-style: italic;
+      text-align: left;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #ffdd57;
+      font-weight: bold;
+    }
+    .back-btn:hover { color: #fff; text-shadow: 0 0 8px #ffdd57; }
+  </style>
 </head>
 <body>
-    <h1>charon</h1>
-    <img src="{{ url_for('static', filename='charon.jpg') }}" alt="charon">
-    <p>Welcome to the habitat exploration page for <b>charon</b>!</p>
+  <div class="assistant-container">
+    <h1>Charon — Habitat Assistant</h1>
+    <div class="info">
+      <p><b>Discovery:</b> 1978 by James Christy and Robert Harrington</p>
+      <p><b>Parent Planet:</b> Pluto (dwarf planet)</p>
+      <p><b>Size:</b> ~1,212 km diameter</p>
+      <p><b>Distance from Earth:</b> ~5.9 billion km (varies)</p>
+      <p><b>Description:</b> Charon is the largest moon of Pluto and is so big compared to Pluto that the two are sometimes considered a double dwarf planet system. Its surface is covered in water ice, with signs of past geological activity.</p>
+      <p><b>Fun Fact:</b> Charon always shows the same face to Pluto, and Pluto also shows the same face to Charon — they are tidally locked to each other.</p>
+    </div>
+
+    <h2>Breathing / Oxygen</h2>
+    <p>Charon has no atmosphere. Habitats must supply and recycle oxygen with sealed life-support systems.</p>
+
+    <h2>Water & Sewage</h2>
+    <p>Charon’s surface contains abundant water ice, which can be harvested and purified. Sewage and wastewater should be recycled for sustainable living.</p>
+
+    <h2>Food Production</h2>
+    <p>No native sources of food. Colonies would rely on hydroponic farms and artificial lighting to grow crops within controlled environments.</p>
+
+    <h2>Energy</h2>
+    <p>Solar power is extremely weak at Pluto’s distance. Nuclear reactors or radioisotope power systems would be the main sources of energy.</p>
+
+    <h2>Shelter</h2>
+    <p>Colonies must be underground or shielded with thick ice/regolith to protect from cosmic radiation and extreme cold.</p>
+
+    <div class="assistant-box">
+      <h2>Ask me anything about Charon</h2>
+      <input type="text" id="userQuestion" placeholder="Type your question...">
+      <button id="askButton">Ask</button>
+      <div id="answerBox">Tip: Try asking about oxygen, water, food, energy, or shelter.</div>
+    </div>
+
+  <a href="/space-habitat/index.html" class="back-btn">⬅ Back</a>
+  </div>
+
+  <script>
+    const askButton = document.getElementById("askButton");
+    const userQuestion = document.getElementById("userQuestion");
+    const answerBox = document.getElementById("answerBox");
+
+    const knowledge = {
+      "oxygen": "Charon has no atmosphere. Oxygen must be created and recycled in habitats.",
+      "air": "No air exists on Charon, it is a vacuum world.",
+      "water": "Charon has abundant water ice that can be harvested and purified.",
+      "sewage": "Wastewater must be recycled with advanced closed-loop systems.",
+      "food": "No natural food sources. Hydroponics and indoor farming are necessary.",
+      "farming": "Only possible in sealed agricultural domes with artificial lighting.",
+      "energy": "Solar energy is too weak. Nuclear reactors or RTGs are reliable sources.",
+      "power": "Colonies must depend on nuclear power systems.",
+      "shelter": "Habitats need to be underground or ice-shielded to block radiation and cold.",
+      "habitat": "Sealed domes or subsurface bases are required for survival."
+    };
+
+    function getAnswer() {
+      const q = userQuestion.value.toLowerCase();
+      let response = "I don’t have that info yet. Try asking about oxygen, water, food, energy, or shelter.";
+      for (let key in knowledge) {
+        if (q.includes(key)) { response = knowledge[key]; break; }
+      }
+      answerBox.innerHTML = response;
+      userQuestion.value = "";
+    }
+    askButton.addEventListener("click", getAnswer);
+    userQuestion.addEventListener("keyup", (event) => { if (event.key === "Enter") getAnswer(); });
+  </script>
 </body>
 </html>
