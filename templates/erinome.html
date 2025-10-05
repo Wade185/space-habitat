@@ -1,207 +1,126 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Erinome - Habitat Assistant</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <style>
-    /* Page layout & reset */
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
     body {
-      background: radial-gradient(circle at top, #051025, #0e1a36, #12223f, #000000);
-      color: #eef6fb;
+      background: radial-gradient(circle at top, #0a0f2c, #1c2340, #2b2a6a, #000);
+      background-attachment: fixed;
+      color: #f1f1f1;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding: 36px;
+      padding: 40px;
     }
-
-    /* Card / container */
     .assistant-container {
-      width: 860px;
-      max-width: 96%;
-      background: rgba(10,12,25,0.78);
-      border-radius: 14px;
-      padding: 28px;
-      box-shadow: 0 8px 40px rgba(0,160,220,0.12), inset 0 1px 0 rgba(255,255,255,0.02);
-      backdrop-filter: blur(6px);
-      animation: floatIn 0.9s ease both;
+      background: rgba(20, 20, 40, 0.85);
+      border-radius: 15px;
+      padding: 30px;
+      width: 850px;
+      max-width: 95%;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease-in-out;
     }
-
-    @keyframes floatIn {
-      from { transform: translateY(18px); opacity: 0; }
-      to   { transform: translateY(0); opacity: 1; }
-    }
-
-    /* Title */
     .assistant-container h1 {
       text-align: center;
-      font-size: 2.1rem;
-      color: #39f0ff;
-      text-shadow: 0 0 10px rgba(57,240,255,0.15);
-      margin-bottom: 14px;
+      font-size: 2.2em;
+      color: #00eaff;
+      text-shadow: 0 0 10px #00eaff, 0 0 20px #0095ff;
+      margin-bottom: 20px;
     }
-
-    .info { margin: 10px 0 6px; }
-    .info p { margin: 6px 0; color: #dceff6; font-size: 0.98rem; line-height: 1.45; }
-
-    /* Section headings */
-    h2 {
-      margin-top: 20px;
-      font-size: 1.18rem;
-      color: #ffd76a;
-      text-shadow: 0 0 6px rgba(255,215,106,0.08);
-    }
-
-    p { margin: 8px 0; color: #d8eef8; line-height: 1.5; }
-
-    /* Assistant box (Q/A) */
+    .info p { margin: 8px 0; font-size: 1.05em; }
+    h2 { margin-top: 25px; font-size: 1.5em; color: #ffdd57; text-shadow: 0 0 5px #ffae00; }
+    p { margin: 10px 0; line-height: 1.5; }
     .assistant-box {
-      margin-top: 26px;
-      padding: 18px;
-      border-radius: 10px;
-      background: linear-gradient(180deg, rgba(6,16,30,0.6), rgba(4,8,18,0.5));
-      border: 1px solid rgba(0,150,200,0.12);
-      box-shadow: 0 6px 18px rgba(0,150,200,0.06);
-      text-align: center;
+      margin-top: 30px; padding: 20px; border: 2px solid #00eaff; border-radius: 10px;
+      background: rgba(0, 20, 40, 0.6); text-align: center; box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
     }
-
-    .assistant-box h2 { margin-bottom: 8px; color: #ffea9a; }
-
-    .assistant-box input[type="text"] {
-      width: 68%;
-      padding: 12px 14px;
-      border-radius: 8px;
-      border: none;
-      outline: none;
-      font-size: 0.98rem;
-      background: rgba(255,255,255,0.04);
-      color: #e9fbff;
+    .assistant-box input {
+      width: 70%; padding: 12px; margin-top: 15px; border: none; border-radius: 8px;
+      outline: none; font-size: 1em;
     }
-
     .assistant-box button {
-      padding: 12px 16px;
-      margin-left: 10px;
-      border-radius: 8px;
-      border: none;
-      font-weight: 700;
-      cursor: pointer;
-      background: linear-gradient(180deg,#00eaff,#0094d9);
-      color: #001317;
-      transition: transform .12s ease, box-shadow .12s ease;
+      margin-left: 10px; padding: 12px 20px; background: #00eaff; border: none;
+      border-radius: 8px; font-size: 1em; cursor: pointer; color: #000;
+      font-weight: bold; transition: 0.3s;
     }
-
-    .assistant-box button:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,160,220,0.18); }
-
+    .assistant-box button:hover { background: #0095ff; box-shadow: 0 0 15px #00eaff; }
     #answerBox {
-      margin-top: 14px;
-      text-align: left;
-      min-height: 64px;
-      padding: 12px;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.02);
-      color: #dff7ff;
-      font-style: italic;
+      margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px; min-height: 60px; font-style: italic; text-align: left;
     }
-
-    /* Back button */
     .back-btn {
-      display: inline-block;
-      margin-top: 18px;
-      text-decoration: none;
-      color: #ffd76a;
-      font-weight: 700;
+      display: inline-block; margin-top: 20px; text-decoration: none;
+      color: #ffdd57; font-weight: bold; transition: 0.3s;
     }
-    .back-btn:hover { color: #ffffff; text-shadow: 0 0 8px rgba(255,215,106,0.25); }
-
-    /* Responsive tweaks */
-    @media (max-width: 700px) {
-      .assistant-box input[type="text"] { width: 100%; margin-bottom: 10px; }
-      .assistant-box button { margin-left: 0; width: 100%; }
-    }
+    .back-btn:hover { color: #ffffff; text-shadow: 0 0 10px #ffdd57; }
+    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
   </style>
 </head>
 <body>
   <div class="assistant-container">
-    <h1>Erinome — Habitat Assistant</h1>
-
+    <h1>Erinome AI Assistant</h1>
     <div class="info">
-      <p><strong>Discovery:</strong> 2000 by Scott S. Sheppard and team</p>
-      <p><strong>Parent Planet:</strong> Jupiter</p>
-      <p><strong>Size:</strong> ~3 km diameter (estimated)</p>
-      <p><strong>Distance from Earth:</strong> varies — roughly ~600 million km (depends on orbital positions)</p>
-      <p><strong>Description:</strong> Erinome is a small, retrograde irregular moon of Jupiter and a member of the Carme group. Its orbit is inclined and distant compared to Jupiter's major moons; it likely originated from a captured object.</p>
-      <p><strong>Fun Fact:</strong> Erinome orbits Jupiter in a retrograde direction (opposite to the planet's rotation).</p>
+      <p><b>Discovery:</b> 2000, by Scott S. Sheppard and team</p>
+      <p><b>Parent Planet:</b> Jupiter</p>
+      <p><b>Size:</b> ~3 km diameter</p>
+      <p><b>Distance from Earth:</b> ~628–930 million km</p>
+      <p><b>Description:</b> Erinome is a small retrograde irregular moon of Jupiter, part of the Carme group.</p>
+      <p><b>Fun Fact:</b> Named after Erinome, a lover of Zeus from Greek mythology.</p>
     </div>
 
     <h2>Breathing / Oxygen</h2>
-    <p>Erinome does not have an atmosphere. Any human presence would require pressurized habitats with closed-loop life support systems that generate and recycle oxygen continuously.</p>
+    <p>No atmosphere; oxygen must be imported or generated.</p>
 
     <h2>Water & Sewage</h2>
-    <p>No exposed liquid water or surface ice is known. Missions would need to either import water from larger nearby bodies or rely on extremely efficient recycling (e.g., ISS-style water reclamation) and potential in-situ resource extraction if subsurface ice is discovered.</p>
+    <p>No water sources; recycling systems needed.</p>
 
     <h2>Food Production</h2>
-    <p>All food production must be done inside sealed agricultural modules using hydroponics, aeroponics, or lab-grown alternatives. Waste streams should be converted and reused to close nutrient loops.</p>
+    <p>Only hydroponics or imported food possible.</p>
 
     <h2>Energy</h2>
-    <p>Erinome is far from the Sun, so solar is weak. The most practical energy sources for long-term bases would be compact nuclear fission reactors (or fusion in future tech scenarios) combined with battery/thermal storage for peak loads.</p>
+    <p>Nuclear power required; solar is very weak.</p>
 
-    <h2>Shelter & Radiation</h2>
-    <p>Because Erinome orbits Jupiter, radiation from Jupiter's magnetosphere is a major concern. Habitats must be shielded — preferably subterranean or covered with regolith/lead-equivalent shielding — to reduce radiation exposure and micrometeorite risk.</p>
+    <h2>Shelter</h2>
+    <p>Underground or regolith-shielded bases essential.</p>
 
     <div class="assistant-box">
       <h2>Ask me anything about Erinome</h2>
-      <div>
-        <input type="text" id="userQuestion" placeholder="Try: oxygen, water, food, energy, shelter..." />
-        <button id="askButton">Ask</button>
-      </div>
-      <div id="answerBox">Tip: Ask short keywords like "oxygen", "water", "food", "energy", or "shelter".</div>
+      <input type="text" id="userQuestion" placeholder="Type your question...">
+      <button id="askButton">Ask</button>
+      <div id="answerBox">Tip: Try asking about oxygen, water, food, energy, or shelter.</div>
     </div>
-
-    <!-- Back to main index (use relative path so it works from templates/ folder) -->
-    <a href="/space-habitat/index.html" class="back-btn">⬅ Back</a>
+   <a href="/space-habitat/index.html" class="back-btn">⬅ Back</a>
   </div>
 
   <script>
-    // Simple keyword-based Q/A (same style used elsewhere)
-    const askButton = document.getElementById('askButton');
-    const userQuestion = document.getElementById('userQuestion');
-    const answerBox = document.getElementById('answerBox');
+    const askButton = document.getElementById("askButton");
+    const userQuestion = document.getElementById("userQuestion");
+    const answerBox = document.getElementById("answerBox");
 
     const knowledge = {
-      "oxygen": "Erinome has no atmosphere. Oxygen must be produced and recycled inside habitats.",
-      "air": "There is no breathable air — Erinome is a vacuum environment.",
-      "water": "No known surface water. Water must be imported or recycled from mission systems.",
-      "sewage": "All waste must be processed by closed-loop recycling systems.",
-      "food": "Food must be produced in hydroponic/aeroponic farms inside sealed domes.",
-      "farming": "Agriculture requires controlled-environment modules with artificial light and nutrient recycling.",
-      "energy": "Solar is weak. Nuclear reactors are the most reliable energy source at Jupiter distance.",
-      "power": "Use compact fission or (future) fusion reactors plus energy storage.",
-      "shelter": "Underground or heavily shielded habitats to protect from radiation and micrometeorites.",
-      "habitat": "Pressurized, radiation-shielded domes or subsurface bases are necessary."
+      "oxygen": "Erinome has no atmosphere; oxygen must be imported or produced artificially.",
+      "water": "No water here; recycling or imports required.",
+      "sewage": "Closed-loop recycling handles waste.",
+      "food": "Hydroponics in domes is the only option.",
+      "farming": "Farming requires artificial systems.",
+      "energy": "Nuclear power is required; solar too weak.",
+      "shelter": "Bases must be shielded with regolith or underground."
     };
 
     function getAnswer() {
-      const q = userQuestion.value.trim().toLowerCase();
-      if (!q) {
-        answerBox.textContent = "Please type a question or keyword (e.g., 'oxygen', 'water', 'food').";
-        return;
-      }
-      for (let key in knowledge) {
-        if (q.includes(key)) {
-          answerBox.textContent = knowledge[key];
-          userQuestion.value = "";
-          return;
-        }
-      }
-      answerBox.textContent = "I don't have that exact info. Try keywords: oxygen, water, food, energy, shelter.";
+      const q = userQuestion.value.toLowerCase();
+      let response = "I don’t have that info yet. Try asking about oxygen, water, food, energy, or shelter.";
+      for (let key in knowledge) { if (q.includes(key)) { response = knowledge[key]; break; } }
+      answerBox.innerHTML = response;
       userQuestion.value = "";
     }
-
-    askButton.addEventListener('click', getAnswer);
-    userQuestion.addEventListener('keyup', (e) => { if (e.key === 'Enter') getAnswer(); });
+    askButton.addEventListener("click", getAnswer);
+    userQuestion.addEventListener("keyup", (event) => { if (event.key === "Enter") getAnswer(); });
   </script>
 </body>
 </html>
