@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Hydra - Habitat Assistant</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
     body {
-      background: radial-gradient(circle at top, #0b1630, #1a254d, #0a0f25);
-      color: #eaf6ff;
+      background: radial-gradient(circle at top, #0a0f2c, #1c2340, #2b2a6a, #000);
+      background-attachment: fixed;
+      color: #f1f1f1;
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -16,112 +16,86 @@
       padding: 40px;
     }
     .assistant-container {
-      background: rgba(15, 20, 50, 0.85);
+      background: rgba(20, 20, 40, 0.85);
       border-radius: 15px;
-      padding: 28px;
-      width: 860px;
+      padding: 30px;
+      width: 850px;
       max-width: 95%;
-      box-shadow: 0 0 25px rgba(0, 255, 180, 0.35);
-      backdrop-filter: blur(8px);
-      animation: fadeIn 1.2s ease;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease-in-out;
     }
-    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
     .assistant-container h1 {
       text-align: center;
-      font-size: 2.2rem;
-      color: #00ffcc;
-      margin-bottom: 18px;
-      text-shadow: 0 0 10px #00ffcc, 0 0 16px #006666;
+      font-size: 2.2em;
+      color: #00eaff;
+      text-shadow: 0 0 10px #00eaff, 0 0 20px #0095ff;
+      margin-bottom: 20px;
     }
-    .info p { margin: 7px 0; font-size: 1rem; line-height: 1.4; }
-    h2 { margin-top: 22px; font-size: 1.4rem; color: #ffdd57; text-shadow: 0 0 6px #ffb400; }
-    p { margin: 8px 0; line-height: 1.5; }
+    .info p { margin: 8px 0; font-size: 1.05em; }
+    h2 { margin-top: 25px; font-size: 1.5em; color: #ffdd57; text-shadow: 0 0 5px #ffae00; }
+    p { margin: 10px 0; line-height: 1.5; }
     .assistant-box {
-      margin-top: 28px;
-      padding: 18px;
-      border: 1px solid #00ffcc;
-      border-radius: 10px;
-      background: rgba(0, 25, 40, 0.55);
-      text-align: center;
-      box-shadow: 0 0 16px rgba(0, 255, 180, 0.25);
+      margin-top: 30px; padding: 20px; border: 2px solid #00eaff; border-radius: 10px;
+      background: rgba(0, 20, 40, 0.6); text-align: center; box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
     }
     .assistant-box input {
-      width: 68%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      outline: none;
-      font-size: 1rem;
-      background: rgba(255,255,255,0.08);
-      color: #fff;
+      width: 70%; padding: 12px; margin-top: 15px; border: none; border-radius: 8px;
+      outline: none; font-size: 1em;
     }
     .assistant-box button {
-      margin-left: 10px;
-      padding: 12px 20px;
-      background: #00ffcc;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      color: #000;
-      font-weight: bold;
-      transition: 0.3s;
+      margin-left: 10px; padding: 12px 20px; background: #00eaff; border: none;
+      border-radius: 8px; font-size: 1em; cursor: pointer; color: #000;
+      font-weight: bold; transition: 0.3s;
     }
-    .assistant-box button:hover { background: #00bfa5; box-shadow: 0 0 12px #00ffcc; }
+    .assistant-box button:hover { background: #0095ff; box-shadow: 0 0 15px #00eaff; }
     #answerBox {
-      margin-top: 16px;
-      padding: 12px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 8px;
-      min-height: 60px;
-      font-style: italic;
-      text-align: left;
+      margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px; min-height: 60px; font-style: italic; text-align: left;
     }
     .back-btn {
-      display: inline-block;
-      margin-top: 20px;
-      text-decoration: none;
-      color: #ffdd57;
-      font-weight: bold;
+      display: inline-block; margin-top: 20px; text-decoration: none;
+      color: #ffdd57; font-weight: bold; transition: 0.3s;
     }
-    .back-btn:hover { color: #fff; text-shadow: 0 0 8px #ffdd57; }
+    .back-btn:hover { color: #ffffff; text-shadow: 0 0 10px #ffdd57; }
+    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
   </style>
 </head>
 <body>
   <div class="assistant-container">
-    <h1>Hydra — Habitat Assistant</h1>
+    <h1>Hydra AI Assistant</h1>
     <div class="info">
-      <p><b>Discovery:</b> 2005 by the Hubble Space Telescope Pluto Companion Search Team</p>
-      <p><b>Parent Planet:</b> Pluto (dwarf planet)</p>
-      <p><b>Size:</b> ~51 km diameter</p>
-      <p><b>Distance from Earth:</b> ~5.9 billion km (varies)</p>
-      <p><b>Description:</b> Hydra is one of Pluto’s small outer moons. It has a highly reflective surface made mostly of water ice and is irregular in shape. Hydra rotates chaotically, meaning its spin is unpredictable.</p>
-      <p><b>Fun Fact:</b> Hydra reflects more sunlight than Pluto itself, due to its icy bright surface.</p>
+      <p><b>Discovery:</b> 2005, by Hubble Space Telescope team (Showalter, Weaver, Stern, and others)</p>
+      <p><b>Parent Planet:</b> Pluto</p>
+      <p><b>Size:</b> ~51 km diameter (irregular)</p>
+      <p><b>Distance from Earth:</b> ~4.8–7.5 billion km (varies)</p>
+      <p><b>Description:</b> Hydra is one of Pluto’s small outer moons. Its irregular shape and reflective surface suggest it is covered in water ice.</p>
+      <p><b>Fun Fact:</b> Hydra is named after the nine-headed serpent from Greek mythology, a companion to Pluto (Hades).</p>
     </div>
 
     <h2>Breathing / Oxygen</h2>
-    <p>Hydra has no atmosphere. Any settlement would need sealed life-support systems for oxygen supply and recycling.</p>
+    <p>No atmosphere. Any oxygen must be created from water ice through electrolysis or transported from Earth.</p>
 
     <h2>Water & Sewage</h2>
-    <p>Hydra’s icy surface could provide water for colonists. Ice can be harvested and purified, with sewage recycled into usable water.</p>
+    <p>Hydra’s icy surface could provide water for colonists after mining, purification, and recycling.</p>
 
     <h2>Food Production</h2>
-    <p>No natural food sources exist. Colonists must establish hydroponic or aquaponic farms inside controlled environments.</p>
+    <p>Like Pluto’s other moons, food production would rely on hydroponics or bioreactors inside sealed habitats.</p>
 
     <h2>Energy</h2>
-    <p>Like other Plutonian moons, solar power is very weak. Nuclear power plants or RTGs would be the main reliable energy sources.</p>
+    <p>Solar power is nearly useless at this distance. Nuclear reactors would be the only reliable source of power.</p>
 
     <h2>Shelter</h2>
-    <p>Habitats must be built underground or shielded with thick ice walls to protect against radiation, extreme cold, and micrometeoroid impacts.</p>
+    <p>Habitats must be shielded underground or inside ice caverns to protect from radiation and micrometeorites.</p>
 
     <div class="assistant-box">
       <h2>Ask me anything about Hydra</h2>
       <input type="text" id="userQuestion" placeholder="Type your question...">
       <button id="askButton">Ask</button>
-      <div id="answerBox">Tip: Try asking about oxygen, water, food, energy, or shelter.</div>
+      <div id="answerBox">Tip: Try asking about oxygen, water, food, farming, energy, or shelter.</div>
     </div>
 
-  <a href="/space-habitat/index.html" class="back-btn">⬅ Back</a>
+   <a href="/space-habitat/index.html" class="back-btn">⬅ Back</a>
   </div>
 
   <script>
@@ -130,24 +104,28 @@
     const answerBox = document.getElementById("answerBox");
 
     const knowledge = {
-      "oxygen": "Hydra has no atmosphere. Oxygen must be generated and recycled in habitats.",
+      "oxygen": "Hydra has no atmosphere. Oxygen would need to be generated from ice.",
+      "breath": "Breathing requires sealed life-support systems.",
       "air": "No breathable air exists on Hydra.",
-      "water": "Hydra’s surface is rich in water ice that can be melted and purified.",
-      "sewage": "Wastewater must be recycled into clean water for long-term survival.",
-      "food": "There are no natural food sources. Hydroponic farming is required.",
-      "farming": "Hydroponics or aquaponics inside sealed domes will sustain colonists.",
-      "energy": "Solar power is nearly useless this far out. Nuclear power is essential.",
-      "power": "Colonies would rely on RTGs or nuclear reactors for electricity.",
-      "shelter": "Thick ice or underground habitats are needed to shield from radiation and cold.",
-      "habitat": "Sealed and well-insulated bases are mandatory for living on Hydra."
+
+      "water": "Hydra’s icy surface could provide water resources.",
+      "sewage": "Sewage would be recycled into clean water using closed systems.",
+
+      "food": "Food would be produced using hydroponic domes.",
+      "farming": "Farming requires artificial lighting and sealed domes.",
+      "agriculture": "Closed-loop agriculture would sustain colonists.",
+
+      "energy": "Hydra would depend on nuclear reactors for energy.",
+      "power": "Solar power is ineffective this far out; nuclear is vital.",
+
+      "shelter": "Shelters would be underground or in ice caves for radiation shielding.",
+      "habitat": "Habitat domes shielded by ice/regolith are required."
     };
 
     function getAnswer() {
       const q = userQuestion.value.toLowerCase();
-      let response = "I don’t have that info yet. Try asking about oxygen, water, food, energy, or shelter.";
-      for (let key in knowledge) {
-        if (q.includes(key)) { response = knowledge[key]; break; }
-      }
+      let response = "I don’t have that info yet. Try asking about: oxygen, water, food, farming, energy, or shelter.";
+      for (let key in knowledge) { if (q.includes(key)) { response = knowledge[key]; break; } }
       answerBox.innerHTML = response;
       userQuestion.value = "";
     }
